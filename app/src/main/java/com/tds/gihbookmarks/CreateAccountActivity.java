@@ -164,6 +164,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
                                     Log.d("Failure", "onFailure:Failed to save Data ");
+                                    Toast.makeText(CreateAccountActivity.this,"Failure to store data",Toast.LENGTH_LONG).show();
                                 }
                             });
 
