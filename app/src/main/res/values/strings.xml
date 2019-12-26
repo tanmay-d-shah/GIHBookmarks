@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">GIH Bookmarks</string>
     <string name="sign_in">SIGN IN</string>
+    <string name="create_account">CREATE ACCOUNT</string>
 </resources>

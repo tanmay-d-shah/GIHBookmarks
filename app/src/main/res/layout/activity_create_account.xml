@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateAccountActivity">
+
+    <EditText
+        android:id="@+id/email_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:inputType="text"
+
+        tools:layout_editor_absoluteX="182dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <EditText
+        android:id="@+id/name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:inputType="text"
+
+        tools:layout_editor_absoluteX="182dp"
+        tools:layout_editor_absoluteY="87dp" />
+
+    <EditText
+        android:id="@+id/mobileno_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:inputType="text"
+
+        tools:layout_editor_absoluteX="182dp"
+        tools:layout_editor_absoluteY="151dp" />
+
+    <EditText
+        android:id="@+id/designation_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:inputType="text"
+
+        tools:layout_editor_absoluteX="182dp"
+        tools:layout_editor_absoluteY="219dp" />
+
+    <EditText
+        android:id="@+id/college_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:inputType="text"
+
+        tools:layout_editor_absoluteX="182dp"
+        tools:layout_editor_absoluteY="289dp" />
+
+    <EditText
+        android:id="@+id/course_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:inputType="text"
+
+        tools:layout_editor_absoluteX="182dp"
+        tools:layout_editor_absoluteY="364dp" />
+
+    <EditText
+        android:id="@+id/branch_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:inputType="text"
+
+        tools:layout_editor_absoluteX="182dp"
+        tools:layout_editor_absoluteY="435dp" />
+
+    <EditText
+        android:id="@+id/semester_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:inputType="text"
+
+        tools:layout_editor_absoluteX="182dp"
+        tools:layout_editor_absoluteY="509dp" />
+
+    <EditText
+        android:id="@+id/city_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:inputType="text"
+
+        tools:layout_editor_absoluteX="182dp"
+        tools:layout_editor_absoluteY="573dp" />
+
+    <EditText
+        android:id="@+id/password_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:inputType="textPassword"
+
+        tools:layout_editor_absoluteX="176dp"
+        tools:layout_editor_absoluteY="647dp" />
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:layout_width="wrap_content"
+        android:id="@+id/progress_bar"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/create_account_button"
+        android:text="@string/create_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
