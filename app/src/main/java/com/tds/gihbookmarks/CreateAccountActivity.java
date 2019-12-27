@@ -144,18 +144,19 @@ public class CreateAccountActivity extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                         @Override
                                         public void onSuccess(DocumentReference documentReference) {
-//                                            currentUser.sendEmailVerification()
-//                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                                        @Override
-//                                                        public void onComplete(@NonNull Task<Void> task) {
-//                                                            if(task.isSuccessful()){
-//                                                                Toast.makeText(CreateAccountActivity.this,"Verification Mail sent to "+currentUser.getEmail(),Toast.LENGTH_LONG).show();
-//                                                            }
-//                                                            else{
-//                                                                Log.d("Verification Failure", "onComplete:Verification Failed ");
-//                                                            }
-//                                                        }
-//                                                    });
+                                            currentUser.sendEmailVerification()
+                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if(task.isSuccessful()){
+                                                                Log.d("Mail ", "onComplete: Mail Sent");
+                                                                Toast.makeText(CreateAccountActivity.this,"Verification Mail sent to "+currentUser.getEmail(),Toast.LENGTH_LONG).show();
+                                                            }
+                                                            else{
+                                                                Log.d("Verification Failure", "onComplete:Verification Failed ");
+                                                            }
+                                                        }
+                                                    });
 
                                             Toast.makeText(CreateAccountActivity.this,"Data Saved Succesfully",Toast.LENGTH_LONG).show();
                                         }
