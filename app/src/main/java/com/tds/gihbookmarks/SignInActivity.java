@@ -96,7 +96,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                                                         userApi.setUsername(snapshot.getString("Name"));
                                                         userApi.setUserMobile(snapshot.getString("Mobile"));
 
-                                                        startActivity(new Intent(SignInActivity.this,PostBookActivity.class));
+                                                        startActivity(new Intent(SignInActivity.this,StationaryPostActivity.class));
                                                     }
 
 
