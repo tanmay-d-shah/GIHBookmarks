@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:context=".CreateAccountActivity">
 
     <EditText
@@ -14,10 +15,12 @@
         android:layout_height="wrap_content"
 
 
+        android:hint="email"
         android:inputType="text"
 
-        tools:layout_editor_absoluteX="182dp"
-        tools:layout_editor_absoluteY="16dp" />
+
+
+        />
 
     <EditText
         android:id="@+id/name_text"
@@ -26,8 +29,8 @@
 
         android:inputType="text"
 
-        tools:layout_editor_absoluteX="182dp"
-        tools:layout_editor_absoluteY="87dp" />
+
+        android:hint="name" />
 
     <EditText
         android:id="@+id/mobileno_text"
@@ -36,8 +39,7 @@
 
         android:inputType="text"
 
-        tools:layout_editor_absoluteX="182dp"
-        tools:layout_editor_absoluteY="151dp" />
+        android:hint="mobile" />
 
     <EditText
         android:id="@+id/designation_text"
@@ -46,8 +48,7 @@
 
         android:inputType="text"
 
-        tools:layout_editor_absoluteX="182dp"
-        tools:layout_editor_absoluteY="219dp" />
+       android:hint="designation" />
 
     <EditText
         android:id="@+id/college_text"
@@ -56,8 +57,7 @@
 
         android:inputType="text"
 
-        tools:layout_editor_absoluteX="182dp"
-        tools:layout_editor_absoluteY="289dp" />
+       android:hint="college" />
 
     <EditText
         android:id="@+id/course_text"
@@ -66,8 +66,7 @@
 
         android:inputType="text"
 
-        tools:layout_editor_absoluteX="182dp"
-        tools:layout_editor_absoluteY="364dp" />
+        android:hint="course" />
 
     <EditText
         android:id="@+id/branch_text"
@@ -75,9 +74,7 @@
         android:layout_height="wrap_content"
 
         android:inputType="text"
-
-        tools:layout_editor_absoluteX="182dp"
-        tools:layout_editor_absoluteY="435dp" />
+        android:hint="branch" />
 
     <EditText
         android:id="@+id/semester_text"
@@ -86,8 +83,7 @@
 
         android:inputType="text"
 
-        tools:layout_editor_absoluteX="182dp"
-        tools:layout_editor_absoluteY="509dp" />
+        android:hint="semester" />
 
     <EditText
         android:id="@+id/city_text"
@@ -96,8 +92,7 @@
 
         android:inputType="text"
 
-        tools:layout_editor_absoluteX="182dp"
-        tools:layout_editor_absoluteY="573dp" />
+        android:hint="city" />
 
     <EditText
         android:id="@+id/password_text"
@@ -106,8 +101,7 @@
 
         android:inputType="textPassword"
 
-        tools:layout_editor_absoluteX="176dp"
-        tools:layout_editor_absoluteY="647dp" />
+        android:hint="password" />
     <androidx.core.widget.ContentLoadingProgressBar
         android:layout_width="wrap_content"
         android:id="@+id/progress_bar"
