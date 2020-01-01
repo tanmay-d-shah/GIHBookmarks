@@ -17,7 +17,6 @@
         <activity android:name=".StationaryPostActivity"></activity>
         <activity android:name=".PostLabCoatActivity" />
         <activity android:name=".PostBookActivity" />
-        <activity android:name=".HomepageActivity" />
         <activity android:name=".CreateAccountActivity" />
         <activity android:name=".SignInActivity">
             <intent-filter>
