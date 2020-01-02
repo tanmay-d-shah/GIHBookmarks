@@ -183,9 +183,9 @@ public class StationaryPostActivity extends AppCompatActivity implements Adapter
                                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                                 @Override
                                                 public void onSuccess(DocumentReference documentReference) {
-                                                    startActivity(new Intent(StationaryPostActivity.this,HomepageActivity.class));
+                                                   /* startActivity(new Intent(StationaryPostActivity.this,HomepageActivity.class));
                                                     finish();
-
+*/
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {

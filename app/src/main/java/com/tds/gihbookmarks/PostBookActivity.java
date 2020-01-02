@@ -168,8 +168,8 @@ public class PostBookActivity extends AppCompatActivity implements View.OnClickL
                                                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                                     @Override
                                                     public void onSuccess(DocumentReference documentReference) {
-                                                        startActivity(new Intent(PostBookActivity.this,HomepageActivity.class));
-                                                        finish();
+                                                       /* startActivity(new Intent(PostBookActivity.this,HomepageActivity.class));
+                                                        finish();*/
                                                     }
                                                 })
                                                 .addOnFailureListener(new OnFailureListener() {

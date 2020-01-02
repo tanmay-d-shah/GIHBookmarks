@@ -156,8 +156,8 @@ public class PostLabCoatActivity extends AppCompatActivity implements View.OnCli
                                           .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                               @Override
                                               public void onSuccess(DocumentReference documentReference) {
-                                                  startActivity(new Intent(PostLabCoatActivity.this,HomepageActivity.class));
-                                                  finish();
+                                                 /* startActivity(new Intent(PostLabCoatActivity.this,HomepageActivity.class));
+                                                  finish();*/
 
                                               }
                                           })
