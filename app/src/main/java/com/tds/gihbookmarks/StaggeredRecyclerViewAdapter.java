@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<StaggeredRecyclerViewAdapter.ViewHolder> {
 
-    private static final String TAG = "StaggerRecyclerViewAdap";
+    private static final String TAG = "StaggerRecyclerViewAdapter";
     private final ArrayList<String> mImageUrls;
     private ArrayList<String> mName= new ArrayList<>();
     private ArrayList<String> mImage= new ArrayList<>();

@@ -3,7 +3,8 @@
     <color name="colorPrimary">#5C62A7</color>
     <color name="colorPrimaryDark">#343A84</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="baige">#e6e6ff</color>
+    <color name="baige">#DCDAE8</color>
     <color name="text">#5C62A7</color>
     <color name="ham">#D2D3E6</color>
+    <color name="card">#F56460</color>
 </resources>
