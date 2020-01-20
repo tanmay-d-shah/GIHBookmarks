@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/layoutcolor"
-    tools:context=".login">
+
+    tools:context=".LoginActivity">
 
     <ImageView
         android:id="@+id/booksimg"
@@ -28,14 +30,16 @@
         />
 
     <EditText
-        android:id="@+id/emailid"
+        android:id="@+id/login_emailid"
+
         android:layout_centerInParent="true"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/Login"
         android:layout_width="350dp"
         android:layout_height="45dp"
         android:ems="10"
-        android:inputType="textEmailAddress"
+        android:hint="Email"
+        android:inputType="text"
         android:drawableStart="@drawable/email"
         android:drawableLeft="@drawable/rounded_edittext"
         android:padding="10dp"
@@ -43,13 +47,15 @@
         android:background="@drawable/rounded_edittext"/>
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/login_password"
         android:layout_centerInParent="true"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/emailid"
+        android:layout_below="@+id/login_emailid"
         android:layout_width="350dp"
         android:layout_height="45dp"
+
         android:ems="10"
+        android:hint="Password"
         android:inputType="textPassword"
         android:drawableStart="@drawable/password"
         android:drawableLeft="@drawable/password"
@@ -62,15 +68,15 @@
         android:id="@+id/asking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/password"
+        android:layout_below="@+id/login_password"
         android:layout_marginTop="10dp"
         android:text="Don't have an account?"
         android:layout_marginLeft="50dp"
         android:textSize="20dp"/>
     <TextView
-        android:id="@+id/sign"
+        android:id="@+id/login_sign_up"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/password"
+        android:layout_below="@+id/login_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="sign up"
@@ -80,10 +86,10 @@
         android:onClick="onClick"/>
 
     <Button
-        android:id="@+id/log"
+        android:id="@+id/login_button"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/sign"
+        android:layout_below="@+id/login_sign_up"
         android:layout_centerInParent="true"
         android:layout_centerVertical="true"
         android:layout_marginStart="161dp"
