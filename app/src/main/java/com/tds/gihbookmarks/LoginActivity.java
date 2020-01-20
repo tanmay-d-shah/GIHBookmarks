@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 login(loginEmail.getText().toString().trim(),loginPass.getText().toString().trim());
                 break;
             case R.id.login_sign_up:
-                Intent intent=new Intent(this,MainActivity.class);
+                Intent intent=new Intent(this,SignUpActivity.class);
                 startActivity(intent);
                 break;
         }

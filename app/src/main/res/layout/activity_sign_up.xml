@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".SignUpActivity">
 
 <RelativeLayout
 android:layout_width="match_parent"
@@ -124,10 +125,31 @@ android:background="@color/layoutcolor">
         android:background="@drawable/editwithoutcolor"
         android:layout_marginTop="20dp"
         android:padding="12dp"/>
+    <ImageView
+        android:id="@+id/designationicon"
+        android:layout_below="@id/phoneicon"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_phone_black_24dp"
+        android:layout_marginTop="27dp"
+        android:paddingLeft="6dp"
+        android:paddingRight="5dp"
+        />
+
+    <EditText
+        android:id="@+id/designation"
+        android:hint="  Phone Number"
+        android:layout_below="@id/phonenum"
+        android:layout_centerInParent="true"
+        android:layout_width="320dp"
+        android:layout_height="45dp"
+        android:background="@drawable/editwithoutcolor"
+        android:layout_marginTop="20dp"
+        android:padding="12dp"/>
 
     <ImageView
-        android:id="@+id/addressicon"
-        android:layout_below="@id/phoneicon"
+        android:id="@+id/cityicon"
+        android:layout_below="@id/enoicon"
         android:layout_width="30dp"
         android:layout_height="40dp"
         android:src="@drawable/ic_location_on_black_24dp"
@@ -136,9 +158,9 @@ android:background="@color/layoutcolor">
         android:paddingRight="5dp" />
 
     <EditText
-        android:id="@+id/address"
-        android:hint="Address"
-        android:layout_below="@+id/phonenum"
+        android:id="@+id/city"
+        android:hint="City"
+        android:layout_below="@+id/eno"
         android:layout_centerInParent="true"
         android:layout_width="320dp"
         android:layout_height="45dp"
@@ -148,7 +170,7 @@ android:background="@color/layoutcolor">
 
     <ImageView
         android:id="@+id/semicon"
-        android:layout_below="@id/addressicon"
+        android:layout_below="@id/branchicon"
         android:layout_width="40dp"
         android:layout_height="50dp"
         android:src="@drawable/ic_study"
@@ -159,7 +181,7 @@ android:background="@color/layoutcolor">
     <EditText
         android:id="@+id/sem"
         android:hint="  Semester"
-        android:layout_below="@id/address"
+        android:layout_below="@id/branch"
         android:layout_centerInParent="true"
         android:layout_width="320dp"
         android:layout_height="45dp"
@@ -171,7 +193,7 @@ android:background="@color/layoutcolor">
         android:id="@+id/branchicon"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_below="@id/semicon"
+        android:layout_below="@id/clgicon"
         android:layout_marginTop="21dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
@@ -180,7 +202,7 @@ android:background="@color/layoutcolor">
     <EditText
         android:id="@+id/branch"
         android:hint="  Branch"
-        android:layout_below="@id/sem"
+        android:layout_below="@id/clg"
         android:layout_centerInParent="true"
         android:layout_width="320dp"
         android:layout_height="45dp"
@@ -192,7 +214,7 @@ android:background="@color/layoutcolor">
         android:id="@+id/enoicon"
         android:layout_width="30dp"
         android:layout_height="40dp"
-        android:layout_below="@id/branchicon"
+        android:layout_below="@id/semicon"
         android:layout_marginTop="14dp"
         android:paddingLeft="6dp"
         android:paddingRight="5dp"
@@ -201,7 +223,7 @@ android:background="@color/layoutcolor">
     <EditText
         android:id="@+id/eno"
         android:hint="  Enrollment Number"
-        android:layout_below="@id/branch"
+        android:layout_below="@id/semicon"
         android:layout_centerInParent="true"
         android:layout_width="320dp"
         android:layout_height="45dp"
@@ -213,7 +235,7 @@ android:background="@color/layoutcolor">
         android:id="@+id/clgicon"
         android:layout_width="50dp"
         android:layout_height="60dp"
-        android:layout_below="@id/enoicon"
+        android:layout_below="@id/designationicon"
         android:paddingTop="27dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
@@ -222,7 +244,7 @@ android:background="@color/layoutcolor">
     <EditText
         android:id="@+id/clg"
         android:hint="  College"
-        android:layout_below="@+id/eno"
+        android:layout_below="@+id/designation"
         android:layout_width="320dp"
         android:layout_centerInParent="true"
         android:layout_height="45dp"
@@ -233,8 +255,8 @@ android:background="@color/layoutcolor">
 
     <Button
 
-        android:id="@+id/signin"
-        android:layout_below="@id/clg"
+        android:id="@+id/signup_button"
+        android:layout_below="@id/city"
         android:layout_width="150dp"
         android:layout_centerInParent="true"
         android:layout_height="wrap_content"

@@ -25,7 +25,7 @@
         <activity android:name=".PostLabCoatActivity" />
         <activity android:name=".PostBookActivity" />
         <activity android:name=".CreateAccountActivity" />
-        <activity android:name=".SignInActivity" />
+        <activity android:name=".SignUpActivity" />
         <activity android:name=".CreateUserProfileActivity" />
     </application>
 
