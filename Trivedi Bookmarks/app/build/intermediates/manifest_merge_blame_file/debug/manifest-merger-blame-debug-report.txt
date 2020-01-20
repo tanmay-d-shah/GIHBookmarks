@@ -1,0 +1,271 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.tds.gihbookmarks"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+8-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:5:5-67
+11-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:5:22-64
+12    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+12-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:6:5-80
+12-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:6:22-77
+13    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+13-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:7:5-80
+13-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:7:22-77
+14    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+14-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:8:5-79
+14-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:8:22-76
+15    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+15-->[com.google.android.gms:play-services-measurement-api:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\559f094854fa85bd072da76bc0e0e01f\play-services-measurement-api-17.2.1\AndroidManifest.xml:24:5-68
+15-->[com.google.android.gms:play-services-measurement-api:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\559f094854fa85bd072da76bc0e0e01f\play-services-measurement-api-17.2.1\AndroidManifest.xml:24:22-65
+16    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+16-->[com.google.firebase:firebase-iid:19.0.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\639f8437c4526e7423a3600ed1045aa0\firebase-iid-19.0.0\AndroidManifest.xml:26:5-82
+16-->[com.google.firebase:firebase-iid:19.0.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\639f8437c4526e7423a3600ed1045aa0\firebase-iid-19.0.0\AndroidManifest.xml:26:22-79
+17    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+17-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1d7fa4c15cc347978dce90a6ff08e8ee\play-services-measurement-17.2.1\AndroidManifest.xml:26:5-110
+17-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1d7fa4c15cc347978dce90a6ff08e8ee\play-services-measurement-17.2.1\AndroidManifest.xml:26:22-107
+18
+19    <application
+19-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:10:5-34:19
+20        android:allowBackup="true"
+20-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:11:9-35
+21        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+21-->[androidx.core:core:1.1.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\331630a23dfa1f0594bcf54d5352aa36\core-1.1.0\AndroidManifest.xml:24:18-86
+22        android:debuggable="true"
+23        android:icon="@mipmap/ic_launcher"
+23-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:12:9-43
+24        android:label="@string/app_name"
+24-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:13:9-41
+25        android:roundIcon="@mipmap/ic_launcher_round"
+25-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:14:9-54
+26        android:supportsRtl="true"
+26-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:15:9-35
+27        android:theme="@style/AppTheme" >
+27-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:16:9-40
+28        <activity android:name="com.tds.gihbookmarks.login" />
+28-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:17:9-52
+28-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:17:19-40
+29        <activity android:name="com.tds.gihbookmarks.Sell" />
+29-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:18:9-42
+29-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:18:19-39
+30        <activity android:name="com.tds.gihbookmarks.StationaryPostActivity" />
+30-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:19:9-60
+30-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:19:19-57
+31        <activity android:name="com.tds.gihbookmarks.PostLabCoatActivity" />
+31-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:20:9-57
+31-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:20:19-54
+32        <activity android:name="com.tds.gihbookmarks.PostBookActivity" />
+32-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:21:9-54
+32-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:21:19-51
+33        <activity android:name="com.tds.gihbookmarks.CreateAccountActivity" />
+33-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:22:9-59
+33-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:22:19-56
+34        <activity android:name="com.tds.gihbookmarks.SignInActivity" />
+34-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:23:9-52
+34-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:23:19-49
+35        <activity android:name="com.tds.gihbookmarks.CreateUserProfileActivity" />
+35-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:24:9-63
+35-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:24:19-60
+36        <activity
+36-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:25:9-33:20
+37            android:name="com.tds.gihbookmarks.MainActivity"
+37-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:26:13-41
+38            android:theme="@style/AppTheme.NoActionBar" >
+38-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:27:13-56
+39            <intent-filter>
+39-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:28:13-32:29
+40                <action android:name="android.intent.action.MAIN" />
+40-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:29:17-69
+40-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:29:25-66
+41
+42                <category android:name="android.intent.category.LAUNCHER" />
+42-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:31:17-77
+42-->C:\Users\Tanmay Shah\Desktop\Trivedi Bookmarks\Trivedi Bookmarks\app\src\main\AndroidManifest.xml:31:27-74
+43            </intent-filter>
+44        </activity>
+45
+46        <service
+46-->[com.google.firebase:firebase-firestore:21.3.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\3077f6e5ecd0f723382b832003a1cb4f\jetified-firebase-firestore-21.3.1\AndroidManifest.xml:17:9-23:19
+47            android:name="com.google.firebase.components.ComponentDiscoveryService"
+47-->[com.google.firebase:firebase-firestore:21.3.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\3077f6e5ecd0f723382b832003a1cb4f\jetified-firebase-firestore-21.3.1\AndroidManifest.xml:18:13-84
+48            android:directBootAware="true"
+48-->[com.google.firebase:firebase-common:19.3.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\5e5a1669f920a364021b257b0095cba0\jetified-firebase-common-19.3.0\AndroidManifest.xml:34:13-43
+49            android:exported="false" >
+49-->[com.google.firebase:firebase-firestore:21.3.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\3077f6e5ecd0f723382b832003a1cb4f\jetified-firebase-firestore-21.3.1\AndroidManifest.xml:19:13-37
+50            <meta-data
+50-->[com.google.firebase:firebase-firestore:21.3.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\3077f6e5ecd0f723382b832003a1cb4f\jetified-firebase-firestore-21.3.1\AndroidManifest.xml:20:13-22:85
+51                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+51-->[com.google.firebase:firebase-firestore:21.3.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\3077f6e5ecd0f723382b832003a1cb4f\jetified-firebase-firestore-21.3.1\AndroidManifest.xml:21:17-111
+52                android:value="com.google.firebase.components.ComponentRegistrar" />
+52-->[com.google.firebase:firebase-firestore:21.3.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\3077f6e5ecd0f723382b832003a1cb4f\jetified-firebase-firestore-21.3.1\AndroidManifest.xml:22:17-82
+53            <meta-data
+53-->[com.google.firebase:firebase-auth:19.2.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1569b356ae21c59997606b87853bf436\firebase-auth-19.2.0\AndroidManifest.xml:36:13-38:85
+54                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+54-->[com.google.firebase:firebase-auth:19.2.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1569b356ae21c59997606b87853bf436\firebase-auth-19.2.0\AndroidManifest.xml:37:17-109
+55                android:value="com.google.firebase.components.ComponentRegistrar" />
+55-->[com.google.firebase:firebase-auth:19.2.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1569b356ae21c59997606b87853bf436\firebase-auth-19.2.0\AndroidManifest.xml:38:17-82
+56            <meta-data
+56-->[com.google.firebase:firebase-storage:19.1.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\638a888dc69abcf1f17dc65c27bf54c8\firebase-storage-19.1.0\AndroidManifest.xml:33:13-35:85
+57                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
+57-->[com.google.firebase:firebase-storage:19.1.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\638a888dc69abcf1f17dc65c27bf54c8\firebase-storage-19.1.0\AndroidManifest.xml:34:17-107
+58                android:value="com.google.firebase.components.ComponentRegistrar" />
+58-->[com.google.firebase:firebase-storage:19.1.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\638a888dc69abcf1f17dc65c27bf54c8\firebase-storage-19.1.0\AndroidManifest.xml:35:17-82
+59            <meta-data
+59-->[com.google.android.gms:play-services-measurement-api:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\559f094854fa85bd072da76bc0e0e01f\play-services-measurement-api-17.2.1\AndroidManifest.xml:30:13-32:85
+60                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+60-->[com.google.android.gms:play-services-measurement-api:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\559f094854fa85bd072da76bc0e0e01f\play-services-measurement-api-17.2.1\AndroidManifest.xml:31:17-139
+61                android:value="com.google.firebase.components.ComponentRegistrar" />
+61-->[com.google.android.gms:play-services-measurement-api:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\559f094854fa85bd072da76bc0e0e01f\play-services-measurement-api-17.2.1\AndroidManifest.xml:32:17-82
+62            <meta-data
+62-->[com.google.firebase:firebase-iid:19.0.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\639f8437c4526e7423a3600ed1045aa0\firebase-iid-19.0.0\AndroidManifest.xml:32:13-34:85
+63                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
+63-->[com.google.firebase:firebase-iid:19.0.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\639f8437c4526e7423a3600ed1045aa0\firebase-iid-19.0.0\AndroidManifest.xml:33:17-96
+64                android:value="com.google.firebase.components.ComponentRegistrar" />
+64-->[com.google.firebase:firebase-iid:19.0.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\639f8437c4526e7423a3600ed1045aa0\firebase-iid-19.0.0\AndroidManifest.xml:34:17-82
+65        </service>
+66
+67        <activity
+67-->[com.google.firebase:firebase-auth:19.2.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1569b356ae21c59997606b87853bf436\firebase-auth-19.2.0\AndroidManifest.xml:24:9-31:50
+68            android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
+68-->[com.google.firebase:firebase-auth:19.2.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1569b356ae21c59997606b87853bf436\firebase-auth-19.2.0\AndroidManifest.xml:25:13-85
+69            android:excludeFromRecents="true"
+69-->[com.google.firebase:firebase-auth:19.2.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1569b356ae21c59997606b87853bf436\firebase-auth-19.2.0\AndroidManifest.xml:26:13-46
+70            android:exported="true"
+70-->[com.google.firebase:firebase-auth:19.2.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1569b356ae21c59997606b87853bf436\firebase-auth-19.2.0\AndroidManifest.xml:27:13-36
+71            android:launchMode="singleTask"
+71-->[com.google.firebase:firebase-auth:19.2.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1569b356ae21c59997606b87853bf436\firebase-auth-19.2.0\AndroidManifest.xml:28:13-44
+72            android:permission="com.google.firebase.auth.api.gms.permission.LAUNCH_FEDERATED_SIGN_IN"
+72-->[com.google.firebase:firebase-auth:19.2.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1569b356ae21c59997606b87853bf436\firebase-auth-19.2.0\AndroidManifest.xml:29:13-102
+73            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+73-->[com.google.firebase:firebase-auth:19.2.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1569b356ae21c59997606b87853bf436\firebase-auth-19.2.0\AndroidManifest.xml:30:13-72
+74
+75        <provider
+75-->[com.squareup.picasso:picasso:2.71828] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\dde463589766089a2e9c7a1124f0fa66\jetified-picasso-2.71828\AndroidManifest.xml:8:9-11:40
+76            android:name="com.squareup.picasso.PicassoProvider"
+76-->[com.squareup.picasso:picasso:2.71828] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\dde463589766089a2e9c7a1124f0fa66\jetified-picasso-2.71828\AndroidManifest.xml:9:13-64
+77            android:authorities="com.tds.gihbookmarks.com.squareup.picasso"
+77-->[com.squareup.picasso:picasso:2.71828] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\dde463589766089a2e9c7a1124f0fa66\jetified-picasso-2.71828\AndroidManifest.xml:10:13-72
+78            android:exported="false" />
+78-->[com.squareup.picasso:picasso:2.71828] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\dde463589766089a2e9c7a1124f0fa66\jetified-picasso-2.71828\AndroidManifest.xml:11:13-37
+79
+80        <activity
+80-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\59706fb0cd949f5b3e2f42e1e02500e1\play-services-auth-17.0.0\AndroidManifest.xml:23:9-27:75
+81            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+81-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\59706fb0cd949f5b3e2f42e1e02500e1\play-services-auth-17.0.0\AndroidManifest.xml:24:13-93
+82            android:excludeFromRecents="true"
+82-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\59706fb0cd949f5b3e2f42e1e02500e1\play-services-auth-17.0.0\AndroidManifest.xml:25:13-46
+83            android:exported="false"
+83-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\59706fb0cd949f5b3e2f42e1e02500e1\play-services-auth-17.0.0\AndroidManifest.xml:26:13-37
+84            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+84-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\59706fb0cd949f5b3e2f42e1e02500e1\play-services-auth-17.0.0\AndroidManifest.xml:27:13-72
+85        <!--
+86            Service handling Google Sign-In user revocation. For apps that do not integrate with
+87            Google Sign-In, this service will never be started.
+88        -->
+89        <service
+89-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\59706fb0cd949f5b3e2f42e1e02500e1\play-services-auth-17.0.0\AndroidManifest.xml:33:9-36:110
+90            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+90-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\59706fb0cd949f5b3e2f42e1e02500e1\play-services-auth-17.0.0\AndroidManifest.xml:34:13-89
+91            android:exported="true"
+91-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\59706fb0cd949f5b3e2f42e1e02500e1\play-services-auth-17.0.0\AndroidManifest.xml:35:13-36
+92            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" />
+92-->[com.google.android.gms:play-services-auth:17.0.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\59706fb0cd949f5b3e2f42e1e02500e1\play-services-auth-17.0.0\AndroidManifest.xml:36:13-107
+93
+94        <receiver
+94-->[com.google.firebase:firebase-iid:19.0.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\639f8437c4526e7423a3600ed1045aa0\firebase-iid-19.0.0\AndroidManifest.xml:37:9-44:20
+95            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+95-->[com.google.firebase:firebase-iid:19.0.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\639f8437c4526e7423a3600ed1045aa0\firebase-iid-19.0.0\AndroidManifest.xml:38:13-78
+96            android:exported="true"
+96-->[com.google.firebase:firebase-iid:19.0.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\639f8437c4526e7423a3600ed1045aa0\firebase-iid-19.0.0\AndroidManifest.xml:39:13-36
+97            android:permission="com.google.android.c2dm.permission.SEND" >
+97-->[com.google.firebase:firebase-iid:19.0.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\639f8437c4526e7423a3600ed1045aa0\firebase-iid-19.0.0\AndroidManifest.xml:40:13-73
+98            <intent-filter>
+98-->[com.google.firebase:firebase-iid:19.0.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\639f8437c4526e7423a3600ed1045aa0\firebase-iid-19.0.0\AndroidManifest.xml:41:13-43:29
+99                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+99-->[com.google.firebase:firebase-iid:19.0.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\639f8437c4526e7423a3600ed1045aa0\firebase-iid-19.0.0\AndroidManifest.xml:42:17-81
+99-->[com.google.firebase:firebase-iid:19.0.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\639f8437c4526e7423a3600ed1045aa0\firebase-iid-19.0.0\AndroidManifest.xml:42:25-78
+100            </intent-filter>
+101        </receiver>
+102
+103        <provider
+103-->[com.google.firebase:firebase-common:19.3.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\5e5a1669f920a364021b257b0095cba0\jetified-firebase-common-19.3.0\AndroidManifest.xml:26:9-30:39
+104            android:name="com.google.firebase.provider.FirebaseInitProvider"
+104-->[com.google.firebase:firebase-common:19.3.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\5e5a1669f920a364021b257b0095cba0\jetified-firebase-common-19.3.0\AndroidManifest.xml:27:13-77
+105            android:authorities="com.tds.gihbookmarks.firebaseinitprovider"
+105-->[com.google.firebase:firebase-common:19.3.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\5e5a1669f920a364021b257b0095cba0\jetified-firebase-common-19.3.0\AndroidManifest.xml:28:13-72
+106            android:exported="false"
+106-->[com.google.firebase:firebase-common:19.3.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\5e5a1669f920a364021b257b0095cba0\jetified-firebase-common-19.3.0\AndroidManifest.xml:29:13-37
+107            android:initOrder="100" />
+107-->[com.google.firebase:firebase-common:19.3.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\5e5a1669f920a364021b257b0095cba0\jetified-firebase-common-19.3.0\AndroidManifest.xml:30:13-36
+108
+109        <activity
+109-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\6d206c10dfcd7e4d261b33c292c090cb\play-services-base-17.1.0\AndroidManifest.xml:23:9-26:75
+110            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+110-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\6d206c10dfcd7e4d261b33c292c090cb\play-services-base-17.1.0\AndroidManifest.xml:24:13-79
+111            android:exported="false"
+111-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\6d206c10dfcd7e4d261b33c292c090cb\play-services-base-17.1.0\AndroidManifest.xml:25:13-37
+112            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+112-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\6d206c10dfcd7e4d261b33c292c090cb\play-services-base-17.1.0\AndroidManifest.xml:26:13-72
+113
+114        <receiver
+114-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1d7fa4c15cc347978dce90a6ff08e8ee\play-services-measurement-17.2.1\AndroidManifest.xml:29:9-33:20
+115            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+115-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1d7fa4c15cc347978dce90a6ff08e8ee\play-services-measurement-17.2.1\AndroidManifest.xml:30:13-85
+116            android:enabled="true"
+116-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1d7fa4c15cc347978dce90a6ff08e8ee\play-services-measurement-17.2.1\AndroidManifest.xml:31:13-35
+117            android:exported="false" >
+117-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1d7fa4c15cc347978dce90a6ff08e8ee\play-services-measurement-17.2.1\AndroidManifest.xml:32:13-37
+118        </receiver>
+119        <receiver
+119-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1d7fa4c15cc347978dce90a6ff08e8ee\play-services-measurement-17.2.1\AndroidManifest.xml:34:9-42:20
+120            android:name="com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver"
+120-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1d7fa4c15cc347978dce90a6ff08e8ee\play-services-measurement-17.2.1\AndroidManifest.xml:35:13-100
+121            android:enabled="true"
+121-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1d7fa4c15cc347978dce90a6ff08e8ee\play-services-measurement-17.2.1\AndroidManifest.xml:36:13-35
+122            android:exported="true"
+122-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1d7fa4c15cc347978dce90a6ff08e8ee\play-services-measurement-17.2.1\AndroidManifest.xml:37:13-36
+123            android:permission="android.permission.INSTALL_PACKAGES" >
+123-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1d7fa4c15cc347978dce90a6ff08e8ee\play-services-measurement-17.2.1\AndroidManifest.xml:38:13-69
+124            <intent-filter>
+124-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1d7fa4c15cc347978dce90a6ff08e8ee\play-services-measurement-17.2.1\AndroidManifest.xml:39:13-41:29
+125                <action android:name="com.android.vending.INSTALL_REFERRER" />
+125-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1d7fa4c15cc347978dce90a6ff08e8ee\play-services-measurement-17.2.1\AndroidManifest.xml:40:17-79
+125-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1d7fa4c15cc347978dce90a6ff08e8ee\play-services-measurement-17.2.1\AndroidManifest.xml:40:25-76
+126            </intent-filter>
+127        </receiver>
+128
+129        <service
+129-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1d7fa4c15cc347978dce90a6ff08e8ee\play-services-measurement-17.2.1\AndroidManifest.xml:44:9-47:40
+130            android:name="com.google.android.gms.measurement.AppMeasurementService"
+130-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1d7fa4c15cc347978dce90a6ff08e8ee\play-services-measurement-17.2.1\AndroidManifest.xml:45:13-84
+131            android:enabled="true"
+131-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1d7fa4c15cc347978dce90a6ff08e8ee\play-services-measurement-17.2.1\AndroidManifest.xml:46:13-35
+132            android:exported="false" />
+132-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1d7fa4c15cc347978dce90a6ff08e8ee\play-services-measurement-17.2.1\AndroidManifest.xml:47:13-37
+133        <service
+133-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1d7fa4c15cc347978dce90a6ff08e8ee\play-services-measurement-17.2.1\AndroidManifest.xml:48:9-52:72
+134            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+134-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1d7fa4c15cc347978dce90a6ff08e8ee\play-services-measurement-17.2.1\AndroidManifest.xml:49:13-87
+135            android:enabled="true"
+135-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1d7fa4c15cc347978dce90a6ff08e8ee\play-services-measurement-17.2.1\AndroidManifest.xml:50:13-35
+136            android:exported="false"
+136-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1d7fa4c15cc347978dce90a6ff08e8ee\play-services-measurement-17.2.1\AndroidManifest.xml:51:13-37
+137            android:permission="android.permission.BIND_JOB_SERVICE" />
+137-->[com.google.android.gms:play-services-measurement:17.2.1] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\1d7fa4c15cc347978dce90a6ff08e8ee\play-services-measurement-17.2.1\AndroidManifest.xml:52:13-69
+138
+139        <meta-data
+139-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\12d840ee8992cf3371a2a27926f1b6d8\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+140            android:name="com.google.android.gms.version"
+140-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\12d840ee8992cf3371a2a27926f1b6d8\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+141            android:value="@integer/google_play_services_version" />
+141-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Tanmay Shah\.gradle\caches\transforms-2\files-2.1\12d840ee8992cf3371a2a27926f1b6d8\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+142    </application>
+143
+144</manifest>

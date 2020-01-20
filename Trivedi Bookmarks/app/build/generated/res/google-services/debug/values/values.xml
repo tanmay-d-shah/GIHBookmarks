@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">882070909965-2njm02utr0tv3er8h6utfk59g982emjd.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://gih-bookmarks.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">882070909965</string>
+    <string name="google_api_key" translatable="false">AIzaSyDnVWjTB7MS0XI8srJ6nV89m7mdS7Y6H1U</string>
+    <string name="google_app_id" translatable="false">1:882070909965:android:0e534f1911501eb7249144</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDnVWjTB7MS0XI8srJ6nV89m7mdS7Y6H1U</string>
+    <string name="google_storage_bucket" translatable="false">gih-bookmarks.appspot.com</string>
+    <string name="project_id" translatable="false">gih-bookmarks</string>
+</resources>

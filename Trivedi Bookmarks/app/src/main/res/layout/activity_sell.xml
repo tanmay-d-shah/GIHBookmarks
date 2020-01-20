@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/layoutcolor"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/sell_options">
+
+
+    <ImageView
+        android:id="@+id/previous"
+        android:src="@drawable/arrow_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:textSize="30dp"
+
+        />
+
+    <TextView
+        android:id="@+id/helptext"
+        android:layout_alignLeft="@+id/previous"
+        android:layout_width="match_parent"
+        android:paddingLeft="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:text="What do yo want to help with?"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="#050505"/>
+
+    <ImageView
+        android:id="@+id/sell"
+        android:layout_below="@+id/helptext"
+        android:layout_marginTop="40dp"
+        android:layout_width="800dp"
+        android:layout_height="250dp"
+        android:src="@drawable/selling"
+        android:layout_centerHorizontal="true"/>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card1"
+        android:layout_below="@+id/sell"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="30dp"
+        app:cardElevation="50dp"
+        app:cardCornerRadius="30dp">
+
+        <RelativeLayout
+            android:id="@+id/bookrel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/cardcolor">
+
+            <ImageView
+                android:id="@+id/books"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_books"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"/>
+            <TextView
+                android:id="@+id/booktext"
+                android:layout_below="@+id/books"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Books"
+                android:textSize="18dp"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/colortexti"/>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card2"
+        android:layout_below="@+id/sell"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="210dp"
+        app:cardElevation="50dp"
+        app:cardCornerRadius="30dp">
+
+        <RelativeLayout
+            android:id="@+id/coat_rel"
+            android:background="@color/cardcolor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/labcoat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_lab_coat"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true" />
+            <TextView
+                android:id="@+id/labtext"
+                android:layout_below="@+id/labcoat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Labcoat"
+                android:textSize="18dp"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/colortexti"/>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card3"
+        android:layout_below="@+id/card1"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        app:cardElevation="50dp"
+        app:cardCornerRadius="30dp">
+
+        <RelativeLayout
+            android:id="@+id/stationary_rel"
+            android:background="@color/cardcolor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/stationary_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_stationary"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"/>
+            <TextView
+                android:id="@+id/stationarytext"
+                android:layout_below="@+id/stationary_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stationary Items"
+                android:textSize="18dp"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/colortexti"/>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card4"
+        android:layout_below="@+id/card1"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="210dp"
+        app:cardElevation="50dp"
+        app:cardCornerRadius="30dp">
+
+        <RelativeLayout
+            android:id="@+id/other_rel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/cardcolor">
+
+            <ImageView
+                android:id="@+id/other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_stationaryother"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"/>
+            <TextView
+                android:id="@+id/othertext"
+                android:layout_below="@+id/other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Other Items"
+                android:textSize="18dp"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/colortexti"/>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

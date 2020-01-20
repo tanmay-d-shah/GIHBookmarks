@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#5C62A7</color>
+    <color name="colorPrimaryDark">#343A84</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="baige">#e6e6ff</color>
+    <color name="text">#5C62A7</color>
+    <color name="ham">#D2D3E6</color>
+    <color name="colorbutton">#EF4B4C</color>
+    <color name="colortext">#DCDAE8</color>
+    <color name="layoutcolor">#ffff</color>
+    <color name="backroundcolor">#DCDAE8</color>
+    <color name="cardcolor">#F05D5E</color>
+    <color name="colortexti">#292A49</color>
+    <color name="Red">#F56460</color>
+    <color name="Dark_Blue">#3B375B</color>
+    <color name="White">#FFFFFF</color>
+
+</resources>

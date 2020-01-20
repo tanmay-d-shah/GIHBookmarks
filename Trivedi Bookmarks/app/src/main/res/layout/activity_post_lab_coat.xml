@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/post_coat_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PostLabCoatActivity">
+
+    <EditText
+        android:id="@+id/size_coat"
+        android:hint="size"
+        android:inputType="number"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/price_coat"
+        android:hint="price"
+        android:inputType="number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <ImageView
+        android:id="@+id/coat_img"
+        app:srcCompat="@android:drawable/ic_menu_camera"
+        android:layout_width="123dp"
+        android:layout_height="163dp"/>
+    <Button
+        android:id="@+id/add_coat"
+        android:text="ADD COAT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "882070909965",
+    "firebase_url": "https://gih-bookmarks.firebaseio.com",
+    "project_id": "gih-bookmarks",
+    "storage_bucket": "gih-bookmarks.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:882070909965:android:0e534f1911501eb7249144",
+        "android_client_info": {
+          "package_name": "com.tds.gihbookmarks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "882070909965-qc3ujlg43mqghck8a30ehe1jkv4iahr2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tds.gihbookmarks",
+            "certificate_hash": "fe2aac29ef863575f61eeeecb189a78d9d530c22"
+          }
+        },
+        {
+          "client_id": "882070909965-2njm02utr0tv3er8h6utfk59g982emjd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnVWjTB7MS0XI8srJ6nV89m7mdS7Y6H1U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "882070909965-2njm02utr0tv3er8h6utfk59g982emjd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
