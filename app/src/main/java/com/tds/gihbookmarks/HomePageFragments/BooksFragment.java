@@ -47,7 +47,6 @@ public class BooksFragment extends Fragment {
         bookRecyclerView.setLayoutManager(staggeredGridLayoutManager);
         bookRecyclerView.setAdapter(staggeredRecyclerViewAdapter);
 
-
         return view;
     }
 
