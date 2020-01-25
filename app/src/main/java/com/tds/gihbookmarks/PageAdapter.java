@@ -13,10 +13,14 @@ public class PageAdapter extends FragmentPagerAdapter {
 
     private int numoftabs;
 
+
+
+
     public PageAdapter(@NonNull FragmentManager fm, int numOfTabs) {
         super(fm, numOfTabs);
         this.numoftabs = numOfTabs;
     }
+
 
 
     @NonNull

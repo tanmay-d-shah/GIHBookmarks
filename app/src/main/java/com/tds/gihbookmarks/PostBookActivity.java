@@ -79,6 +79,8 @@ public class PostBookActivity extends AppCompatActivity implements View.OnClickL
         sell=findViewById(R.id.btnSell);*/
 
         firebaseAuth=FirebaseAuth.getInstance();
+        user=firebaseAuth.getCurrentUser();
+        currentUserId=user.getUid();
         storageReference= FirebaseStorage.getInstance().getReference();
 
         titleText=findViewById(R.id.etTitle);
@@ -92,7 +94,6 @@ public class PostBookActivity extends AppCompatActivity implements View.OnClickL
         addBookButton=findViewById(R.id.btnSell);
 
         addBookButton.setOnClickListener(this);
-
 
 
 

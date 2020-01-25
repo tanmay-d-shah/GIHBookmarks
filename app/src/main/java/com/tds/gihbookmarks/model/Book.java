@@ -3,6 +3,7 @@ package com.tds.gihbookmarks.model;
 import com.google.firebase.Timestamp;
 
 public class Book {
+    private String bookId;
     private String isbn;
     private String title;
     private String author;
@@ -17,7 +18,8 @@ public class Book {
 
     public Book(){}
 
-    public Book(String isbn, String title, String author, String publication, String edition, String expectedPrice, String city, String userId, String imageUrl1, String imageUrl2, Timestamp dateAdded) {
+    public Book(String bookId, String isbn, String title, String author, String publication, String edition, String expectedPrice, String city, String userId, String imageUrl1, String imageUrl2, Timestamp dateAdded) {
+        this.bookId = bookId;
         this.isbn = isbn;
         this.title = title;
         this.author = author;
@@ -114,5 +116,12 @@ public class Book {
     }
 
 
+    public String getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(String bookId) {
+        this.bookId = bookId;
+    }
 }
 

@@ -11,8 +11,11 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.squareup.picasso.Picasso;
+import com.tds.gihbookmarks.model.Book;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,16 +23,16 @@ import androidx.recyclerview.widget.RecyclerView;
 public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<StaggeredRecyclerViewAdapter.ViewHolder> {
 
     private static final String TAG = "StaggerRecyclerViewAdapter";
-    private final ArrayList<String> mImageUrls;
+//    private final ArrayList<String> mImageUrls;
+    private List<Book> bookList;
     private ArrayList<String> mName= new ArrayList<>();
     private ArrayList<String> mImage= new ArrayList<>();
     private Context mContext;
     private RecyclerView.ViewHolder holder;
     private int position;
 
-    public StaggeredRecyclerViewAdapter(ArrayList<String> mName, ArrayList<String> mImageUrls, Context mContext) {
-        this.mName = mName;
-        this.mImageUrls = mImageUrls;
+    public StaggeredRecyclerViewAdapter(Context mContext, List<Book> bookList) {
+        this.bookList=bookList;
         this.mContext=mContext;
     }
 
@@ -45,23 +48,31 @@ public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<Staggered
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-
+        Book book=bookList.get(position);
         Log.d(TAG, "onBindViewHolder: called.");
 
         RequestOptions requestOptions= new RequestOptions().placeholder(R.drawable.ic_launcher_background);
 
-        Glide.with(mContext)
-                .load(mImageUrls.get(position))
-                .apply(requestOptions)
-                .into(holder.image);
 
-        holder.name.setText(mName.get(position));
+        String imageUrl;
+        imageUrl=book.getImageUrl1();
+        Picasso.get()
+                .load(imageUrl)
+                .placeholder(R.drawable.ic_launcher_background)
+                .fit()
+                .into(holder.image);
+//        Glide.with(mContext)
+//                .load(mImageUrls.get(position))
+//                .apply(requestOptions)
+//                .into(holder.image);
+//
+//        holder.name.setText(mName.get(position));
 
         holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: clicked on:" +mName.get(position));
-                Toast.makeText(mContext, mName.get(position), Toast.LENGTH_SHORT).show();
+//                Log.d(TAG, "onClick: clicked on:" +mName.get(position));
+//                Toast.makeText(mContext, mName.get(position), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -69,7 +80,7 @@ public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<Staggered
     @Override
     public int getItemCount() {
 
-        return mImageUrls.size();
+        return bookList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

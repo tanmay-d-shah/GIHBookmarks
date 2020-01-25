@@ -25,6 +25,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.tds.gihbookmarks.HomePageFragments.BooksFragment;
+import com.tds.gihbookmarks.NavigationMenuFragments.HomeFragment;
 import com.tds.gihbookmarks.util.UserApi;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -91,7 +93,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                                         userApi.setUsername(snapshot.getString("Name"));
                                                         userApi.setUserMobile(snapshot.getString("Mobile"));
 
-                                                        //startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                                         Log.d("Login", "onEvent: "+userApi.getUserMobile());
                                                     }
 
