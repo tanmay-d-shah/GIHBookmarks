@@ -3,8 +3,11 @@ package com.tds.gihbookmarks.model;
 import com.google.firebase.Timestamp;
 
 public class Stationary {
+    String title;
+    String stationaryId;
     String price;
     String desc;
+
     Timestamp dateAdded;
     String city;
     String imageURL;
@@ -20,7 +23,9 @@ public class Stationary {
 
     public Stationary(){}
 
-    public Stationary(String price, String desc, Timestamp dateAdded, String city, String imageURL) {
+    public Stationary(String stationaryId,String title,String price, String desc, Timestamp dateAdded, String city, String imageURL) {
+        this.stationaryId = stationaryId;
+        this.title = title;
         this.price = price;
         this.desc = desc;
         this.dateAdded = dateAdded;
@@ -67,5 +72,21 @@ public class Stationary {
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getStationaryId() {
+        return stationaryId;
+    }
+
+    public void setStationaryId(String stationaryId) {
+        this.stationaryId = stationaryId;
     }
 }

@@ -88,11 +88,14 @@ public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<Staggered
         ImageView image;
         TextView name;
 
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.image=itemView.findViewById(R.id.image_widget);
             this.name= itemView.findViewById(R.id.name_widget);
         }
     }
+
+
 
 }

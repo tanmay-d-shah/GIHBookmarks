@@ -1,6 +1,7 @@
 package com.tds.gihbookmarks.HomePageFragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +67,7 @@ public class BooksFragment extends Fragment {
         ViewPager viewPager = view.findViewById(R.id.viewpager);
         bookList=new ArrayList<>();
         bookRecyclerView= (RecyclerView)view.findViewById(R.id.recyclerView);
-        StaggeredRecyclerViewAdapter staggeredRecyclerViewAdapter= new StaggeredRecyclerViewAdapter(getContext(),bookList);
+        //StaggeredRecyclerViewAdapter staggeredRecyclerViewAdapter= new StaggeredRecyclerViewAdapter(getContext(),bookList);
         StaggeredGridLayoutManager staggeredGridLayoutManager= new StaggeredGridLayoutManager(NUM_COLUMNS, LinearLayoutManager.VERTICAL);
         //bookRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         bookRecyclerView.setLayoutManager(staggeredGridLayoutManager);
@@ -81,24 +82,24 @@ public class BooksFragment extends Fragment {
         firebaseAuth=FirebaseAuth.getInstance();
         user=firebaseAuth.getCurrentUser();
 
-        collectionReference
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
-                            for(QueryDocumentSnapshot books:task.getResult()){
-                                Book book=books.toObject(Book.class);
-                                book.setBookId(books.getId());
-                                bookList.add(book);
-
-                            }
-                            staggeredRecyclerViewAdapter=new StaggeredRecyclerViewAdapter(getContext(),bookList);
-                            bookRecyclerView.setAdapter(staggeredRecyclerViewAdapter);
-                            staggeredRecyclerViewAdapter.notifyDataSetChanged();
-                        }
-                    }
-                });
+//        collectionReference
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if(task.isSuccessful()){
+//                            for(QueryDocumentSnapshot books:task.getResult()){
+//                                Book book=books.toObject(Book.class);
+//                                book.setBookId(books.getId());
+//                                bookList.add(book);
+//
+//                            }
+//                            staggeredRecyclerViewAdapter=new StaggeredRecyclerViewAdapter(getContext(),bookList);
+//                            bookRecyclerView.setAdapter(staggeredRecyclerViewAdapter);
+//                            staggeredRecyclerViewAdapter.notifyDataSetChanged();
+//                        }
+//                    }
+//                });
 
 
 
@@ -151,7 +152,10 @@ public class BooksFragment extends Fragment {
                                 bookList.add(book);
 
                             }
+                            Log.d("Restart", "onComplete: Books Restarted");
                             staggeredRecyclerViewAdapter=new StaggeredRecyclerViewAdapter(getContext(),bookList);
+                            bookRecyclerView.setAdapter(staggeredRecyclerViewAdapter);
+                            staggeredRecyclerViewAdapter.notifyDataSetChanged();
                         }
                     }
                 });
