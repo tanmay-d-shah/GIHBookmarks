@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StationaryPostActivity"></activity>
+        <activity android:name=".ToolsPostActivity"></activity>
         <activity android:name=".PostLabCoatActivity" />
         <activity android:name=".PostBookActivity"
             android:theme="@style/AppTheme.NoActionBar">

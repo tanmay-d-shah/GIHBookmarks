@@ -15,8 +15,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.Timestamp;
@@ -25,10 +27,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.tds.gihbookmarks.model.Book;
+import com.tds.gihbookmarks.model.SaleItems;
 import com.tds.gihbookmarks.util.UserApi;
 
 import java.util.Date;
@@ -53,13 +59,15 @@ public class PostBookActivity extends AppCompatActivity implements View.OnClickL
     private TextInputEditText titleText,publicationText,authorText,editionText,priceText;
 
     private String currentUserId;
-
+    private String userCity;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseUser user;
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
     private StorageReference storageReference;
     private CollectionReference collectionReference=db.collection("Books");
+    private CollectionReference saleItemCollectionReference=db.collection("SaleItems");
+    private CollectionReference userCollectionReference=db.collection("Users");
 
 
     private Uri img1;
@@ -158,6 +166,20 @@ public class PostBookActivity extends AppCompatActivity implements View.OnClickL
 
         ){
 
+            userCollectionReference.whereEqualTo("UserId",user.getUid())
+            .get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if(task.isSuccessful()){
+                        for(QueryDocumentSnapshot document:task.getResult()){
+                            userCity= (String) document.get("City");
+                        }
+                    }
+                }
+            });
+
+
 
             final StorageReference filepath=storageReference
                     .child("book_images")
@@ -169,24 +191,50 @@ public class PostBookActivity extends AppCompatActivity implements View.OnClickL
                             filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
-                                    String imgageUrl=uri.toString();
+                                    final String imageUrl=uri.toString();
                                     Book book=new Book();
-                                    book.setImageUrl1(imgageUrl);
+                                    book.setImageUrl1(imageUrl);
                                     book.setTitle(title);
                                     book.setAuthor(author);
                                     book.setEdition(edition);
                                     book.setExpectedPrice(price);
                                     book.setPublication(publication);
                                     book.setUserId(currentUserId);
-
                                     book.setDateAdded(new Timestamp(new Date()));
 
                                     collectionReference.add(book)
                                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                                 @Override
                                                 public void onSuccess(DocumentReference documentReference) {
-                                                       //* startActivity(new Intent(PostBookActivity.this,HomepageActivity.class));
-                                                    finish();//*
+
+                                                    SaleItems item=new SaleItems();
+                                                    item.setCity(userCity);
+                                                    item.setDateAdded(new Timestamp(new Date()));
+                                                    item.setDesc(title+" "+author+" "+edition+" "+publication);
+                                                    item.setItem("Book");
+                                                    item.setPrice(price);
+                                                    item.setImageUrl(imageUrl);
+                                                    item.setSellerId(user.getUid());
+                                                    item.setItemCode(documentReference.getId());
+                                                    item.setStatus("Available");
+
+                                                    saleItemCollectionReference.add(item)
+                                                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                                @Override
+                                                                public void onSuccess(DocumentReference documentReference) {
+                                                                    //* startActivity(new Intent(PostBookActivity.this,HomepageActivity.class));
+                                                                    finish();//*
+                                                                }
+                                                            })
+                                                            .addOnFailureListener(new OnFailureListener() {
+                                                                @Override
+                                                                public void onFailure(@NonNull Exception e) {
+                                                                    Log.d("PostBookActivity", "onFailure: Failed to add in saleitems");
+                                                                }
+                                                            });
+
+
+
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {

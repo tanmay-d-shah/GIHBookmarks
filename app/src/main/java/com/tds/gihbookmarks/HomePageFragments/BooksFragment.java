@@ -20,6 +20,7 @@ import com.tds.gihbookmarks.R;
 
 import com.tds.gihbookmarks.StaggeredRecyclerViewAdapter;
 import com.tds.gihbookmarks.model.Book;
+import com.tds.gihbookmarks.model.SaleItems;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,10 +36,10 @@ import androidx.viewpager.widget.ViewPager;
 
 public class BooksFragment extends Fragment {
     private RecyclerView bookRecyclerView;
-    private ArrayList<String> mName;
+//    private ArrayList<String> mName;
 
-    private List<Book> bookList;
-    private ArrayList<String> mImageUrls;
+    private List<SaleItems> saleItemsList;
+//    private ArrayList<String> mImageUrls;
     private StaggeredRecyclerViewAdapter staggeredRecyclerViewAdapter;
     private View view;
     private int NUM_COLUMNS=2;
@@ -48,7 +49,7 @@ public class BooksFragment extends Fragment {
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
     private FirebaseUser user;
     private StorageReference storageReference;
-    private CollectionReference collectionReference=db.collection("Books");
+    private CollectionReference collectionReference=db.collection("SaleItems");
 
 
     public BooksFragment() {
@@ -65,7 +66,7 @@ public class BooksFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_books, container, false);
         ViewPager viewPager = view.findViewById(R.id.viewpager);
-        bookList=new ArrayList<>();
+        saleItemsList=new ArrayList<>();
         bookRecyclerView= (RecyclerView)view.findViewById(R.id.recyclerView);
         //StaggeredRecyclerViewAdapter staggeredRecyclerViewAdapter= new StaggeredRecyclerViewAdapter(getContext(),bookList);
         StaggeredGridLayoutManager staggeredGridLayoutManager= new StaggeredGridLayoutManager(NUM_COLUMNS, LinearLayoutManager.VERTICAL);
@@ -147,13 +148,16 @@ public class BooksFragment extends Fragment {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()){
                             for(QueryDocumentSnapshot books:task.getResult()){
-                                Book book=books.toObject(Book.class);
-                                book.setBookId(books.getId());
-                                bookList.add(book);
+                                SaleItems items=books.toObject(SaleItems.class);
+                                if(items.getItem()=="Book" && items.getStatus()=="Available"){
+                                    saleItemsList.add(items);
+                                }
+//                                items.setBookId(books.getId());
+
 
                             }
                             Log.d("Restart", "onComplete: Books Restarted");
-                            staggeredRecyclerViewAdapter=new StaggeredRecyclerViewAdapter(getContext(),bookList);
+                            staggeredRecyclerViewAdapter=new StaggeredRecyclerViewAdapter(getContext(),saleItemsList);
                             bookRecyclerView.setAdapter(staggeredRecyclerViewAdapter);
                             staggeredRecyclerViewAdapter.notifyDataSetChanged();
                         }

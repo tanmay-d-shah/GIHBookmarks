@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                                         userApi.setUsername(snapshot.getString("Name"));
                                                         userApi.setUserMobile(snapshot.getString("Mobile"));
 
-                                                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                                        startActivity(new Intent(LoginActivity.this, PostBookActivity.class));
                                                         Log.d("Login", "onEvent: "+userApi.getUserMobile());
                                                     }
 

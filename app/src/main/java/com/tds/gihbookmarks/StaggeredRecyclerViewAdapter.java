@@ -13,6 +13,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.squareup.picasso.Picasso;
 import com.tds.gihbookmarks.model.Book;
+import com.tds.gihbookmarks.model.SaleItems;
+import com.tds.gihbookmarks.model.Tools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,15 +26,17 @@ public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<Staggered
 
     private static final String TAG = "StaggerRecyclerViewAdapter";
 //    private final ArrayList<String> mImageUrls;
-    private List<Book> bookList;
-    private ArrayList<String> mName= new ArrayList<>();
-    private ArrayList<String> mImage= new ArrayList<>();
+    private List<SaleItems> saleItemsList;
+
+//    private ArrayList<String> mName= new ArrayList<>();
+//    private ArrayList<String> mImage= new ArrayList<>();
     private Context mContext;
     private RecyclerView.ViewHolder holder;
-    private int position;
+    //private int position;
 
-    public StaggeredRecyclerViewAdapter(Context mContext, List<Book> bookList) {
-        this.bookList=bookList;
+
+    public StaggeredRecyclerViewAdapter(Context mContext, List<SaleItems> saleItemsList) {
+        this.saleItemsList=saleItemsList;
         this.mContext=mContext;
     }
 
@@ -48,14 +52,14 @@ public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<Staggered
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        Book book=bookList.get(position);
+        SaleItems saleItems=saleItemsList.get(position);
         Log.d(TAG, "onBindViewHolder: called.");
 
         RequestOptions requestOptions= new RequestOptions().placeholder(R.drawable.ic_launcher_background);
 
 
         String imageUrl;
-        imageUrl=book.getImageUrl1();
+        imageUrl=saleItems.getImageUrl();
         Picasso.get()
                 .load(imageUrl)
                 .placeholder(R.drawable.ic_launcher_background)
@@ -80,7 +84,7 @@ public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<Staggered
     @Override
     public int getItemCount() {
 
-        return bookList.size();
+        return saleItemsList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
