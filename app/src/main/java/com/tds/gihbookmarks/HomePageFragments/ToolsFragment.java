@@ -118,7 +118,7 @@ public class ToolsFragment extends Fragment {
                         if(task.isSuccessful()){
                             for(QueryDocumentSnapshot books:task.getResult()){
                                 SaleItems items=books.toObject(SaleItems.class);
-                                if(items.getItem()=="Tool" && items.getStatus()=="Available"){
+                                if(items.getItem().equals("Tool") && items.getStatus().equals("Available")){
                                     saleItemsList.add(items);
                                 }
 //                                items.setBookId(books.getId());

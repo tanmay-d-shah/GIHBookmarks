@@ -17,8 +17,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,10 +28,13 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import com.tds.gihbookmarks.model.SaleItems;
 import com.tds.gihbookmarks.model.Tool;
 import com.tds.gihbookmarks.util.UserApi;
 
@@ -55,6 +60,9 @@ public class ToolsPostActivity extends AppCompatActivity implements AdapterView.
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
     private StorageReference storageReference;
     private CollectionReference collectionReference=db.collection("Tools");
+    private CollectionReference saleItemCollectionReference=db.collection("SaleItems");
+    private CollectionReference userCollectionReference=db.collection("Users");
+    private String userCity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,6 +169,19 @@ public class ToolsPostActivity extends AppCompatActivity implements AdapterView.
         if(!TextUtils.isEmpty(stationaryPrice)
                 && !TextUtils.isEmpty(stationaryDesc)
                 && toolImgUri!=null){
+
+            userCollectionReference.whereEqualTo("UserId",user.getUid())
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if(task.isSuccessful()){
+                                for(QueryDocumentSnapshot document:task.getResult()){
+                                    userCity= (String) document.get("City");
+                                }
+                            }
+                        }
+                    });
             final StorageReference filepath=storageReference
                     .child("tool_images")
                     .child("tool"+ Timestamp.now().getSeconds());
@@ -171,7 +192,7 @@ public class ToolsPostActivity extends AppCompatActivity implements AdapterView.
                             filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
-                                    String imageUrl=uri.toString();
+                                    final String imageUrl=uri.toString();
                                     Tool stationary=new Tool();
                                     stationary.setImageURL(imageUrl);
                                     stationary.setPrice(stationaryPrice);
@@ -184,8 +205,36 @@ public class ToolsPostActivity extends AppCompatActivity implements AdapterView.
                                                 @Override
                                                 public void onSuccess(DocumentReference documentReference) {
                                                    /* startActivity(new Intent(ToolsPostActivity.this,HomepageActivity.class));
-                                                    finish();
+
+
+
 */
+                                                    SaleItems item=new SaleItems();
+                                                    item.setCity(userCity);
+                                                    item.setDateAdded(new Timestamp(new Date()));
+                                                    item.setDesc(stationaryDesc);
+                                                    item.setItem("Tool");
+                                                    item.setPrice(stationaryPrice);
+                                                    item.setImageUrl(imageUrl);
+                                                    item.setSellerId(user.getUid());
+                                                    item.setItemCode(documentReference.getId());
+                                                    item.setStatus("Available");
+
+                                                    saleItemCollectionReference.add(item)
+                                                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                                @Override
+                                                                public void onSuccess(DocumentReference documentReference) {
+                                                                    //* startActivity(new Intent(PostBookActivity.this,HomepageActivity.class));
+                                                                    finish();//*
+                                                                }
+                                                            })
+                                                            .addOnFailureListener(new OnFailureListener() {
+                                                                @Override
+                                                                public void onFailure(@NonNull Exception e) {
+                                                                    Log.d("PostToolActivity", "onFailure: Failed to add in saleitems");
+                                                                }
+                                                            });
+                                                   finish();
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {
