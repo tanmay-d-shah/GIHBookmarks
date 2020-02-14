@@ -12,39 +12,38 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/requestedItem_tabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#fff"
-            app:tabIndicatorColor="@color/colorAccent"
-            app:tabIndicatorGravity="bottom"
-            app:tabMode="scrollable"
-            app:tabMaxWidth="0dp"
-            app:tabGravity="fill"
-            app:tabRippleColor="#86ABCE"
-            app:tabTextColor="#3C3F41">
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/your_requested_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Your Requested Items" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/buyer_requestedItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Buyer Requested Items" />
-
-        </com.google.android.material.tabs.TabLayout>
-
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/request_item_viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
 
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/requestedItem_tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                app:tabGravity="fill"
+                app:tabIndicatorColor="@color/colorAccent"
+                app:tabIndicatorGravity="bottom"
+                app:tabMaxWidth="0dp"
+                app:tabMode="scrollable"
+                app:tabRippleColor="#86ABCE"
+                app:tabTextColor="#3C3F41">
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/your_requested_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Your Requested Items" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/buyer_requestedItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Buyer Requested Items" />
+
+            </com.google.android.material.tabs.TabLayout>
         </androidx.viewpager.widget.ViewPager>
 
     </LinearLayout>

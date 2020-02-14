@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_requestedItems:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new RequestedItemsFragment()).commit();
+                break;
 
             case R.id.nav_bug:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -18,14 +20,14 @@ import com.tds.gihbookmarks.PageAdapter;
 import com.tds.gihbookmarks.R;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link RequestedItemsFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link RequestedItemsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+///**
+// * A simple {@link Fragment} subclass.
+// * Activities that contain this fragment must implement the
+// * {@link RequestedItemsFragment.OnFragmentInteractionListener} interface
+// * to handle interaction events.
+// * Use the {@link RequestedItemsFragment#newInstance} factory method to
+// * create an instance of this fragment.
+// */
 public class RequestedItemsFragment extends Fragment {
 
 
@@ -36,8 +38,8 @@ public class RequestedItemsFragment extends Fragment {
     private View view;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+//    private static final String ARG_PARAM1 = "param1";
+//    private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
 //    private String mParam1;
@@ -75,11 +77,10 @@ public class RequestedItemsFragment extends Fragment {
 //            mParam2 = getArguments().getString(ARG_PARAM2);
 //        }
 //    }
-
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d("View created", "onCreateView: ");
         view=inflater.inflate(R.layout.fragment_requested_items,container,false);
 
         tabLayout = view.findViewById(R.id.requestedItem_tabLayout);
