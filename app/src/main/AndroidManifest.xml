@@ -14,13 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ToolsPostActivity"></activity>
+        <activity android:name=".ToolsPostActivity" />
         <activity android:name=".PostLabCoatActivity" />
-        <activity android:name=".PostBookActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-        <activity android:name="PageAdapter"></activity>
+        <activity
+            android:name=".PostBookActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".PageAdapter" />
         <activity android:name=".CreateAccountActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
@@ -29,13 +28,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".SignUpActivity" />
         <activity android:name=".CreateUserProfileActivity" />
-        <activity android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

@@ -10,6 +10,13 @@
             android:title="Home"/>
 
         <item
+            android:id="@+id/nav_requestedItems"
+            android:title="Requested Items"
+            />
+
+
+
+        <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_profile_bordered"
             android:title="Profile" />
@@ -33,6 +40,8 @@
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_logout"
             android:title="Logout" />
+
+
 
     </group>
 

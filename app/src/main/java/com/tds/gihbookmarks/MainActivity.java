@@ -17,6 +17,7 @@ import com.tds.gihbookmarks.NavigationMenuFragments.HomeFragment;
 import com.tds.gihbookmarks.NavigationMenuFragments.MessageFragment;
 import com.tds.gihbookmarks.NavigationMenuFragments.ProfileFragment;
 import com.tds.gihbookmarks.NavigationMenuFragments.ReportBugFragment;
+import com.tds.gihbookmarks.NavigationMenuFragments.RequestedItemsFragment;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -73,6 +74,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new ProfileFragment()).commit();
                 break;
+
+            case R.id.nav_requestedItems:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new RequestedItemsFragment()).commit();
 
             case R.id.nav_bug:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
