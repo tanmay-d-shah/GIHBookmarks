@@ -9,14 +9,14 @@ import com.tds.gihbookmarks.HomePageFragments.OtherFragment;
 import com.tds.gihbookmarks.HomePageFragments.StudyMaterialFragment;
 import com.tds.gihbookmarks.HomePageFragments.ToolsFragment;
 
-public class PageAdapter extends FragmentPagerAdapter {
+public class PageAdapter_HomePage extends FragmentPagerAdapter {
 
     private int numoftabs;
 
 
 
 
-    public PageAdapter(@NonNull FragmentManager fm, int numOfTabs) {
+    public PageAdapter_HomePage(@NonNull FragmentManager fm, int numOfTabs) {
         super(fm, numOfTabs);
         this.numoftabs = numOfTabs;
     }

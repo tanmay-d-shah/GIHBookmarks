@@ -16,7 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import com.tds.gihbookmarks.PageAdapter;
+import com.tds.gihbookmarks.PageAdapter_HomePage;
 import com.tds.gihbookmarks.R;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
@@ -24,7 +24,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private TabLayout tabLayout;
     private TabItem books, tools, studymaterial, other;
     private ViewPager viewPager;
-    private PageAdapter pageAdapter;
+    private PageAdapter_HomePage pageAdapter;
     private View view;
 
     public HomeFragment() {
@@ -48,7 +48,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         viewPager = view.findViewById(R.id.viewpager);
 
-        pageAdapter = new PageAdapter(getChildFragmentManager(), tabLayout.getTabCount());
+        pageAdapter = new PageAdapter_HomePage(getChildFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pageAdapter);
         tabLayout.setupWithViewPager(viewPager);
 

@@ -19,7 +19,7 @@
         <activity
             android:name=".PostBookActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".PageAdapter" />
+        <activity android:name=".PageAdapter_HomePage" />
         <activity android:name=".CreateAccountActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>

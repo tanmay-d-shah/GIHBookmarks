@@ -1,7 +1,5 @@
 package com.tds.gihbookmarks.NavigationMenuFragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,7 +14,8 @@ import android.view.ViewGroup;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
-import com.tds.gihbookmarks.PageAdapter;
+import com.tds.gihbookmarks.PageAdapter_HomePage;
+import com.tds.gihbookmarks.PageAdapter_RequestedItems;
 import com.tds.gihbookmarks.R;
 
 
@@ -34,7 +33,7 @@ public class RequestedItemsFragment extends Fragment {
     private TabLayout tabLayout;
     private TabItem yourRequests, buyerRequests;
     private ViewPager viewPager;
-    private PageAdapter pageAdapter;
+    private PageAdapter_RequestedItems pageAdapter;
     private View view;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -82,23 +81,28 @@ public class RequestedItemsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d("View created", "onCreateView: ");
         view=inflater.inflate(R.layout.fragment_requested_items,container,false);
+        Log.d("View created", "onCreateView: ");
 
         tabLayout = view.findViewById(R.id.requestedItem_tabLayout);
+
         yourRequests= view.findViewById(R.id.your_requested_item);
-        buyerRequests= view.findViewById(R.id.buyer_requestedItem);
+        buyerRequests= view.findViewById(R.id.buyer_requested_item);
 
         viewPager = view.findViewById(R.id.request_item_viewpager);
 
-        pageAdapter = new PageAdapter(getChildFragmentManager(), tabLayout.getTabCount());
+        pageAdapter = new PageAdapter_RequestedItems(getChildFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pageAdapter);
+        Log.d("Tab check", "onCreateView: "+tabLayout.getTabAt(0).getText());
         tabLayout.setupWithViewPager(viewPager);
+
 
         try {
             tabLayout.getTabAt(0).setText("Your Requested Items");
             tabLayout.getTabAt(1).setText("Buyer Requested Items");
+            Log.d("Debugging", "onCreateView: Tabtext set");
 
         } catch (Exception e){
-            Log.i("Error in tab layout",e.toString());
+            Log.d("Error in tab layout",e.toString());
         }
         // Inflate the layout for this fragment
         return view;
