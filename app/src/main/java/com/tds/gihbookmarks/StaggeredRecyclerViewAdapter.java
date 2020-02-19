@@ -39,8 +39,12 @@ public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<Staggered
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
     private FirebaseUser user;
     private StorageReference storageReference;
+    private CollectionReference sellerCollectionReference=db.collection("Users");
     private CollectionReference collectionReference=db.collection("SaleItems");
     private CollectionReference bookcollectionReference=db.collection("Books");
+    private CollectionReference toolCollectionReference=db.collection("Tools");
+
+
 
     private static final String TAG = "StaggerRecyclerViewAdapter";
 //    private final ArrayList<String> mImageUrls;
@@ -105,11 +109,33 @@ public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<Staggered
                             .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                 @Override
                                 public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                    Book book = documentSnapshot.toObject(Book.class);
+                                    final Book book = documentSnapshot.toObject(Book.class);
                                     Log.d("Book Fetched", "onSuccess: " + book.getTitle());
-                                    Intent intent=new Intent(mContext,SaleItemDetailActivity.class);
-                                    intent.putExtra("parcel_data",book);
-                                    mContext.startActivity(intent);
+
+                                    sellerCollectionReference
+                                            .document(saleItem.getSellerId()).get()
+                                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                                @Override
+                                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                    String sellerNumber= (String) documentSnapshot.get("Mobile");
+                                                    String sellerName=(String)documentSnapshot.get("Name");
+
+                                                    Intent intent=new Intent(mContext,SaleItemDetailActivity.class);
+                                                    intent.putExtra("book_parcel",book);
+                                                    intent.putExtra("sale_item_parcel",saleItem);
+//                                                    intent.putExtra("seller_mobile",sellerNumber);
+//                                                    intent.putExtra("seller_name",sellerNumber);
+
+                                                    mContext.startActivity(intent);
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+
+                                                }
+                                            });
+
 
                                 }
                             })

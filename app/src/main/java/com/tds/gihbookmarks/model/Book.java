@@ -32,13 +32,13 @@ public class Book implements Parcelable {
         city=in.readString();
         userId=in.readString();
         imageUrl1=in.readString();
-        dateAdded=in.readParcelable(Timestamp.class.getClassLoader());
+//        dateAdded=in.readParcelable(Timestamp.class.getClassLoader());
 
 
 
     }
 
-    public Book(String bookId, String isbn, String title, String author, String publication, String edition, String expectedPrice, String city, String userId, String imageUrl1, String imageUrl2, Timestamp dateAdded) {
+    public Book(String bookId, String isbn, String title, String author, String publication, String edition, String expectedPrice, String city, String userId, String imageUrl1, Timestamp dateAdded) {
         this.bookId = bookId;
         this.isbn = isbn;
         this.title = title;
@@ -173,7 +173,7 @@ public class Book implements Parcelable {
         dest.writeString(city);
         dest.writeString(userId);
         dest.writeString(imageUrl1);
-        dest.writeParcelable(dateAdded, flags);
+//        dest.writeParcelable(dateAdded, flags);
     }
 }
 
