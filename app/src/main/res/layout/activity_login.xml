@@ -12,10 +12,10 @@
         android:id="@+id/booksimg"
         android:layout_width="800dp"
         android:layout_height="250dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/welcomeimage"
         android:layout_marginTop="50dp"
-        />
+        android:src="@drawable/welcomeimage" />
 
     <TextView
         android:id="@+id/Login"
@@ -84,6 +84,7 @@
         android:textSize="20dp"
         android:layout_marginLeft="260dp"
         android:onClick="onClick"/>
+
 
     <Button
         android:id="@+id/login_button"

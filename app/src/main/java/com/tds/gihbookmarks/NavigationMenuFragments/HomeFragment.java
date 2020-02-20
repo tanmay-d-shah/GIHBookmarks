@@ -14,8 +14,11 @@ import com.google.android.material.tabs.TabLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import com.tds.gihbookmarks.ItemFragment;
 import com.tds.gihbookmarks.PageAdapter_HomePage;
 import com.tds.gihbookmarks.R;
 
@@ -98,8 +101,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Toast.makeText(getActivity(),"Float Button", Toast.LENGTH_LONG).show();
-
+        Fragment fragment = new ItemFragment();
+        FragmentManager fragmentManager=getFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.placeHolder,fragment).commit();
 
     }
 }
