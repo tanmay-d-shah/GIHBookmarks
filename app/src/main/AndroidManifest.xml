@@ -14,11 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".SaleItemDetailActivity"></activity>
         <activity android:name=".ToolsPostActivity" />
         <activity android:name=".PostLabCoatActivity" />
         <activity
             android:name=".PostBookActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".PageAdapter_HomePage" />
         <activity android:name=".CreateAccountActivity" />
         <activity android:name=".LoginActivity">
@@ -32,7 +33,7 @@
         <activity android:name=".CreateUserProfileActivity" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="preloaded_fonts"

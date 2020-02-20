@@ -1,6 +1,7 @@
 package com.tds.gihbookmarks;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,16 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 import com.tds.gihbookmarks.model.Book;
 import com.tds.gihbookmarks.model.SaleItems;
@@ -23,6 +34,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<StaggeredRecyclerViewAdapter.ViewHolder> {
+    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener authStateListener;
+    private FirebaseFirestore db=FirebaseFirestore.getInstance();
+    private FirebaseUser user;
+    private StorageReference storageReference;
+    private CollectionReference sellerCollectionReference=db.collection("Users");
+    private CollectionReference collectionReference=db.collection("SaleItems");
+    private CollectionReference bookcollectionReference=db.collection("Books");
+    private CollectionReference toolCollectionReference=db.collection("Tools");
+
+
 
     private static final String TAG = "StaggerRecyclerViewAdapter";
 //    private final ArrayList<String> mImageUrls;
@@ -45,21 +67,26 @@ public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<Staggered
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_grid_item,parent,false);
+
         return new ViewHolder(view);
+
 
     }
 
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        SaleItems saleItems=saleItemsList.get(position);
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+        firebaseAuth= FirebaseAuth.getInstance();
+        user=firebaseAuth.getCurrentUser();
+        final SaleItems saleItem=saleItemsList.get(position);
         Log.d(TAG, "onBindViewHolder: called.");
 
         RequestOptions requestOptions= new RequestOptions().placeholder(R.drawable.ic_launcher_background);
 
 
+
         String imageUrl;
-        imageUrl=saleItems.getImageUrl();
+        imageUrl=saleItem.getImageUrl();
         Picasso.get()
                 .load(imageUrl)
                 .placeholder(R.drawable.ic_launcher_background)
@@ -75,8 +102,53 @@ public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<Staggered
         holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Log.d(TAG, "onClick: clicked on:" +mName.get(position));
-//                Toast.makeText(mContext, mName.get(position), Toast.LENGTH_SHORT).show();
+
+                if(saleItem.getItem().equals("Book")) {
+                    bookcollectionReference
+                            .document(saleItem.getItemCode()).get()
+                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    final Book book = documentSnapshot.toObject(Book.class);
+                                    Log.d("Book Fetched", "onSuccess: " + book.getTitle());
+
+                                    sellerCollectionReference
+                                            .document(saleItem.getSellerId()).get()
+                                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                                @Override
+                                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                    String sellerNumber= (String) documentSnapshot.get("Mobile");
+                                                    String sellerName=(String)documentSnapshot.get("Name");
+
+                                                    Intent intent=new Intent(mContext,SaleItemDetailActivity.class);
+                                                    intent.putExtra("book_parcel",book);
+                                                    intent.putExtra("sale_item_parcel",saleItem);
+//                                                    intent.putExtra("seller_mobile",sellerNumber);
+//                                                    intent.putExtra("seller_name",sellerNumber);
+
+                                                    mContext.startActivity(intent);
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+
+                                                }
+                                            });
+
+
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
+                                    Log.d("Failed to fetch book", "onFailure: ");
+
+                                }
+                            });
+                }
+
             }
         });
     }
@@ -91,6 +163,7 @@ public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<Staggered
 
         ImageView image;
         TextView name;
+
 
 
         public ViewHolder(@NonNull View itemView) {

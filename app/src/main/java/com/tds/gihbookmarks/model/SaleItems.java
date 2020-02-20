@@ -1,8 +1,12 @@
 package com.tds.gihbookmarks.model;
 
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.firebase.Timestamp;
 
-public class SaleItems {
+public class SaleItems implements Parcelable {
     String Item;
     String ItemCode;
     String Price;
@@ -13,17 +17,41 @@ public class SaleItems {
     String Desc;
     String City;
 
-    public SaleItems(String item, String itemCode, String price, String sellerId, String status, Timestamp dateAdded, String imageUrl, String desc, String city) {
-        Item = item;
-        ItemCode = itemCode;
-        Price = price;
-        SellerId = sellerId;
-        Status = status;
-        DateAdded = dateAdded;
-        ImageUrl = imageUrl;
-        Desc=Desc;
-        City=city;
+    public SaleItems(Parcel in){
+         Item=in.readString();
+         ItemCode=in.readString();
+         Price=in.readString();
+         SellerId=in.readString();
+         Status=in.readString();
+         DateAdded=in.readParcelable(Timestamp.class.getClassLoader());
+         ImageUrl=in.readString();
+         Desc=in.readString();
+         City=in.readString();
     }
+
+    public SaleItems(String item, String itemCode, String price, String sellerId, String status, Timestamp dateAdded, String imageUrl, String Desc, String city) {
+        this.Item = item;
+        this.ItemCode = itemCode;
+        this.Price = price;
+        this.SellerId = sellerId;
+        this.Status = status;
+        this.DateAdded = dateAdded;
+        this.ImageUrl = imageUrl;
+        this.Desc=Desc;
+        this.City=city;
+    }
+
+    public static final Parcelable.Creator<SaleItems> CREATOR = new Parcelable.Creator<SaleItems>() {
+        @Override
+        public SaleItems createFromParcel(Parcel in) {
+            return new SaleItems(in);
+        }
+
+        @Override
+        public SaleItems[] newArray(int size) {
+            return new SaleItems[size];
+        }
+    };
     public SaleItems(){}
 
     public String getDesc() {
@@ -96,6 +124,27 @@ public class SaleItems {
 
     public void setImageUrl(String imageUrl) {
         ImageUrl = imageUrl;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(Item);
+        dest.writeString(ItemCode);
+        dest.writeString(Price);
+        dest.writeString(SellerId);
+        dest.writeString(Status);
+        dest.writeParcelable(DateAdded, flags);
+
+        dest.writeString(ImageUrl);
+        dest.writeString(Desc);
+        dest.writeString(City);
+
+
     }
 }
 
