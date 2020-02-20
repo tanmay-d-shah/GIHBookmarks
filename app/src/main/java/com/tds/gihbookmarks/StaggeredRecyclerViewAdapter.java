@@ -123,8 +123,8 @@ public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<Staggered
                                                     Intent intent=new Intent(mContext,SaleItemDetailActivity.class);
                                                     intent.putExtra("book_parcel",book);
                                                     intent.putExtra("sale_item_parcel",saleItem);
-//                                                    intent.putExtra("seller_mobile",sellerNumber);
-//                                                    intent.putExtra("seller_name",sellerNumber);
+                                                    intent.putExtra("seller_mobile",sellerNumber);
+                                                    intent.putExtra("seller_name",sellerNumber);
 
                                                     mContext.startActivity(intent);
                                                 }
@@ -148,6 +148,8 @@ public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<Staggered
                                 }
                             });
                 }
+
+
 
             }
         });

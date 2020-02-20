@@ -1,5 +1,7 @@
 package com.tds.gihbookmarks;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -28,10 +30,13 @@ public class PageAdapter_RequestedItems extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 fragment = new YourRequestedItemsFragment();
+                Log.d("page Adapter", "getItem: YourRequestedItemFragment Returned");
                 return fragment;
+
 
             case 1:
                 fragment = new BuyerRequestedItemsFragment();
+                Log.d("page Adapter", "getItem: BuyerRequestedItemFragment Returned");
                 return fragment;
 
 

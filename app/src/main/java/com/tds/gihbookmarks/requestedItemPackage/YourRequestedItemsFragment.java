@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,6 +28,7 @@ import com.google.firebase.storage.StorageReference;
 import com.tds.gihbookmarks.R;
 import com.tds.gihbookmarks.StaggeredRecyclerViewAdapter;
 import com.tds.gihbookmarks.YourRequestedItem_RecyclerViewAdapter;
+import com.tds.gihbookmarks.model.RequetedItem;
 import com.tds.gihbookmarks.model.SaleItems;
 
 import java.util.ArrayList;
@@ -37,6 +40,7 @@ public class YourRequestedItemsFragment extends Fragment {
 //    private ArrayList<String> mName;
 
     private List<SaleItems> saleItemsList;
+
     //    private ArrayList<String> mImageUrls;
     private YourRequestedItem_RecyclerViewAdapter yourRequestedItem_recyclerViewAdapter;
     private View view;
@@ -47,7 +51,9 @@ public class YourRequestedItemsFragment extends Fragment {
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
     private FirebaseUser user;
     private StorageReference storageReference;
-    private CollectionReference collectionReference=db.collection("SaleItems");
+    private CollectionReference SaleItemsCollectionReference=db.collection("SaleItems");
+    private CollectionReference requestedItemCollectionReference=db.collection("RequestedItems");
+    private CollectionReference sellerCollectionReference=db.collection("Users");
 
     public YourRequestedItemsFragment(){}
 
@@ -57,6 +63,7 @@ public class YourRequestedItemsFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_books, container, false);
         ViewPager viewPager = view.findViewById(R.id.viewpager);
         saleItemsList=new ArrayList<>();
+
         requestedRecyclerView= (RecyclerView)view.findViewById(R.id.recyclerView);
         //StaggeredRecyclerViewAdapter staggeredRecyclerViewAdapter= new StaggeredRecyclerViewAdapter(getContext(),bookList);
 //        StaggeredGridLayoutManager staggeredGridLayoutManager= new StaggeredGridLayoutManager(NUM_COLUMNS, LinearLayoutManager.VERTICAL);
@@ -77,28 +84,68 @@ public class YourRequestedItemsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        collectionReference
 
+        requestedItemCollectionReference
+                .whereEqualTo("BuyerId",user.getUid())
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
-                            for(QueryDocumentSnapshot books:task.getResult()){
-                                SaleItems items=books.toObject(SaleItems.class);
-                                if(items.getItem().equals("Book") && items.getStatus().equals("Available")){
-                                    saleItemsList.add(items);
-                                }
-//                                items.setBookId(books.getId());
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for(QueryDocumentSnapshot requestedItems:queryDocumentSnapshots){
+                            RequetedItem requestedItem=requestedItems.toObject(RequetedItem.class);
 
+                            SaleItemsCollectionReference
+                                    .whereEqualTo("ItemCode",requestedItem.getItemCode())
+                                    .get()
+                                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                            for(QueryDocumentSnapshot saleItems : queryDocumentSnapshots){
+                                                SaleItems item=saleItems.toObject(SaleItems.class);
+                                                saleItemsList.add(item);
+                                                Log.d("Your Requested Item", "onSuccess: "+item.getItem());
+                                            }
 
-                            }
-                            Log.d("Restart", "onComplete: Books Restarted");
-                            yourRequestedItem_recyclerViewAdapter=new YourRequestedItem_RecyclerViewAdapter(saleItemsList, getContext());
-                            requestedRecyclerView.setAdapter(yourRequestedItem_recyclerViewAdapter);
-                            yourRequestedItem_recyclerViewAdapter.notifyDataSetChanged();
+                                            yourRequestedItem_recyclerViewAdapter=new YourRequestedItem_RecyclerViewAdapter(saleItemsList, getContext());
+                                            requestedRecyclerView.setAdapter(yourRequestedItem_recyclerViewAdapter);
+                                            yourRequestedItem_recyclerViewAdapter.notifyDataSetChanged();
+
+                                            Log.d("Your Requested Items", "onSuccess: Fetching Your Requested Items");
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+
+                                        }
+                                    });
                         }
                     }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
                 });
+
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if(task.isSuccessful()){
+//                            for(QueryDocumentSnapshot books:task.getResult()){
+//                                SaleItems items=books.toObject(SaleItems.class);
+//                                if(items.getItem().equals("Book") && items.getStatus().equals("Available")){
+//                                    saleItemsList.add(items);
+//                                }
+////                                items.setBookId(books.getId());
+//
+//
+//                            }
+//                            Log.d("Restart", "onComplete: Books Restarted");
+
+//                        }
+//                    }
+//                });
     }
 }
