@@ -12,5 +12,8 @@
     <color name="backroundcolor">#DCDAE8</color>
     <color name="cardcolor">#F05D5E</color>
     <color name="colortexti">#292A49</color>
+    <color name="Red">#F56460</color>
+    <color name="Dark_Blue">#3B375B</color>
+    <color name="White">#FFFFFF</color>
 
 </resources>

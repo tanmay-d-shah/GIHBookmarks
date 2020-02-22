@@ -9,7 +9,7 @@
     android:padding="15dp"
     android:gravity="center"
     android:layout_height="match_parent"
-    tools:context=".StationaryPostActivity">
+    tools:context=".ToolsPostActivity">
 
     <Spinner
         android:id="@+id/stationary_spinner"
