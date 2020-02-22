@@ -85,10 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         new ReportBugFragment()).commit();
                 break;
 
-            case R.id.nav_msg:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new MessageFragment()).commit();
-                break;
+           
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;

@@ -56,7 +56,7 @@ public class SignUpActivity extends AppCompatActivity {
         password=findViewById(R.id.pass);
         email=findViewById(R.id.email);
         phone=findViewById(R.id.phonenum);
-        designation=findViewById(R.id.designation);
+        //designation=findViewById(R.id.designation);
         college=findViewById(R.id.clg);
         branch=findViewById(R.id.branch);
         semester=findViewById(R.id.sem);
