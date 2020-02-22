@@ -14,15 +14,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".extra"></activity>
         <activity android:name=".login" />
         <activity android:name=".MainActivity" />
         <activity android:name=".StationaryPostActivity" />
         <activity android:name=".PostLabCoatActivity" />
         <activity android:name=".PostBookActivity" />
         <activity android:name=".CreateAccountActivity" />
-        <activity android:name=".SignInActivity" />
         <activity android:name=".CreateUserProfileActivity" />
+        <activity android:name=".SignInActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>
