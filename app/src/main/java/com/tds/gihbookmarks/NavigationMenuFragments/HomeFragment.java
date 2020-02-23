@@ -1,5 +1,6 @@
 package com.tds.gihbookmarks.NavigationMenuFragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,8 +22,9 @@ import androidx.viewpager.widget.ViewPager;
 import com.tds.gihbookmarks.ItemFragment;
 import com.tds.gihbookmarks.PageAdapter_HomePage;
 import com.tds.gihbookmarks.R;
+import com.tds.gihbookmarks.SellAllActivity;
 
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment  {
 
     private TabLayout tabLayout;
     private TabItem books, tools, studymaterial, other;
@@ -41,7 +43,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
          view = inflater.inflate(R.layout.fragment_home, container, false);
 
         FloatingActionButton floatingActionButton= view.findViewById(R.id.floatBtn);
-        floatingActionButton.setOnClickListener(this);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), SellAllActivity.class);
+                startActivity(intent);
+            }
+        });
 
         tabLayout = view.findViewById(R.id.tabLayout);
         books = view.findViewById(R.id.books);
@@ -99,14 +107,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
-    @Override
+
+}/* @Override
     public void onClick(View v) {
         Fragment fragment = new ItemFragment();
         FragmentManager fragmentManager=getFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.placeHolder,fragment).commit();
 
-    }
-}
+        Intent intent= new Intent(HomeFragment.java, SellAllActivity.class);
+
+    }*/
 
 
