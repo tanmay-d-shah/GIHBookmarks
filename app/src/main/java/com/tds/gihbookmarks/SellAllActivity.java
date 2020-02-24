@@ -33,7 +33,7 @@ public class SellAllActivity extends AppCompatActivity {
         try {
             tabLayout.getTabAt(0).setText("Book Sell");
             tabLayout.getTabAt(1).setText("Tool Sell");
-            tabLayout.getTabAt(2).setText("Study Material Sell");
+            tabLayout.getTabAt(2).setText("Study Material");
             tabLayout.getTabAt(3).setText("Other Material Sell");
 
         } catch (Exception e){

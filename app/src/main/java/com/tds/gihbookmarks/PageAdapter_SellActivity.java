@@ -7,6 +7,8 @@ import com.tds.gihbookmarks.HomePageFragments.OtherFragment;
 import com.tds.gihbookmarks.HomePageFragments.StudyMaterialFragment;
 import com.tds.gihbookmarks.HomePageFragments.ToolsFragment;
 import com.tds.gihbookmarks.SellFragments.BookSellFragment;
+import com.tds.gihbookmarks.SellFragments.StudyMaterialSellFragment;
+import com.tds.gihbookmarks.SellFragments.ToolSellFragment;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,11 +36,11 @@ public class PageAdapter_SellActivity extends FragmentPagerAdapter {
                     return fragment;
 
             case 1:
-                fragment = new ToolsFragment();
+                fragment = new ToolSellFragment();
                 return fragment;
 
             case 2:
-                fragment = new StudyMaterialFragment();
+                fragment = new StudyMaterialSellFragment();
                 return fragment;
 
             case 3:

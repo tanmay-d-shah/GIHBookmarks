@@ -39,7 +39,7 @@
                 android:id="@+id/studyMaterialSell"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Study Material Sell" />
+                android:text="Study Material" />
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/otherSell"
