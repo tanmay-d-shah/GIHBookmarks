@@ -73,18 +73,21 @@
         android:text="Don't have an account?"
         android:layout_marginLeft="50dp"
         android:textSize="20dp"/>
+
+
     <TextView
         android:id="@+id/login_sign_up"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/login_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/login_password"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="260dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/asking"
+        android:onClick="onClick"
         android:text="sign up"
         android:textColor="@color/colorbutton"
-        android:textSize="20dp"
-        android:layout_marginLeft="260dp"
-        android:onClick="onClick"/>
-
+        android:textSize="20dp" />
 
     <Button
         android:id="@+id/login_button"

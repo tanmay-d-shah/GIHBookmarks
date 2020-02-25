@@ -20,15 +20,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imgStudyMaterial"
-        android:layout_width="140dp"
-        android:layout_height="190dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/img_view_radius"
-        android:padding="30dp"
-        android:src="@drawable/new_camera" />
+        <ImageView
+            android:id="@+id/imgStudyMaterial"
+            android:layout_width="140dp"
+            android:layout_height="190dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/img_view_radius"
+            android:padding="30dp"
+            android:src="@drawable/new_camera" />
 
         <com.google.android.material.textfield.TextInputLayout
 
@@ -86,7 +86,7 @@
             android:elevation="10dp"
             android:text="Submit"
             android:textColor="#fff"
-            android:textSize="20dp"
+            android:textSize="15sp"
             android:textStyle="bold"/>
     </RelativeLayout>
     </ScrollView>

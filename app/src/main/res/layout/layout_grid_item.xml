@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/img_view_radius"
-        app:cardElevation="2dp"
         android:backgroundTint="@color/baige"
         android:layout_centerHorizontal="true">
 

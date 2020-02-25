@@ -104,10 +104,10 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="490dp"
                     android:background="@drawable/button_radius"
-                    android:elevation="10dp"
+                    android:elevation="50sp"
                     android:text="Sell"
                     android:textColor="#fff"
-                    android:textSize="20dp"
+                    android:textSize="15sp"
                     android:textStyle="bold"/>
 
                 <!--<Spinner
