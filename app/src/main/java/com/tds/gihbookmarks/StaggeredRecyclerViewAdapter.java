@@ -98,7 +98,7 @@ public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<Staggered
 //                .into(holder.image);
 //
 //        holder.name.setText(mName.get(position));
-
+        Log.d(TAG, "check2 "+holder.name.getText());
         holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

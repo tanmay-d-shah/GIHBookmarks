@@ -1,5 +1,7 @@
 package com.tds.gihbookmarks;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -27,6 +29,7 @@ public class PageAdapter_HomePage extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         Fragment fragment = new Fragment();
+        Log.d("HomePage", "getItem: HomePAge"+position);
         switch (position) {
             case 0:
                 fragment = new BooksFragment();

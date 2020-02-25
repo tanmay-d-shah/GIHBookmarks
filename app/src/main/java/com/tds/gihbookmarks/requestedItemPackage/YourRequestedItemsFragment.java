@@ -1,10 +1,12 @@
 package com.tds.gihbookmarks.requestedItemPackage;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,9 +39,12 @@ import java.util.List;
 public class YourRequestedItemsFragment extends Fragment {
 
     private RecyclerView requestedRecyclerView;
+    private int flag=0;
 //    private ArrayList<String> mName;
 
     private List<SaleItems> saleItemsList;
+    private List<RequetedItem>requestedItemList;
+    final Handler handler=new Handler();
 
     //    private ArrayList<String> mImageUrls;
     private YourRequestedItem_RecyclerViewAdapter yourRequestedItem_recyclerViewAdapter;
@@ -63,13 +68,16 @@ public class YourRequestedItemsFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_books, container, false);
         ViewPager viewPager = view.findViewById(R.id.viewpager);
         saleItemsList=new ArrayList<>();
+        requestedItemList=new ArrayList<>();
 
         requestedRecyclerView= (RecyclerView)view.findViewById(R.id.recyclerView);
         //StaggeredRecyclerViewAdapter staggeredRecyclerViewAdapter= new StaggeredRecyclerViewAdapter(getContext(),bookList);
 //        StaggeredGridLayoutManager staggeredGridLayoutManager= new StaggeredGridLayoutManager(NUM_COLUMNS, LinearLayoutManager.VERTICAL);
         //bookRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 //        bookRecyclerView.setLayoutManager(staggeredGridLayoutManager);
-        requestedRecyclerView.setAdapter(yourRequestedItem_recyclerViewAdapter);
+
+
+
 
         return view;
     }
@@ -79,48 +87,102 @@ public class YourRequestedItemsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         firebaseAuth=FirebaseAuth.getInstance();
         user=firebaseAuth.getCurrentUser();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
         requestedItemCollectionReference
-                .whereEqualTo("BuyerId",user.getUid())
+                .whereEqualTo("buyerId",user.getUid())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
                         for(QueryDocumentSnapshot requestedItems:queryDocumentSnapshots){
+
                             RequetedItem requestedItem=requestedItems.toObject(RequetedItem.class);
+                            requestedItemList.add(requestedItem);
 
-                            SaleItemsCollectionReference
-                                    .whereEqualTo("ItemCode",requestedItem.getItemCode())
-                                    .get()
-                                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                                        @Override
-                                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                            for(QueryDocumentSnapshot saleItems : queryDocumentSnapshots){
-                                                SaleItems item=saleItems.toObject(SaleItems.class);
-                                                saleItemsList.add(item);
-                                                Log.d("Your Requested Item", "onSuccess: "+item.getItem());
-                                            }
 
-                                            yourRequestedItem_recyclerViewAdapter=new YourRequestedItem_RecyclerViewAdapter(saleItemsList, getContext());
-                                            requestedRecyclerView.setAdapter(yourRequestedItem_recyclerViewAdapter);
-                                            yourRequestedItem_recyclerViewAdapter.notifyDataSetChanged();
 
-                                            Log.d("Your Requested Items", "onSuccess: Fetching Your Requested Items");
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
 
-                                        }
-                                    });
                         }
+
+
+
+
+                        for(int i=0;i<requestedItemList.size();i++){
+
+
+                                    RequetedItem listRequestedItem=requestedItemList.get(i);
+
+                                    SaleItemsCollectionReference
+                                            .whereEqualTo("itemCode",listRequestedItem.getItemCode())
+                                            .get()
+                                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                                @Override
+                                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                                                    Log.d("Hi", "onSuccess: item returned");
+                                                    for(QueryDocumentSnapshot saleItems : queryDocumentSnapshots){
+                                                        SaleItems item=saleItems.toObject(SaleItems.class);
+                                                        saleItemsList.add(item);
+
+                                                    }
+
+
+
+
+
+
+
+
+
+                                                }
+
+                                            });
+//
+
+
+                                }
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                requestedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                                yourRequestedItem_recyclerViewAdapter = new YourRequestedItem_RecyclerViewAdapter(saleItemsList, getContext());
+
+                                requestedRecyclerView.setAdapter(yourRequestedItem_recyclerViewAdapter);
+                                yourRequestedItem_recyclerViewAdapter.notifyDataSetChanged();
+
+                            }
+                        },3000);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     }
+
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -128,6 +190,18 @@ public class YourRequestedItemsFragment extends Fragment {
 
                     }
                 });
+
+
+}
+
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+
+
 
 //                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
 //                    @Override

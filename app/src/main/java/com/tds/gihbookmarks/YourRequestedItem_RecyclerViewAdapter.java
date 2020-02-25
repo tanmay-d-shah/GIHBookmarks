@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 import com.tds.gihbookmarks.model.SaleItems;
 
@@ -27,27 +28,33 @@ public class YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter<
     private List<SaleItems> saleItemsList;
     private Context mContext;
     private RecyclerView.ViewHolder holder;
+    private int position;
     private AlertDialog.Builder builder;
     private AlertDialog alertDialog;
 
     public YourRequestedItem_RecyclerViewAdapter(List<SaleItems> saleItemsList, Context mContext) {
+
         this.saleItemsList = saleItemsList;
         this.mContext = mContext;
+        Log.d("Tanmay", "YourRequestedItem_RecyclerViewAdapter: "+saleItemsList.size());
     }
 
     @NonNull
     @Override
-    public YourRequestedItem_RecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
          View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.requested_items,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull YourRequestedItem_RecyclerViewAdapter.ViewHolder holder, int position) {
-        SaleItems saleItems=saleItemsList.get(position);
-        Log.d("Yo", "onBindViewHolder: called.");
+    public void onBindViewHolder(@NonNull final ViewHolder holder,final int position) {
+//        firebaseAuth= FirebaseAuth.getInstance();
+//        user=firebaseAuth.getCurrentUser();
 
-        RequestOptions requestOptions= new RequestOptions().placeholder(R.drawable.ic_launcher_background);
+        SaleItems saleItems=saleItemsList.get(position);
+        Log.d("Yo", "hi how are you.");
+
+        //RequestOptions requestOptions= new RequestOptions().placeholder(R.drawable.ic_launcher_background);
 
 
         String imageUrl;
@@ -60,16 +67,16 @@ public class YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter<
         holder.itemDesc.setText(saleItems.getDesc());
         holder.itemName.setText(saleItems.getItem());
         holder.itemStatus.setText(saleItems.getStatus());
+        Log.d("check1", "onBindViewHolder: "+holder.itemName.getText());
         holder.itemCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CreatePopUpDialog();
             }
         });
-        
-        
-        
     }
+
+
 
     private void CreatePopUpDialog() {
         builder=new AlertDialog.Builder(mContext);
