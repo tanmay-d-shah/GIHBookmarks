@@ -15,10 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"></activity>
+        <activity android:name=".LoginActivity" />
         <activity android:name=".ToolPostActivity" />
         <activity
             android:name=".SaleItemDetailActivity"
-            android:theme="@style/AppTheme.NoActionBar.PostBooks"></activity>
+            android:theme="@style/AppTheme.NoActionBar.PostBooks" />
         <activity android:name=".ToolsPostActivity" />
         <activity android:name=".PostLabCoatActivity" />
         <activity
@@ -27,7 +28,7 @@
         <activity android:name=".PageAdapter_HomePage" />
         <activity android:name=".CreateAccountActivity" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".report_bug"
             android:theme="@style/AppTheme.NoActionBar.PostBooks">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,7 +39,7 @@
         <activity android:name=".CreateUserProfileActivity" />
         <activity
             android:name=".SignUpActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="preloaded_fonts"

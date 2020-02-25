@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".report_bug">
+
+
+    <TextView
+        android:id="@+id/bug"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Drop your Bugs here!!!"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textColor="#090808"/>
+
+    <ImageView
+        android:id="@+id/bug_img"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_report_bug"
+        android:layout_below="@+id/bug"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:background="@color/colortext"
+        android:padding="20dp"/>
+
+    <TextView
+        android:id="@+id/discription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Discription"
+        android:textSize="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_below="@+id/bug_img"/>
+
+
+    <EditText
+        android:layout_marginTop="40dp"
+        android:id="@+id/discription_text"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:inputType="textMultiLine"
+        android:gravity="top"
+        android:paddingLeft="8dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:padding="10dp"
+        android:layout_below="@+id/discription"
+        android:background="@color/colortext"
+        android:layout_centerHorizontal="true"/>
+
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/discription_text"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:text="Submit"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:background="@drawable/rounded_button"
+        android:textColor="@color/layoutcolor"
+        android:onClick="bugs"/>
+
+    </RelativeLayout>
