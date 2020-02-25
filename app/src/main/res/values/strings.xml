@@ -8,4 +8,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login">LOGIN</string>
+    <string name="email_id">Email-id</string>
+    <string name="password">Password</string>
+    <string name="text">Don\'t have an account?</string>
 </resources>

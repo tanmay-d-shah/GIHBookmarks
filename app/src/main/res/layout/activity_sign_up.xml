@@ -8,261 +8,256 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/layoutcolor">
-
+        android:layout_height="match_parent">
 
         <RelativeLayout
-
+            android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="130dp"
             android:background="@color/backroundcolor">
 
             <ImageView
+                android:layout_marginTop="10dp"
                 android:id="@+id/icon"
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/person" />
-
+                android:src="@drawable/person"/>
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="30dp"
-                android:layout_marginHorizontal="220dp"
+                android:src="@drawable/plus"
                 android:layout_marginVertical="80dp"
-                android:src="@drawable/plus" />
+                android:layout_marginHorizontal="220dp"
+                />
+
 
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true">
+            android:layout_below="@+id/header"
+            android:layout_marginTop="10dp">
 
 
-            <ImageView
-                android:id="@+id/nameicon"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="150dp"
-                android:paddingLeft="3dp"
-                android:paddingRight="5dp"
-                android:src="@drawable/ic_person" />
-
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/name"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="320dp"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
-                android:layout_marginTop="150dp"
-                android:background="@drawable/editwithoutcolor"
-                android:hint="  full name"
-                android:inputType="text"
-                android:padding="12dp"
+                android:layout_marginTop="20dp"
+                android:hint="full name">
 
-                />
 
-            <ImageView
-                android:id="@+id/emailicon"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
-                android:layout_below="@id/nameicon"
-                android:layout_marginTop="24dp"
-                android:paddingLeft="6dp"
-                android:paddingRight="5dp"
-                android:src="@drawable/ic_email_black_24dp" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:drawableLeft="@drawable/ic_person"
+                    android:drawablePadding="10dp">
 
-            <EditText
+                </com.google.android.material.textfield.TextInputEditText>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/email"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="320dp"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/name"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/editwithoutcolor"
-                android:hint="  E-mail"
-                android:inputType="textEmailAddress"
-                android:padding="12dp" />
+                android:hint="Email-id">
 
-            <ImageView
-                android:id="@+id/passicon"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
-                android:layout_below="@id/emailicon"
-                android:layout_marginTop="27dp"
-                android:paddingLeft="6dp"
-                android:paddingRight="5dp"
-                android:src="@drawable/ic_fill_lock" />
-            
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:drawableLeft="@drawable/ic_email_black_24dp"
+                    android:drawablePadding="10dp">
 
-            <EditText
-                android:id="@+id/pass"
+                </com.google.android.material.textfield.TextInputEditText>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="320dp"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/email"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/editwithoutcolor"
-                android:drawableRight="@drawable/eye"
-                android:hint="  Password"
-                android:inputType="textPassword"
-                android:padding="12dp" />
+                android:hint="password"
+                app:passwordToggleEnabled="true">
 
-            <ImageView
-                android:id="@+id/phoneicon"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
-                android:layout_below="@id/passicon"
-                android:layout_marginTop="27dp"
-                android:paddingLeft="6dp"
-                android:paddingRight="5dp"
-                android:src="@drawable/ic_phone_black_24dp" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:drawablePadding="10dp"
+                    android:drawableStart="@drawable/ic_fill_lock"
+                    android:drawableTint="#0C0C0C">
 
-            <EditText
-                android:id="@+id/phonenum"
+                </com.google.android.material.textfield.TextInputEditText>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phone_number"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="320dp"
-                android:layout_height="45dp"
-                android:layout_below="@id/pass"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/password"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/editwithoutcolor"
-                android:hint="  Phone Number"
-                android:inputType="number"
-                android:padding="12dp" />
+                android:hint="phone number">
 
-            <ImageView
-                android:id="@+id/cityicon"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
-                android:layout_below="@id/phoneicon"
-                android:layout_marginTop="27dp"
-                android:paddingLeft="6dp"
-                android:paddingRight="5dp"
-                android:src="@drawable/ic_location_on_black_24dp" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:drawableLeft="@drawable/ic_phone_black_24dp"
+                    android:drawablePadding="10dp">
 
-            <EditText
-                android:id="@+id/city"
+                </com.google.android.material.textfield.TextInputEditText>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/address"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="320dp"
-                android:layout_height="45dp"
-                android:layout_below="@+id/phonenum"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/phone_number"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/editwithoutcolor"
-                android:hint="City"
-                android:inputType="text"
-                android:padding="12dp" />
+                android:hint="Address">
 
-            <ImageView
-                android:id="@+id/semicon"
-                android:layout_width="40dp"
-                android:layout_height="50dp"
-                android:layout_below="@id/cityicon"
-                android:layout_marginTop="27dp"
-                android:paddingLeft="6dp"
-                android:paddingRight="5dp"
-                android:src="@drawable/ic_study" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/ic_location_on_black_24dp">
 
-            <EditText
-                android:id="@+id/sem"
+                </com.google.android.material.textfield.TextInputEditText>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/semester"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="320dp"
-                android:layout_height="45dp"
-                android:layout_below="@id/city"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/address"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/editwithoutcolor"
-                android:hint="  Semester"
-                android:inputType="number"
-                android:maxLength="1"
-                android:padding="12dp" />
+                android:hint="Semester">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:drawableLeft="@drawable/ic_study"
+                    android:drawablePadding="10dp">
+
+                </com.google.android.material.textfield.TextInputEditText>
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-            <ImageView
-                android:id="@+id/branchicon"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_below="@id/enoicon"
-                android:layout_marginTop="25dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:src="@drawable/ic_books_stack_of_three" />
-
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/branch"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="320dp"
-                android:layout_height="45dp"
-                android:layout_below="@id/eno"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/semester"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/editwithoutcolor"
-                android:hint="  Branch"
-                android:inputType="text"
-                android:padding="12dp" />
+                android:hint="Branch">
 
-            <ImageView
-                android:id="@+id/enoicon"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
-                android:layout_below="@id/semicon"
-                android:layout_marginTop="14dp"
-                android:paddingLeft="6dp"
-                android:paddingRight="5dp"
-                android:src="@drawable/ic_view_list_black_24dp" />
+                <com.google.android.material.textfield.TextInputEditText
 
-            <EditText
-                android:id="@+id/eno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/ic_books_stack_of_three">
+
+                </com.google.android.material.textfield.TextInputEditText>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/enrollment"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="320dp"
-                android:layout_height="45dp"
-                android:layout_below="@id/sem"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/branch"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/editwithoutcolor"
-                android:hint="  Enrollment Number"
-                android:inputType="number"
-                android:maxLength="12"
-                android:padding="12dp" />
+                android:hint="Enrollment number">
 
-            <ImageView
-                android:id="@+id/clgicon"
-                android:layout_width="50dp"
-                android:layout_height="60dp"
-                android:layout_below="@id/branchicon"
-                android:paddingLeft="5dp"
-                android:paddingTop="27dp"
-                android:paddingRight="5dp"
-                android:src="@drawable/ic_company" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:drawableLeft="@drawable/ic_view_list_black_24dp"
+                    android:drawablePadding="10dp"
 
-            <EditText
-                android:id="@+id/clg"
+                    >
+
+                </com.google.android.material.textfield.TextInputEditText>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/college"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="320dp"
-                android:layout_height="45dp"
-                android:layout_below="@+id/branch"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/enrollment"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/editwithoutcolor"
-                android:hint="  College"
-                android:inputType="text"
-                android:padding="12dp"/>
+                android:hint="college name">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:drawableLeft="@drawable/ic_company">
+
+                </com.google.android.material.textfield.TextInputEditText>
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-
                 android:id="@+id/signup_button"
-                android:layout_width="150dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/clg"
+                android:layout_below="@+id/college"
                 android:layout_centerInParent="true"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="30dp"
                 android:background="@drawable/rounded_button"
                 android:gravity="center"
-                android:text="Sign up"
-                android:textColor="@color/layoutcolor" />
-
-
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:text="sign up"
+                android:textColor="@color/layoutcolor"
+                android:textSize="20dp" />
         </RelativeLayout>
 
-
     </RelativeLayout>
-
 </ScrollView>

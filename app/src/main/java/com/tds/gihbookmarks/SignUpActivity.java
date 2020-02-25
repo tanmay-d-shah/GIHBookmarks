@@ -53,15 +53,15 @@ public class SignUpActivity extends AppCompatActivity {
         firebaseAuth=FirebaseAuth.getInstance();
 
         name=findViewById(R.id.name);
-        password=findViewById(R.id.pass);
+        password=findViewById(R.id.password);
         email=findViewById(R.id.email);
-        phone=findViewById(R.id.phonenum);
+        phone=findViewById(R.id.phone_number);
         //designation=findViewById(R.id.designation);
-        college=findViewById(R.id.clg);
+        college=findViewById(R.id.college);
         branch=findViewById(R.id.branch);
-        semester=findViewById(R.id.sem);
-        enrollment=findViewById(R.id.eno);
-        city=findViewById(R.id.city);
+        semester=findViewById(R.id.semester);
+        enrollment=findViewById(R.id.enrollment);
+        city=findViewById(R.id.address);
         signUpButton=findViewById(R.id.signup_button);
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
