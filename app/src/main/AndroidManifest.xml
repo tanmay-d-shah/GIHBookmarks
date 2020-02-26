@@ -14,17 +14,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ToolPostActivity"></activity>
         <activity
             android:name=".SaleItemDetailActivity"
             android:theme="@style/AppTheme.NoActionBar.PostBooks">
 
         </activity>
+        <activity android:name=".SellAllActivity"
+            android:theme="@style/AppTheme.NoActionBar.PostBooks">
+
+        </activity>
         <activity android:name=".ToolsPostActivity" />
         <activity android:name=".PostLabCoatActivity" />
-        <activity
-            android:name=".PostBookActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".PageAdapter_HomePage" />
         <activity android:name=".CreateAccountActivity" />
         <activity
