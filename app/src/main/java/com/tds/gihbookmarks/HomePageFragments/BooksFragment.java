@@ -136,11 +136,6 @@ public class BooksFragment extends Fragment {
 //
 //        mImageUrls.add("https://i.imgur.com/ZcLLrkY.jpg");
 //        mName.add("Washington");
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
         collectionReference
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -157,11 +152,19 @@ public class BooksFragment extends Fragment {
 
                             }
                             Log.d("Restart", "onComplete: Books Restarted");
+                            Log.d("hi", "onComplete: Hi");
                             staggeredRecyclerViewAdapter=new StaggeredRecyclerViewAdapter(getContext(),saleItemsList);
+
                             bookRecyclerView.setAdapter(staggeredRecyclerViewAdapter);
                             staggeredRecyclerViewAdapter.notifyDataSetChanged();
                         }
                     }
                 });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
     }
 }

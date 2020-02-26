@@ -88,28 +88,6 @@ public class ToolsFragment extends Fragment {
 
         firebaseAuth=FirebaseAuth.getInstance();
         user=firebaseAuth.getCurrentUser();
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_books, container, false);
-        ViewPager viewPager = view.findViewById(R.id.viewpager);
-        saleItemsList=new ArrayList<>();
-        toolsRecyclerView= (RecyclerView)view.findViewById(R.id.recyclerView);
-        //StaggeredRecyclerViewAdapter staggeredRecyclerViewAdapter= new StaggeredRecyclerViewAdapter(getContext(),bookList);
-        StaggeredGridLayoutManager staggeredGridLayoutManager= new StaggeredGridLayoutManager(NUM_COLUMNS, LinearLayoutManager.VERTICAL);
-        //bookRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        toolsRecyclerView.setLayoutManager(staggeredGridLayoutManager);
-        toolsRecyclerView.setAdapter(staggeredRecyclerViewAdapter);
-
-        return view;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
         collectionReference
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -132,6 +110,29 @@ public class ToolsFragment extends Fragment {
                         }
                     }
                 });
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        view = inflater.inflate(R.layout.fragment_books, container, false);
+        ViewPager viewPager = view.findViewById(R.id.viewpager);
+        saleItemsList=new ArrayList<>();
+        toolsRecyclerView= (RecyclerView)view.findViewById(R.id.recyclerView);
+        //StaggeredRecyclerViewAdapter staggeredRecyclerViewAdapter= new StaggeredRecyclerViewAdapter(getContext(),bookList);
+        StaggeredGridLayoutManager staggeredGridLayoutManager= new StaggeredGridLayoutManager(NUM_COLUMNS, LinearLayoutManager.VERTICAL);
+        //bookRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        toolsRecyclerView.setLayoutManager(staggeredGridLayoutManager);
+        toolsRecyclerView.setAdapter(staggeredRecyclerViewAdapter);
+
+        return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
     }
 
 }

@@ -16,7 +16,15 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 import com.tds.gihbookmarks.model.SaleItems;
 
@@ -26,28 +34,48 @@ public class YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter<
 
     private List<SaleItems> saleItemsList;
     private Context mContext;
-    private RecyclerView.ViewHolder holder;
+
+
     private AlertDialog.Builder builder;
     private AlertDialog alertDialog;
 
+    private TextView itemDesc;
+    private TextView itemPrice;
+    private TextView sellerName;
+    private TextView sellerPhone;
+    private TextView itemStatus;
+    private Button cancelRequestButton;
+
+    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener authStateListener;
+    private FirebaseFirestore db=FirebaseFirestore.getInstance();
+    private FirebaseUser user;
+    private CollectionReference sellerCollectionReference=db.collection("Users");
+    private CollectionReference requestedItemsCollectionReference=db.collection("RequestedItems");
+
     public YourRequestedItem_RecyclerViewAdapter(List<SaleItems> saleItemsList, Context mContext) {
+
         this.saleItemsList = saleItemsList;
         this.mContext = mContext;
+        Log.d("Tanmay", "YourRequestedItem_RecyclerViewAdapter: "+saleItemsList.size());
     }
 
     @NonNull
     @Override
-    public YourRequestedItem_RecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
          View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.requested_items,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull YourRequestedItem_RecyclerViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder,final int position) {
+        firebaseAuth= FirebaseAuth.getInstance();
+        user=firebaseAuth.getCurrentUser();
+        final ViewHolder newHolder=holder;
         SaleItems saleItems=saleItemsList.get(position);
-        Log.d("Yo", "onBindViewHolder: called.");
+        Log.d("Yo", "hi how are you.");
 
-        RequestOptions requestOptions= new RequestOptions().placeholder(R.drawable.ic_launcher_background);
+        //RequestOptions requestOptions= new RequestOptions().placeholder(R.drawable.ic_launcher_background);
 
 
         String imageUrl;
@@ -60,30 +88,89 @@ public class YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter<
         holder.itemDesc.setText(saleItems.getDesc());
         holder.itemName.setText(saleItems.getItem());
         holder.itemStatus.setText(saleItems.getStatus());
+        Log.d("check1", "onBindViewHolder: "+holder.itemName.getText());
         holder.itemCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CreatePopUpDialog();
+                CreatePopUpDialog(newHolder);
             }
         });
-        
-        
-        
     }
 
-    private void CreatePopUpDialog() {
+
+
+    private void CreatePopUpDialog(ViewHolder newholder) {
         builder=new AlertDialog.Builder(mContext);
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.requested_item_popup,null);
+        sellerName=view.findViewById(R.id.pop_item_seller);
+        sellerPhone=view.findViewById(R.id.pop_item_seller_contact);
+        itemDesc=view.findViewById(R.id.pop_item_desc);
+        itemPrice=view.findViewById(R.id.pop_item_price);
+        itemStatus=view.findViewById(R.id.pop_item_status);
+        cancelRequestButton=view.findViewById(R.id.pop_item_cancel_request);
+
+        final SaleItems saleItem=saleItemsList.get(newholder.getAdapterPosition());
+
+        itemDesc.setText(saleItem.getDesc());
+        itemPrice.setText(saleItem.getPrice());
+        itemStatus.setText(saleItem.getStatus());
+
+        sellerCollectionReference
+                .whereEqualTo("UserId",saleItem.getSellerId())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for(QueryDocumentSnapshot user:queryDocumentSnapshots){
+                            sellerPhone.setText(user.getString("Mobile"));
+                            sellerName.setText(user.getString("Name"));
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
 
 
 
-        Button cancelRequest=view.findViewById(R.id.pop_item_cancel_request);
-        cancelRequest.setOnClickListener(new View.OnClickListener() {
+
+
+
+
+
+
+        cancelRequestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(mContext,"Request Cancelled",Toast.LENGTH_LONG).show();
+                requestedItemsCollectionReference
+                        .whereEqualTo("itemCode",saleItem.getItemCode())
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                    for(QueryDocumentSnapshot requestedItem:queryDocumentSnapshots){
+                                        if(requestedItem.get("buyerId").equals(user.getUid())){
+                                            requestedItemsCollectionReference.document(requestedItem.getId()).delete();
+                                            Toast.makeText(mContext,"Request Cancelled",Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+
+                            }
+                        });
+
+
+
+
             }
         });
         builder.setView(view);

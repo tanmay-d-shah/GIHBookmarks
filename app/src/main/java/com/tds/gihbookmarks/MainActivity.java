@@ -13,6 +13,7 @@ import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.tds.gihbookmarks.NavigationMenuFragments.FAQFragment;
 import com.tds.gihbookmarks.NavigationMenuFragments.HomeFragment;
 import com.tds.gihbookmarks.NavigationMenuFragments.MessageFragment;
 import com.tds.gihbookmarks.NavigationMenuFragments.ProfileFragment;
@@ -85,7 +86,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         new ReportBugFragment()).commit();
                 break;
 
-           
+            case R.id.nav_faq:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new FAQFragment()).commit();
+                break;
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;

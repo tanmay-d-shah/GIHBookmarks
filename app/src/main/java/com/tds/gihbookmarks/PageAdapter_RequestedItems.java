@@ -27,17 +27,20 @@ public class PageAdapter_RequestedItems extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         Fragment fragment = new Fragment();
+        Log.d("Page Adapter", "getItem: "+position);
         switch (position) {
             case 0:
                 fragment = new YourRequestedItemsFragment();
                 Log.d("page Adapter", "getItem: YourRequestedItemFragment Returned");
-                return fragment;
+                break;
+//                return fragment;
 
 
             case 1:
                 fragment = new BuyerRequestedItemsFragment();
                 Log.d("page Adapter", "getItem: BuyerRequestedItemFragment Returned");
-                return fragment;
+//                return fragment;
+                break;
 
 
 
@@ -45,6 +48,7 @@ public class PageAdapter_RequestedItems extends FragmentPagerAdapter {
                 return fragment;
 
         }
+        return fragment;
 
     }
 

@@ -3,6 +3,7 @@ package com.tds.gihbookmarks;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -27,14 +28,14 @@ import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
-    private FirebaseFirestore db=FirebaseFirestore.getInstance();
-    private CollectionReference collectionReference=db.collection("Users");
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference collectionReference = db.collection("Users");
     private FirebaseUser currentUser;
 
     private EditText name;
     private EditText email;
     private EditText password;
-    private  EditText phone;
+    private EditText phone;
     private EditText designation;
     private EditText college;
     private EditText branch;
@@ -49,6 +50,14 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        /*signUpButton=findViewById(R.id.signup_button);
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SignUpActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });*/
 
         firebaseAuth=FirebaseAuth.getInstance();
 
@@ -172,4 +181,5 @@ public class SignUpActivity extends AppCompatActivity {
                     }
                 });
     }
-}
+    }
+
