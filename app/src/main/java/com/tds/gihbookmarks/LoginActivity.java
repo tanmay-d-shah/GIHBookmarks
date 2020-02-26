@@ -31,7 +31,9 @@ import com.tds.gihbookmarks.util.UserApi;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
+    private FirebaseUser currentUser;
     private CollectionReference collectionReference=db.collection("Users");
     private EditText loginEmail;
     private EditText loginPass;
@@ -52,6 +54,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginSignUp.setOnClickListener(this);
 
         firebaseAuth  = FirebaseAuth.getInstance();
+        authStateListener=new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                currentUser=firebaseAuth.getCurrentUser();
+                if(currentUser!=null){
+                    Log.d("Check3", "onAuthStateChanged: Got current user");
+                    startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                    finish();
+
+
+                }
+                else{
+
+                }
+            }
+        };
     }
 
 
@@ -95,6 +113,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                                                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                                         Log.d("Login", "onEvent: "+userApi.getUserMobile());
+                                                        finish();
                                                     }
 
 
@@ -128,5 +147,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         }
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        currentUser=firebaseAuth.getCurrentUser();
+        firebaseAuth.addAuthStateListener(authStateListener);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(firebaseAuth!=null){
+            firebaseAuth.removeAuthStateListener(authStateListener);
+        }
     }
 }
