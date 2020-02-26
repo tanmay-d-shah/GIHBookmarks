@@ -45,6 +45,7 @@ public class YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter<
     private TextView sellerPhone;
     private TextView itemStatus;
     private Button cancelRequestButton;
+    private YourRequestedItem_RecyclerViewAdapter yourRequestedItem_recyclerViewAdapter;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
@@ -99,7 +100,7 @@ public class YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter<
 
 
 
-    private void CreatePopUpDialog(ViewHolder newholder) {
+    private void CreatePopUpDialog(final ViewHolder newholder) {
         builder=new AlertDialog.Builder(mContext);
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.requested_item_popup,null);
@@ -111,6 +112,7 @@ public class YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter<
         cancelRequestButton=view.findViewById(R.id.pop_item_cancel_request);
 
         final SaleItems saleItem=saleItemsList.get(newholder.getAdapterPosition());
+        final int newposition=newholder.getAdapterPosition();
 
         itemDesc.setText(saleItem.getDesc());
         itemPrice.setText(saleItem.getPrice());
@@ -155,8 +157,12 @@ public class YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter<
                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                     for(QueryDocumentSnapshot requestedItem:queryDocumentSnapshots){
                                         if(requestedItem.get("buyerId").equals(user.getUid())){
+
+
+
                                             requestedItemsCollectionReference.document(requestedItem.getId()).delete();
                                             Toast.makeText(mContext,"Request Cancelled",Toast.LENGTH_LONG).show();
+
                                         }
                                     }
                             }

@@ -34,36 +34,40 @@
             />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/login_emailid"
+            android:id="@+id/login_emailid1"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/Login"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:hint="@string/email_id"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:background="@color/colortext">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_emailid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:drawableStart="@drawable/email"
-                android:drawablePadding="10dp"/>
+                android:drawablePadding="10dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/login_password"
+            android:id="@+id/login_password1"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/login_emailid"
+            android:layout_below="@+id/login_emailid1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:hint="@string/password"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
             android:background="@color/colortext">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
@@ -76,16 +80,16 @@
             android:id="@+id/asking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/login_password"
+            android:layout_below="@+id/login_password1"
             android:layout_marginTop="10dp"
             android:text="@string/text"
             android:layout_marginStart="30dp"
             android:textSize="20dp"
-            android:layout_alignStart="@+id/login_password"/>
+            android:layout_alignStart="@+id/login_password1"/>
         <TextView
             android:id="@+id/login_sign_up"
             android:layout_marginTop="10dp"
-            android:layout_below="@+id/login_password"
+            android:layout_below="@+id/login_password1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="sign up"
