@@ -5,9 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.tds.gihbookmarks.R;
-
 import androidx.fragment.app.Fragment;
+
+import com.tds.gihbookmarks.R;
 
 
 public class OtherFragment extends Fragment {

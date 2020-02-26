@@ -11,8 +11,8 @@ public class Item {
         this.itemImage = itemImage;
     }
 
-    public int getImageResourceId(Context context){
-        return context.getResources().getIdentifier(this.itemImage,"drawable",context.getPackageName());
+    public int getImageResourceId(Context context) {
+        return context.getResources().getIdentifier(this.itemImage, "drawable", context.getPackageName());
     }
 
     public String getItemName() {

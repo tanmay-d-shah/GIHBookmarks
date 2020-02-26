@@ -8,14 +8,15 @@ public class UserApi extends Application {
     private String userMobile;
     private static UserApi instance;
 
-    public static UserApi getInstance(){
-        if(instance==null){
-            instance=new UserApi();
+    public UserApi() {
+
+    }
+
+    public static UserApi getInstance() {
+        if (instance == null) {
+            instance = new UserApi();
         }
         return instance;
-    }
-    public UserApi(){
-
     }
 
     public String getUsername() {

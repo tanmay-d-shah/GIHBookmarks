@@ -6,8 +6,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.tds.gihbookmarks.requestedItemPackage.BuyerRequestedItemsFragment;
-
 public class BuyerRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter<BuyerRequestedItem_RecyclerViewAdapter.ViewHolder> {
 
 

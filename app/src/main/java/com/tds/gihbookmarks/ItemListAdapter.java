@@ -17,15 +17,15 @@ public class ItemListAdapter extends RecyclerView.Adapter {
     private ItemData itemData = new ItemData();
     private ArrayList<Item> itemList;
 
-    public ItemListAdapter(){
+    public ItemListAdapter() {
 
     }
 
     @NonNull
     @Override
     public ItemListAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemGrid= LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_list,parent,false);
+        View itemGrid = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_list, parent, false);
         Log.d("tirth", "onCreateViewHolder: 123");
 
         return new ItemViewHolder(itemGrid);
@@ -43,7 +43,7 @@ public class ItemListAdapter extends RecyclerView.Adapter {
         return itemData.itemList().size();
     }
 
-    public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public ImageView itemImage;
         public TextView itemName;
@@ -55,7 +55,8 @@ public class ItemListAdapter extends RecyclerView.Adapter {
             itemName = (TextView) itemView.findViewById(R.id.itemText);
             itemView.setOnClickListener((View.OnClickListener) this);
         }
-        public void bindView(int position){
+
+        public void bindView(int position) {
             itemName.setText(itemData.itemName[position]);
             itemImage.setImageResource(itemData.picturePath[position]);
         }

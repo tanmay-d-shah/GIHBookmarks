@@ -6,18 +6,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -26,32 +28,32 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 import com.tds.gihbookmarks.model.Book;
 import com.tds.gihbookmarks.model.SaleItems;
-import com.tds.gihbookmarks.model.Tools;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+public class StaggeredRecyclerViewAdapter
+        extends RecyclerView.Adapter<StaggeredRecyclerViewAdapter.ViewHolder>
+        implements Filterable {
 
-public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<StaggeredRecyclerViewAdapter.ViewHolder> {
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
-    private FirebaseFirestore db=FirebaseFirestore.getInstance();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseUser user;
     private StorageReference storageReference;
-    private CollectionReference sellerCollectionReference=db.collection("Users");
-    private CollectionReference collectionReference=db.collection("SaleItems");
-    private CollectionReference bookcollectionReference=db.collection("Books");
-    private CollectionReference toolCollectionReference=db.collection("Tools");
-
+    private CollectionReference sellerCollectionReference = db.collection("Users");
+    private CollectionReference collectionReference = db.collection("SaleItems");
+    private CollectionReference bookcollectionReference = db.collection("Books");
+    private CollectionReference toolCollectionReference = db.collection("Tools");
 
 
     private static final String TAG = "StaggerRecyclerViewAdapter";
-//    private final ArrayList<String> mImageUrls;
+    //    private final ArrayList<String> mImageUrls;
     private List<SaleItems> saleItemsList;
+    private List<SaleItems> saleItemsListAll;
 
-//    private ArrayList<String> mName= new ArrayList<>();
+    //    private ArrayList<String> mName= new ArrayList<>();
 //    private ArrayList<String> mImage= new ArrayList<>();
     private Context mContext;
     private RecyclerView.ViewHolder holder;
@@ -59,38 +61,64 @@ public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<Staggered
 
     private String sellerName;
     private String sellerMobile;
+    private Filter myFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
 
+            List<SaleItems> filteredList = new ArrayList<>();
+
+            if (charSequence.toString().isEmpty()) {
+                filteredList.addAll(saleItemsListAll);
+            } else {
+                for (SaleItems book : saleItemsListAll) {
+                    if (book.getDesc().toLowerCase().contains(charSequence.toString().toLowerCase())) {
+                        filteredList.add(book);
+                    }
+                }
+            }
+
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filteredList;
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            saleItemsList.clear();
+            saleItemsList.addAll((Collection<? extends SaleItems>) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public StaggeredRecyclerViewAdapter(Context mContext, List<SaleItems> saleItemsList) {
-        this.saleItemsList=saleItemsList;
-        this.mContext=mContext;
+        this.saleItemsList = saleItemsList;
+        saleItemsListAll = new ArrayList<>(saleItemsList);
+        this.mContext = mContext;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_grid_item,parent,false);
-
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_grid_item, parent, false);
         return new ViewHolder(view);
-
-
     }
 
+    @Override
+    public int getItemCount() {
+        return saleItemsList.size();
+    }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-        firebaseAuth= FirebaseAuth.getInstance();
-        user=firebaseAuth.getCurrentUser();
-        final SaleItems saleItem=saleItemsList.get(position);
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+        final SaleItems saleItem = saleItemsList.get(position);
         Log.d(TAG, "onBindViewHolder: called.");
 
-        RequestOptions requestOptions= new RequestOptions().placeholder(R.drawable.ic_launcher_background);
-
-
+        RequestOptions requestOptions = new RequestOptions().placeholder(R.drawable.ic_launcher_background);
 
         String imageUrl;
-        imageUrl=saleItem.getImageUrl();
+        imageUrl = saleItem.getImageUrl();
         Picasso.get()
                 .load(imageUrl)
                 .placeholder(R.drawable.ic_launcher_background)
@@ -107,14 +135,13 @@ public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<Staggered
             @Override
             public void onClick(View v) {
 
-                if(saleItem.getItem().equals("Book")) {
-                    bookcollectionReference
-                            .document(saleItem.getItemCode()).get()
-                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                @Override
-                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                    final Book book = documentSnapshot.toObject(Book.class);
-                                    Log.d("Book Fetched", "onSuccess: " + book.getTitle());
+                if (saleItem.getItem().equals("Book")) {
+                    bookcollectionReference.document(saleItem.getItemCode())
+                            .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            final Book book = documentSnapshot.toObject(Book.class);
+                            Log.d("Book Fetched", "onSuccess: " + book.getTitle());
 
                                         sellerCollectionReference
                                                 .whereEqualTo("UserId",saleItem.getSellerId())
@@ -173,45 +200,32 @@ public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<Staggered
 //                                                }
 //                                            });
 
-
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-
-                                    Log.d("Failed to fetch book", "onFailure: ");
-
-                                }
-                            });
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("Failed to fetch book", "onFailure: ");
+                        }
+                    });
                 }
-
-
-
             }
         });
     }
 
     @Override
-    public int getItemCount() {
-
-        return saleItemsList.size();
+    public Filter getFilter() {
+        return myFilter;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView image;
         TextView name;
 
-
-
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.image=itemView.findViewById(R.id.image_widget);
-            this.name= itemView.findViewById(R.id.name_widget);
+            this.image = itemView.findViewById(R.id.image_widget);
+            this.name = itemView.findViewById(R.id.name_widget);
         }
     }
-
-
-
 }

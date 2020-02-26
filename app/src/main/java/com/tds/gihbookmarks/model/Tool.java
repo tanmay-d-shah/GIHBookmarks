@@ -21,7 +21,8 @@ public class Tool {
         this.userId = userId;
     }
 
-    public Tool(){}
+    public Tool() {
+    }
 
     public Tool(String stationaryId, String title, String price, String desc, Timestamp dateAdded, String city, String imageURL) {
         this.stationaryId = stationaryId;
