@@ -7,12 +7,16 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.tds.gihbookmarks.NavigationMenuFragments.FAQFragment;
 import com.tds.gihbookmarks.NavigationMenuFragments.HomeFragment;
 import com.tds.gihbookmarks.NavigationMenuFragments.MessageFragment;
@@ -24,11 +28,19 @@ import com.tds.gihbookmarks.NavigationMenuFragments.RequestedItemsFragment;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseUser user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        firebaseAuth=FirebaseAuth.getInstance();
+        user=firebaseAuth.getCurrentUser();
+
+
 
         /*FloatingActionButton floatingActionButton=findViewById(R.id.floatBtn);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +101,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_faq:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new FAQFragment()).commit();
+                break;
+
+            case R.id.nav_logout:
+                if(user!=null && firebaseAuth!=null){
+                    firebaseAuth.signOut();
+                    startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                    finish();
+                }
+
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);

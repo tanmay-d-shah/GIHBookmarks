@@ -17,6 +17,6 @@ public class report_bug extends AppCompatActivity {
 
     public  void bugs (View view)
     {
-        Snackbar.make(findViewById(R.id.login_button),"Hello I'm bug report",Snackbar.LENGTH_LONG).setAction("Action",null).show();
+        Snackbar.make(findViewById(R.id.submit_button),"Hello I'm bug report",Snackbar.LENGTH_LONG).setAction("Action",null).show();
     }
 }

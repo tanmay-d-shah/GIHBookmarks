@@ -220,7 +220,6 @@
                     android:inputType="text"
                     android:drawableLeft="@drawable/ic_view_list_black_24dp"
                     android:drawablePadding="10dp"
-
                     >
 
                 </com.google.android.material.textfield.TextInputEditText>
@@ -249,11 +248,57 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/designation1"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/college1"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="20dp"
+                android:hint="Designation">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/designation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/ic_designation">
+
+                </com.google.android.material.textfield.TextInputEditText>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/city1"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/designation1"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="20dp"
+                android:hint="city name"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/ic_location_city_black_24dp">
+
+                </com.google.android.material.textfield.TextInputEditText>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
             <Button
                 android:id="@+id/signup_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/college1"
+                android:layout_below="@+id/city1"
                 android:layout_centerInParent="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="40dp"

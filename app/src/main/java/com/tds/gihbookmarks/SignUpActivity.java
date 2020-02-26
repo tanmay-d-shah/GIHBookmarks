@@ -65,7 +65,7 @@ public class SignUpActivity extends AppCompatActivity {
         password=findViewById(R.id.password);
         email=findViewById(R.id.email);
         phone=findViewById(R.id.phone_number);
-        //designation=findViewById(R.id.designation);
+        designation=findViewById(R.id.designation);
         college=findViewById(R.id.college);
         branch=findViewById(R.id.branch);
         semester=findViewById(R.id.semester);
@@ -155,6 +155,10 @@ public class SignUpActivity extends AppCompatActivity {
                                                             if(task.isSuccessful()){
                                                                 Log.d("Mail ", "onComplete: Mail Sent");
                                                                 Toast.makeText(SignUpActivity.this,"Verification Mail sent to "+currentUser.getEmail(),Toast.LENGTH_LONG).show();
+
+                                                                Intent intent = new Intent(SignUpActivity.this,MainActivity.class);
+                                                                startActivity(intent);
+                                                                finish();
                                                             }
                                                             else{
                                                                 Log.d("Verification Failure", "onComplete:Verification Failed ");
