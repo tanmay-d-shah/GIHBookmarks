@@ -48,6 +48,7 @@ public class HomeFragment extends Fragment  {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), SellAllActivity.class);
                 startActivity(intent);
+                //Toast.makeText(getContext(),"Float button",Toast.LENGTH_SHORT).show();
             }
         });
 

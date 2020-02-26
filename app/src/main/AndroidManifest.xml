@@ -51,7 +51,7 @@
 
         </activity>
         <activity android:name=".SellAllActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar.PostBooks"></activity>
 
         <meta-data
             android:name="preloaded_fonts"
