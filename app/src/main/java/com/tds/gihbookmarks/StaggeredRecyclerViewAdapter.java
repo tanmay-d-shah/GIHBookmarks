@@ -20,6 +20,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -56,6 +57,9 @@ public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<Staggered
     private RecyclerView.ViewHolder holder;
     //private int position;
 
+    private String sellerName;
+    private String sellerMobile;
+
 
     public StaggeredRecyclerViewAdapter(Context mContext, List<SaleItems> saleItemsList) {
         this.saleItemsList=saleItemsList;
@@ -90,14 +94,14 @@ public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<Staggered
         Picasso.get()
                 .load(imageUrl)
                 .placeholder(R.drawable.ic_launcher_background)
-                .fit()
+                .resize(500,0)
                 .into(holder.image);
 //        Glide.with(mContext)
 //                .load(mImageUrls.get(position))
 //                .apply(requestOptions)
 //                .into(holder.image);
 //
-//        holder.name.setText(mName.get(position));
+        holder.name.setText(saleItemsList.get(holder.getAdapterPosition()).getDesc());
         Log.d(TAG, "check2 "+holder.name.getText());
         holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,29 +116,62 @@ public class StaggeredRecyclerViewAdapter extends RecyclerView.Adapter<Staggered
                                     final Book book = documentSnapshot.toObject(Book.class);
                                     Log.d("Book Fetched", "onSuccess: " + book.getTitle());
 
-                                    sellerCollectionReference
-                                            .document(saleItem.getSellerId()).get()
-                                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                                @Override
-                                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                                    String sellerNumber= (String) documentSnapshot.get("Mobile");
-                                                    String sellerName=(String)documentSnapshot.get("Name");
+                                        sellerCollectionReference
+                                                .whereEqualTo("UserId",saleItem.getSellerId())
+                                                .get()
+                                                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                                    @Override
+                                                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                                        for(QueryDocumentSnapshot user:queryDocumentSnapshots){
+                                                            sellerName=user.get("Name").toString();
+                                                            sellerMobile=user.get("Mobile").toString();
 
-                                                    Intent intent=new Intent(mContext,SaleItemDetailActivity.class);
-                                                    intent.putExtra("book_parcel",book);
-                                                    intent.putExtra("sale_item_parcel",saleItem);
-                                                    intent.putExtra("seller_mobile",sellerNumber);
-                                                    intent.putExtra("seller_name",sellerNumber);
+                                                            Log.d(TAG, "onSuccess: "+sellerName);
+//
+                                                            Intent intent=new Intent(mContext,SaleItemDetailActivity.class);
+                                                            intent.putExtra("book_parcel",book);
+                                                            intent.putExtra("sale_item_parcel",saleItem);
+                                                            intent.putExtra("seller_mobile",sellerMobile);
+                                                            intent.putExtra("seller_name",sellerName);
 
-                                                    mContext.startActivity(intent);
-                                                }
-                                            })
-                                            .addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull Exception e) {
+                                                            mContext.startActivity(intent);
 
-                                                }
-                                            });
+
+                                                        }
+
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+
+                                                    }
+                                                });
+//
+//                                    sellerCollectionReference
+//                                            .document(saleItem.getSellerId()).get()
+//                                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                                                @Override
+//                                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                                                    String sellerNumber= (String) documentSnapshot.get("Mobile");
+//                                                    String sellerName=(String)documentSnapshot.get("Name");
+//                                                    Log.d(TAG, "onSuccess: "+sellerName);
+//
+//                                                    Intent intent=new Intent(mContext,SaleItemDetailActivity.class);
+//                                                    intent.putExtra("book_parcel",book);
+//                                                    intent.putExtra("sale_item_parcel",saleItem);
+//                                                    intent.putExtra("seller_mobile",sellerNumber);
+//                                                    intent.putExtra("seller_name",sellerName);
+//
+//                                                    mContext.startActivity(intent);
+//                                                }
+//                                            })
+//                                            .addOnFailureListener(new OnFailureListener() {
+//                                                @Override
+//                                                public void onFailure(@NonNull Exception e) {
+//
+//                                                }
+//                                            });
 
 
                                 }

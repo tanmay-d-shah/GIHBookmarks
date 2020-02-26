@@ -28,6 +28,7 @@ import com.tds.gihbookmarks.model.RequetedItem;
 import com.tds.gihbookmarks.model.SaleItems;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class SaleItemDetailActivity extends AppCompatActivity {
     private ImageView bookImage;
@@ -94,6 +95,10 @@ public class SaleItemDetailActivity extends AppCompatActivity {
 
         final Book book=(Book) getIntent().getParcelableExtra("book_parcel");
         final SaleItems saleItems =(SaleItems)getIntent().getParcelableExtra("sale_item_parcel");
+        sellerName.setText(Objects.requireNonNull(getIntent().getStringExtra("seller_name")));
+
+        sellerMobileNo.setText(Objects.requireNonNull(getIntent().getStringExtra("seller_mobile")));
+        Log.d("seller_check", "onCreate: "+sellerMobileNo.getText());
 
 
 
