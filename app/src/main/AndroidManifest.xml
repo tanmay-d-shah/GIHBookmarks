@@ -29,15 +29,17 @@
         <activity android:name=".CreateAccountActivity" />
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar.PostBooks"></activity>
-        <activity
-            android:name=".SignUpActivity"
             android:theme="@style/AppTheme.NoActionBar.PostBooks">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".SignUpActivity"
+            android:theme="@style/AppTheme.NoActionBar.PostBooks">
+
         </activity>
         <activity android:name=".CreateUserProfileActivity" />
         <activity
