@@ -110,7 +110,7 @@ public class BookSellFragment extends Fragment {
         bookRentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent intent=new Intent(getContext().getApplicationContext(),BookRentDateActivity.class);
+                /*Intent intent=new Intent(getActivity(),BookRentDateActivity.class);
                 startActivity(intent);*/
                 Calendar cal=Calendar.getInstance();
                 int year=cal.get(Calendar.YEAR);
