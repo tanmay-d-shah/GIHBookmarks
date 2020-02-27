@@ -1,11 +1,16 @@
 package com.tds.gihbookmarks.requestedItemPackage;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RatingBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -54,6 +59,7 @@ public class YourRequestedItemsFragment extends Fragment {
     private CollectionReference SaleItemsCollectionReference = db.collection("SaleItems");
     private CollectionReference requestedItemCollectionReference = db.collection("RequestedItems");
     private CollectionReference sellerCollectionReference = db.collection("Users");
+    private   Button review;
 
     public YourRequestedItemsFragment() {
     }
@@ -72,9 +78,35 @@ public class YourRequestedItemsFragment extends Fragment {
         //bookRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 //        bookRecyclerView.setLayoutManager(staggeredGridLayoutManager);
 
+review=(Button)view.findViewById(R.id.buyer_requested_accept_btn);
+review.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+
+        AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
+        LayoutInflater inflater =getLayoutInflater();
+        View diloglayout=inflater.inflate(R.layout.alert_dialog_with_ratingbar,null);
+        final RatingBar ratingbar=diloglayout.findViewById(R.id.ratingbar);
+        builder.setView(diloglayout);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(getContext(), "Rating is ", Toast.LENGTH_SHORT).show();
+                
+            }
+        });
+        builder.show();
+    }
+});
+
+
+
+
 
         return view;
     }
+
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
