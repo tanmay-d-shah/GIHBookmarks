@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".faq_que2Activity">
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="To buy book/material, follow the below given steps: "
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textSize="25dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:fontFamily="@font/acme"/>
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tv1"
+        android:layout_marginTop="10dp"
+        android:text="1) Go to Homepage"
+        android:textColor="#000"
+        android:textSize="20dp"
+        android:fontFamily="@font/acme"/>
+
+    <TextView
+        android:id="@+id/tv3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tv2"
+        android:layout_marginTop="10dp"
+        android:text="2) Click on the book/material you want to buy"
+        android:textColor="#000"
+        android:textSize="20dp"
+        android:fontFamily="@font/acme"/>
+
+    <TextView
+        android:id="@+id/tv4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tv3"
+        android:layout_marginTop="10dp"
+        android:text="3) Click on the 'Request' button"
+        android:textColor="#000"
+        android:textSize="20dp"
+        android:fontFamily="@font/acme"/>
+
+    <TextView
+        android:id="@+id/tv5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tv4"
+        android:layout_marginTop="15dp"
+        android:text="You can see your requested items in 'Requested Items' page"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20dp"
+        android:fontFamily="@font/acme"/>
+
+    <TextView
+        android:id="@+id/tv6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tv5"
+        android:layout_marginTop="10dp"
+        android:text="You will be notified if your request gets accepted and then you can direct contact that person"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20dp"
+        android:fontFamily="@font/acme"/>
+
+</RelativeLayout>
