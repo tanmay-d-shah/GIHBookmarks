@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -52,8 +51,6 @@ public class BooksFragment extends Fragment {
     private StorageReference storageReference;
     private CollectionReference collectionReference=db.collection("SaleItems");
 
-    private ProgressBar progressBar;
-
 
     public BooksFragment() {
         // Required empty public constructor
@@ -71,16 +68,11 @@ public class BooksFragment extends Fragment {
         ViewPager viewPager = view.findViewById(R.id.viewpager);
         saleItemsList=new ArrayList<>();
         bookRecyclerView= (RecyclerView)view.findViewById(R.id.recyclerView);
-
-
         //StaggeredRecyclerViewAdapter staggeredRecyclerViewAdapter= new StaggeredRecyclerViewAdapter(getContext(),bookList);
         StaggeredGridLayoutManager staggeredGridLayoutManager= new StaggeredGridLayoutManager(NUM_COLUMNS, LinearLayoutManager.VERTICAL);
-
-
         //bookRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         bookRecyclerView.setLayoutManager(staggeredGridLayoutManager);
-
-
+        bookRecyclerView.setAdapter(staggeredRecyclerViewAdapter);
 
         return view;
     }
@@ -90,8 +82,6 @@ public class BooksFragment extends Fragment {
         super.onCreate(savedInstanceState);
         firebaseAuth=FirebaseAuth.getInstance();
         user=firebaseAuth.getCurrentUser();
-
-
 
 //        collectionReference
 //                .get()
@@ -167,7 +157,6 @@ public class BooksFragment extends Fragment {
 
                             bookRecyclerView.setAdapter(staggeredRecyclerViewAdapter);
                             staggeredRecyclerViewAdapter.notifyDataSetChanged();
-
                         }
                     }
                 });

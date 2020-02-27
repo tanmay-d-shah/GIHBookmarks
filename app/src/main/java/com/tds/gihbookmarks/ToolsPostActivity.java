@@ -1,9 +1,5 @@
 package com.tds.gihbookmarks;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -33,7 +33,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import com.tds.gihbookmarks.model.SaleItems;
 import com.tds.gihbookmarks.model.Tool;
 import com.tds.gihbookmarks.util.UserApi;
@@ -41,9 +40,9 @@ import com.tds.gihbookmarks.util.UserApi;
 import java.util.Date;
 
 public class ToolsPostActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
-    private static final int GALLERY_CODE =1 ;
+    private static final int GALLERY_CODE = 1;
     Spinner toolSpinner;
-    String[] users = { "Drafter", "LabCoat", "Calculator"};
+    String[] users = {"Drafter", "LabCoat", "Calculator"};
     private EditText priceText;
     private EditText toolDescText;
     private Button posttoolButton;
@@ -57,11 +56,11 @@ public class ToolsPostActivity extends AppCompatActivity implements AdapterView.
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseUser user;
-    private FirebaseFirestore db=FirebaseFirestore.getInstance();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private StorageReference storageReference;
-    private CollectionReference collectionReference=db.collection("Tools");
-    private CollectionReference saleItemCollectionReference=db.collection("SaleItems");
-    private CollectionReference userCollectionReference=db.collection("Users");
+    private CollectionReference collectionReference = db.collection("Tools");
+    private CollectionReference saleItemCollectionReference = db.collection("SaleItems");
+    private CollectionReference userCollectionReference = db.collection("Users");
     private String userCity;
 
     @Override
@@ -69,16 +68,16 @@ public class ToolsPostActivity extends AppCompatActivity implements AdapterView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tools_post);
 
-        firebaseAuth=FirebaseAuth.getInstance();
-        storageReference= FirebaseStorage.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+        storageReference = FirebaseStorage.getInstance().getReference();
 
 
         toolSpinner = findViewById(R.id.stationary_spinner);
 
-        priceText=findViewById(R.id.item_price);
-        toolDescText=findViewById(R.id.item_description);
-        posttoolButton=findViewById(R.id.post_item_button);
-        toolImgView=findViewById(R.id.item_img);
+        priceText = findViewById(R.id.item_price);
+        toolDescText = findViewById(R.id.item_description);
+        posttoolButton = findViewById(R.id.post_item_button);
+        toolImgView = findViewById(R.id.item_img);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, users);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -88,19 +87,16 @@ public class ToolsPostActivity extends AppCompatActivity implements AdapterView.
         posttoolButton.setOnClickListener(this);
         toolImgView.setOnClickListener(this);
 
-        if(UserApi.getInstance()!=null){
-            currentUserId=UserApi.getInstance().getUserId();
+        if (UserApi.getInstance() != null) {
+            currentUserId = UserApi.getInstance().getUserId();
 
         }
-        authStateListener=new FirebaseAuth.AuthStateListener() {
+        authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                user=firebaseAuth.getCurrentUser();
+                user = firebaseAuth.getCurrentUser();
             }
         };
-
-
-
 
 
     }
@@ -108,14 +104,14 @@ public class ToolsPostActivity extends AppCompatActivity implements AdapterView.
     @Override
     protected void onStart() {
         super.onStart();
-        user=firebaseAuth.getCurrentUser();
+        user = firebaseAuth.getCurrentUser();
         firebaseAuth.addAuthStateListener(authStateListener);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        if(firebaseAuth!=null){
+        if (firebaseAuth != null) {
             firebaseAuth.removeAuthStateListener(authStateListener);
         }
     }
@@ -123,39 +119,38 @@ public class ToolsPostActivity extends AppCompatActivity implements AdapterView.
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==GALLERY_CODE && resultCode==RESULT_OK){
-            if(data!=null){
-                toolImgUri=data.getData();
+        if (requestCode == GALLERY_CODE && resultCode == RESULT_OK) {
+            if (data != null) {
+                toolImgUri = data.getData();
                 toolImgView.setImageURI(toolImgUri);
             }
         }
     }
 
 
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        stationarySelected=users[position];
+        stationarySelected = users[position];
 
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        stationarySelected=users[0];
+        stationarySelected = users[0];
 
     }
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.post_item_button:
                 postItem();
                 break;
 
             case R.id.item_img:
-                Intent GalleryIntent=new Intent(Intent.ACTION_GET_CONTENT);
+                Intent GalleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
                 GalleryIntent.setType("image/*");
-                startActivityForResult(GalleryIntent,GALLERY_CODE);
+                startActivityForResult(GalleryIntent, GALLERY_CODE);
         }
 
 
@@ -163,28 +158,28 @@ public class ToolsPostActivity extends AppCompatActivity implements AdapterView.
 
     private void postItem() {
 
-        final String stationaryPrice=priceText.getText().toString().trim();
-        final String stationaryDesc=toolDescText.getText().toString().trim();
+        final String stationaryPrice = priceText.getText().toString().trim();
+        final String stationaryDesc = toolDescText.getText().toString().trim();
 
-        if(!TextUtils.isEmpty(stationaryPrice)
+        if (!TextUtils.isEmpty(stationaryPrice)
                 && !TextUtils.isEmpty(stationaryDesc)
-                && toolImgUri!=null){
+                && toolImgUri != null) {
 
-            userCollectionReference.whereEqualTo("UserId",user.getUid())
+            userCollectionReference.whereEqualTo("UserId", user.getUid())
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if(task.isSuccessful()){
-                                for(QueryDocumentSnapshot document:task.getResult()){
-                                    userCity= (String) document.get("City");
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    userCity = (String) document.get("City");
                                 }
                             }
                         }
                     });
-            final StorageReference filepath=storageReference
+            final StorageReference filepath = storageReference
                     .child("tool_images")
-                    .child("tool"+ Timestamp.now().getSeconds());
+                    .child("tool" + Timestamp.now().getSeconds());
             filepath.putFile(toolImgUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -192,8 +187,8 @@ public class ToolsPostActivity extends AppCompatActivity implements AdapterView.
                             filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
-                                    final String imageUrl=uri.toString();
-                                    Tool stationary=new Tool();
+                                    final String imageUrl = uri.toString();
+                                    Tool stationary = new Tool();
                                     stationary.setImageURL(imageUrl);
                                     stationary.setPrice(stationaryPrice);
                                     stationary.setDesc(stationaryDesc);
@@ -204,12 +199,12 @@ public class ToolsPostActivity extends AppCompatActivity implements AdapterView.
                                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                                 @Override
                                                 public void onSuccess(DocumentReference documentReference) {
-                                                   /* startActivity(new Intent(ToolsPostActivity.this,HomepageActivity.class));
+                                                    /* startActivity(new Intent(ToolsPostActivity.this,HomepageActivity.class));
 
 
 
-*/
-                                                    SaleItems item=new SaleItems();
+                                                     */
+                                                    SaleItems item = new SaleItems();
                                                     item.setCity(userCity);
                                                     item.setDateAdded(new Timestamp(new Date()));
                                                     item.setDesc(stationaryDesc);
@@ -234,7 +229,7 @@ public class ToolsPostActivity extends AppCompatActivity implements AdapterView.
                                                                     Log.d("PostToolActivity", "onFailure: Failed to add in saleitems");
                                                                 }
                                                             });
-                                                   finish();
+                                                    finish();
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {
@@ -251,10 +246,9 @@ public class ToolsPostActivity extends AppCompatActivity implements AdapterView.
                         }
                     });
 
-        }
-        else{
-            Snackbar.make(findViewById(R.id.post_stationary_layout),"Empty Fields",Snackbar.LENGTH_LONG)
-                    .setAction("Action",null).show();
+        } else {
+            Snackbar.make(findViewById(R.id.post_stationary_layout), "Empty Fields", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
         }
     }
 }

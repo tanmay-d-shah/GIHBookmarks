@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".SellFragments.ToolSellFragment">
 
     <RelativeLayout
@@ -57,8 +57,8 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="330dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="254dp"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginTop="254dp"
                     android:hint="Item Description"
                     app:boxCornerRadiusBottomEnd="10dp"
                     app:boxCornerRadiusBottomStart="10dp"
@@ -71,7 +71,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:lines="5"
-                        android:maxLines="10"/>
+                        android:maxLines="10" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,8 +80,8 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="330dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="402dp"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginTop="402dp"
                     android:hint="Item Price"
                     app:boxCornerRadiusBottomEnd="10dp"
                     app:boxCornerRadiusBottomStart="10dp"
@@ -108,7 +108,7 @@
                     android:text="Sell"
                     android:textColor="#fff"
                     android:textSize="15sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <!--<Spinner
                     android:id="@+id/toolList"

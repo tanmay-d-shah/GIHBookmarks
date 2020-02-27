@@ -10,8 +10,10 @@ public class RequetedItem {
     private String Item;
 
 
-    public RequetedItem(){}
-   public RequetedItem(String sellerId, String buyerId, Timestamp dateRequested, String itemCode, String item) {
+    public RequetedItem() {
+    }
+
+    public RequetedItem(String sellerId, String buyerId, Timestamp dateRequested, String itemCode, String item) {
         SellerId = sellerId;
         BuyerId = buyerId;
         DateRequested = dateRequested;

@@ -6,25 +6,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.tabs.TabItem;
-import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
-import com.tds.gihbookmarks.ItemFragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabItem;
+import com.google.android.material.tabs.TabLayout;
 import com.tds.gihbookmarks.PageAdapter_HomePage;
 import com.tds.gihbookmarks.R;
 import com.tds.gihbookmarks.SellAllActivity;
 
-public class HomeFragment extends Fragment  {
+public class HomeFragment extends Fragment {
 
     private TabLayout tabLayout;
     private TabItem books, tools, studymaterial, other;
@@ -40,9 +35,9 @@ public class HomeFragment extends Fragment  {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-         view = inflater.inflate(R.layout.fragment_home, container, false);
+        view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        FloatingActionButton floatingActionButton= view.findViewById(R.id.floatBtn);
+        FloatingActionButton floatingActionButton = view.findViewById(R.id.floatBtn);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,8 +65,8 @@ public class HomeFragment extends Fragment  {
             tabLayout.getTabAt(2).setText("Study Material");
             tabLayout.getTabAt(3).setText("Other");
 
-        } catch (Exception e){
-            Log.i("Khyati1234",e.toString());
+        } catch (Exception e) {
+            Log.i("Khyati1234", e.toString());
         }
 
 

@@ -6,20 +6,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -28,7 +24,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.StorageReference;
 import com.tds.gihbookmarks.R;
-import com.tds.gihbookmarks.StaggeredRecyclerViewAdapter;
 import com.tds.gihbookmarks.YourRequestedItem_RecyclerViewAdapter;
 import com.tds.gihbookmarks.model.RequetedItem;
 import com.tds.gihbookmarks.model.SaleItems;
@@ -39,12 +34,12 @@ import java.util.List;
 public class YourRequestedItemsFragment extends Fragment {
 
     private RecyclerView requestedRecyclerView;
-    private int flag=0;
+    final Handler handler = new Handler();
 //    private ArrayList<String> mName;
 
     private List<SaleItems> saleItemsList;
-    private List<RequetedItem>requestedItemList;
-    final Handler handler=new Handler();
+    private int flag = 0;
+    private List<RequetedItem> requestedItemList;
 
     //    private ArrayList<String> mImageUrls;
     private YourRequestedItem_RecyclerViewAdapter yourRequestedItem_recyclerViewAdapter;
@@ -53,30 +48,29 @@ public class YourRequestedItemsFragment extends Fragment {
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
-    private FirebaseFirestore db=FirebaseFirestore.getInstance();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseUser user;
     private StorageReference storageReference;
-    private CollectionReference SaleItemsCollectionReference=db.collection("SaleItems");
-    private CollectionReference requestedItemCollectionReference=db.collection("RequestedItems");
-    private CollectionReference sellerCollectionReference=db.collection("Users");
+    private CollectionReference SaleItemsCollectionReference = db.collection("SaleItems");
+    private CollectionReference requestedItemCollectionReference = db.collection("RequestedItems");
+    private CollectionReference sellerCollectionReference = db.collection("Users");
 
-    public YourRequestedItemsFragment(){}
+    public YourRequestedItemsFragment() {
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_books, container, false);
         ViewPager viewPager = view.findViewById(R.id.viewpager);
-        saleItemsList=new ArrayList<>();
-        requestedItemList=new ArrayList<>();
+        saleItemsList = new ArrayList<>();
+        requestedItemList = new ArrayList<>();
 
-        requestedRecyclerView= (RecyclerView)view.findViewById(R.id.recyclerView);
+        requestedRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         //StaggeredRecyclerViewAdapter staggeredRecyclerViewAdapter= new StaggeredRecyclerViewAdapter(getContext(),bookList);
 //        StaggeredGridLayoutManager staggeredGridLayoutManager= new StaggeredGridLayoutManager(NUM_COLUMNS, LinearLayoutManager.VERTICAL);
         //bookRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 //        bookRecyclerView.setLayoutManager(staggeredGridLayoutManager);
-
-
 
 
         return view;
@@ -85,62 +79,51 @@ public class YourRequestedItemsFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        firebaseAuth=FirebaseAuth.getInstance();
-        user=firebaseAuth.getCurrentUser();
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
         requestedItemCollectionReference
-                .whereEqualTo("buyerId",user.getUid())
+                .whereEqualTo("buyerId", user.getUid())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-                        for(QueryDocumentSnapshot requestedItems:queryDocumentSnapshots){
+                        for (QueryDocumentSnapshot requestedItems : queryDocumentSnapshots) {
 
-                            RequetedItem requestedItem=requestedItems.toObject(RequetedItem.class);
+                            RequetedItem requestedItem = requestedItems.toObject(RequetedItem.class);
                             requestedItemList.add(requestedItem);
-
-
 
 
                         }
 
 
+                        for (int i = 0; i < requestedItemList.size(); i++) {
 
 
-                        for(int i=0;i<requestedItemList.size();i++){
+                            RequetedItem listRequestedItem = requestedItemList.get(i);
+
+                            SaleItemsCollectionReference
+                                    .whereEqualTo("itemCode", listRequestedItem.getItemCode())
+                                    .get()
+                                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                                            Log.d("Hi", "onSuccess: item returned");
+                                            for (QueryDocumentSnapshot saleItems : queryDocumentSnapshots) {
+                                                SaleItems item = saleItems.toObject(SaleItems.class);
+                                                saleItemsList.add(item);
+
+                                            }
 
 
-                                    RequetedItem listRequestedItem=requestedItemList.get(i);
+                                        }
 
-                                    SaleItemsCollectionReference
-                                            .whereEqualTo("itemCode",listRequestedItem.getItemCode())
-                                            .get()
-                                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                                                @Override
-                                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-
-                                                    Log.d("Hi", "onSuccess: item returned");
-                                                    for(QueryDocumentSnapshot saleItems : queryDocumentSnapshots){
-                                                        SaleItems item=saleItems.toObject(SaleItems.class);
-                                                        saleItemsList.add(item);
-
-                                                    }
-
-
-
-
-
-
-
-
-
-                                                }
-
-                                            });
+                                    });
 //
 
 
-                                }
+                        }
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -153,33 +136,7 @@ public class YourRequestedItemsFragment extends Fragment {
 
 
                             }
-                        },3000);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                        }, 3000);
 
 
                     }
@@ -193,15 +150,12 @@ public class YourRequestedItemsFragment extends Fragment {
                 });
 
 
-}
-
+    }
 
 
     @Override
     public void onStart() {
         super.onStart();
-
-
 
 
 //                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
