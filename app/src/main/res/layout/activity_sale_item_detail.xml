@@ -113,24 +113,22 @@
         app:layout_constraintStart_toEndOf="@+id/book_price"
         app:layout_constraintTop_toBottomOf="@+id/book_edition" />
 
-    <Button
-        android:id="@+id/book_request_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/book_edition"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
+            <Button
+                android:id="@+id/book_request_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/book_edition"
+                android:layout_alignParentEnd="true"
 
-        android:layout_marginStart="292dp"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/button_radius"
-        android:text="REQUEST"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.058"
-        app:layout_constraintStart_toEndOf="@+id/rupee_symbol"
-        app:layout_constraintTop_toBottomOf="@+id/book_image" />
+                android:layout_marginTop="27dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/button_radius"
+                android:text="REQUEST"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.058"
+                app:layout_constraintStart_toEndOf="@+id/rupee_symbol"
+                app:layout_constraintTop_toBottomOf="@+id/book_image" />
 
     <TextView
         android:id="@+id/seller_name"
