@@ -1,6 +1,8 @@
 package com.tds.gihbookmarks;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,16 +45,29 @@ public class RecyclerViewAdapterInfo extends RecyclerView.Adapter<RecyclerViewAd
         return informativePosts.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView tv_desc,tv_link;
         private ImageView img1;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
 
             tv_desc=itemView.findViewById(R.id.desc_TV);
             //tv_link=itemView.findViewById(R.id.link_TV);
             img1=itemView.findViewById(R.id.info_img);
         }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            InformativePost posts = informativePosts.get(position);
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.addCategory(Intent.CATEGORY_BROWSABLE);
+            intent.setData(Uri.parse("http://google.com"));
+            mContext.startActivity(intent);
+        }
     }
+
 }

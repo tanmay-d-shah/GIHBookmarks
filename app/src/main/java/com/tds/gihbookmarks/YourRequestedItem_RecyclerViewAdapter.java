@@ -29,7 +29,7 @@ import com.tds.gihbookmarks.model.SaleItems;
 
 import java.util.List;
 
-public class YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter<YourRequestedItem_RecyclerViewAdapter.ViewHolder> {
+public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter<YourRequestedItem_RecyclerViewAdapter.ViewHolder> {
 
     private List<SaleItems> saleItemsList;
     private List<RequestedItem>requestedItemList;

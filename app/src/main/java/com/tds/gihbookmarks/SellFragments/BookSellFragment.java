@@ -1,6 +1,9 @@
 package com.tds.gihbookmarks.SellFragments;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,8 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,6 +42,7 @@ import com.tds.gihbookmarks.R;
 import com.tds.gihbookmarks.model.Book;
 import com.tds.gihbookmarks.model.SaleItems;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import static android.app.Activity.RESULT_OK;
@@ -51,7 +57,8 @@ public class BookSellFragment extends Fragment {
     private EditText bookSellEdition;
     private EditText bookSellPrice;
     private ImageView bookSellImage;
-    private Button bookSellButton;
+    private Button bookSellButton,bookRentButton;
+    private DatePickerDialog.OnDateSetListener mDataSetListner;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
@@ -97,6 +104,31 @@ public class BookSellFragment extends Fragment {
         bookSellPrice = (EditText) getView().findViewById(R.id.etExpectedPrice);
         bookSellPublication = (EditText) getView().findViewById(R.id.etPublication);
         bookSellTitle = (EditText) getView().findViewById(R.id.etTitle);
+        bookRentButton=(Button)getView().findViewById(R.id.btn_rent);
+
+        bookRentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar cal=Calendar.getInstance();
+                int year=cal.get(Calendar.YEAR);
+                int month=cal.get(Calendar.MONTH);
+                int day=cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog datePickerDialog=new DatePickerDialog(getContext(),
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,mDataSetListner,year,month,day);
+                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                datePickerDialog.show();
+            }
+        });
+
+        mDataSetListner = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month=month+1;
+                String date=day + "/" + month + "/" + year;
+                Toast.makeText(getContext(),"Your book is added for rent till date: "+date.toString(),Toast.LENGTH_SHORT).show();
+            }
+        };
 
         bookSellImage.setOnClickListener(new View.OnClickListener() {
             @Override
