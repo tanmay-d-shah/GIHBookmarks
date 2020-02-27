@@ -101,7 +101,7 @@
                 <Button
                     android:id="@+id/btnSellTool"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="490dp"
@@ -109,13 +109,13 @@
                     android:elevation="50sp"
                     android:text="Sell"
                     android:textColor="#fff"
-                    android:textSize="15sp"
+                    android:textSize="25dp"
                     android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/btnRentTool"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="490dp"
                     android:background="@drawable/button_radius"
                     android:elevation="50sp"
@@ -124,7 +124,7 @@
                     android:layout_alignParentRight="true"
                     android:text="Rent"
                     android:textColor="#fff"
-                    android:textSize="15sp"
+                    android:textSize="25dp"
                     android:textStyle="bold" />
                 <Spinner
                     android:id="@+id/toolList"
