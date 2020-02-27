@@ -97,11 +97,14 @@
                 android:id="@+id/cancel_button"
                 android:layout_width="136dp"
                 android:layout_height="29dp"
+                android:layout_marginStart="216dp"
                 android:layout_marginTop="32dp"
                 android:background="@drawable/button_radius"
                 android:text="Cancel"
-                app:layout_constraintTop_toBottomOf="@+id/imageView"
-                tools:layout_editor_absoluteX="223dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
