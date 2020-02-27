@@ -97,9 +97,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         new RequestedItemsFragment()).commit();
                 break;
 
-            case R.id.nav_knowledge:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new KnowledgeFragment()).commit();
 
             case R.id.nav_bug:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -119,6 +116,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
 
                 break;
+
+            case R.id.nav_knowledge:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new KnowledgeFragment()).commit();
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
