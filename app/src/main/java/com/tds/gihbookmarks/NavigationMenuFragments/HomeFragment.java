@@ -63,7 +63,7 @@ public class HomeFragment extends Fragment {
             tabLayout.getTabAt(0).setText("Books");
             tabLayout.getTabAt(1).setText("Tools");
             tabLayout.getTabAt(2).setText("Study Material");
-            tabLayout.getTabAt(3).setText("Other");
+            tabLayout.getTabAt(3).setText("Rent ");
 
         } catch (Exception e) {
             Log.i("Khyati1234", e.toString());
