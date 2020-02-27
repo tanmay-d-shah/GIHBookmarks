@@ -1,6 +1,7 @@
 package com.tds.gihbookmarks;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -135,8 +136,9 @@ public class BuyerRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
                             @Override
                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                 for(QueryDocumentSnapshot document:queryDocumentSnapshots){
-                                    if(document.get("buyerId").equals(saleItems.getItemCode())){
+                                    if(document.get("itemCode").equals(saleItems.getItemCode())){
                                         requestedItemsCollectionReference.document(document.getId()).update("status","accepted");
+                                        Log.d("check5", "onSuccess: Request Accepted");
                                         Toast.makeText(mContext,"Request Rejected",Toast.LENGTH_LONG).show();
 
                                     }

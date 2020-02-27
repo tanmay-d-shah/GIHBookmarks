@@ -17,6 +17,8 @@ public class SaleItems implements Parcelable {
     private String Desc;
     private String City;
 
+    private String Intention;
+
     public SaleItems(Parcel in) {
         Item = in.readString();
         ItemCode = in.readString();
@@ -27,9 +29,10 @@ public class SaleItems implements Parcelable {
         ImageUrl = in.readString();
         Desc = in.readString();
         City = in.readString();
+        Intention=in.readString();
     }
 
-    public SaleItems(String item, String itemCode, String price, String sellerId, String status, Timestamp dateAdded, String imageUrl, String Desc, String city) {
+    public SaleItems(String item, String itemCode, String price, String sellerId, String status, Timestamp dateAdded, String imageUrl, String Desc, String city,String intention) {
         this.Item = item;
         this.ItemCode = itemCode;
         this.Price = price;
@@ -39,6 +42,7 @@ public class SaleItems implements Parcelable {
         this.ImageUrl = imageUrl;
         this.Desc = Desc;
         this.City = city;
+        this.Intention=intention;
     }
 
     public static final Parcelable.Creator<SaleItems> CREATOR = new Parcelable.Creator<SaleItems>() {
@@ -128,6 +132,14 @@ public class SaleItems implements Parcelable {
         ImageUrl = imageUrl;
     }
 
+    public String getIntention() {
+        return Intention;
+    }
+
+    public void setIntention(String intention) {
+        Intention = intention;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -145,6 +157,8 @@ public class SaleItems implements Parcelable {
         dest.writeString(ImageUrl);
         dest.writeString(Desc);
         dest.writeString(City);
+        dest.writeString(Intention);
+
 
 
     }

@@ -76,7 +76,7 @@ public class AcceptedRequestedItem_RecyclerViewAdapter extends RecyclerView.Adap
         holder.requestedDate.setText(saleItems.getDateAdded().toString());
 
         requestedItemsCollectionReference
-                .whereEqualTo("itemCode",saleItems.getItemCode())
+                .whereEqualTo("status","accepted")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -113,10 +113,10 @@ public class AcceptedRequestedItem_RecyclerViewAdapter extends RecyclerView.Adap
         holder.deliveredButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                accept();
+                delivered();
             }
 
-            private void accept() {
+            private void delivered() {
 
 
 
@@ -125,9 +125,9 @@ public class AcceptedRequestedItem_RecyclerViewAdapter extends RecyclerView.Adap
         holder.cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                reject();
+                cancel();
             }
-            private void reject(){
+            private void cancel(){
 
             }
         });
@@ -154,7 +154,7 @@ public class AcceptedRequestedItem_RecyclerViewAdapter extends RecyclerView.Adap
             this.cancelButton=itemView.findViewById(R.id.cancel_button);
             this.buyerName=itemView.findViewById(R.id.buyer_request_item_buyer_name);
             this.desc=itemView.findViewById(R.id.buyer_request_item_desc);
-            this.image=itemView.findViewById(R.id.buyer_imageView);
+            this.image=itemView.findViewById(R.id.imageView);
             this.requestedDate=itemView.findViewById(R.id.buyer_request_item_date);
             this.itemCard=itemView.findViewById(R.id.buyer_request_item_card);
         }

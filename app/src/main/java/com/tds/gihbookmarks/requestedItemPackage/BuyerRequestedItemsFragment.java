@@ -112,7 +112,10 @@ public class BuyerRequestedItemsFragment extends Fragment {
                         for (QueryDocumentSnapshot requestedItems : queryDocumentSnapshots) {
 
                             RequestedItem requestedItem = requestedItems.toObject(RequestedItem.class);
-                            buyerRequestedItemList.add(requestedItem);
+                            if(requestedItem.getStatus().equals("requested")){
+                                buyerRequestedItemList.add(requestedItem);
+                            }
+
                             Log.d("Buyer", "onSuccess: "+requestedItem.getItem());
 
 

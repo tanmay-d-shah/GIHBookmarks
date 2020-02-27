@@ -158,6 +158,7 @@ public class BookSellFragment extends Fragment {
                                             book.setUserId(currentUserId);
                                             book.setDateAdded(new Timestamp(new Date()));
 
+
                                             collectionReference.add(book)
                                                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                                         @Override
@@ -173,6 +174,7 @@ public class BookSellFragment extends Fragment {
                                                             item.setSellerId(user.getUid());
                                                             item.setItemCode(documentReference.getId());
                                                             item.setStatus("Available");
+                                                            item.setIntention("Intention");
 
                                                             saleItemCollectionReference.add(item)
                                                                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

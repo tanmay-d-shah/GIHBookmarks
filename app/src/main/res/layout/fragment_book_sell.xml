@@ -20,6 +20,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <ImageView
                     android:id="@+id/img_book_sell"
                     android:layout_width="140dp"
@@ -58,8 +59,8 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="330dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="252dp"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginTop="252dp"
                     android:hint="Author"
                     app:boxCornerRadiusBottomEnd="10dp"
                     app:boxCornerRadiusBottomStart="10dp"
@@ -80,8 +81,8 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="330dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="306dp"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginTop="306dp"
                     android:hint="Publication"
                     app:boxCornerRadiusBottomEnd="10dp"
                     app:boxCornerRadiusBottomStart="10dp"
@@ -102,8 +103,8 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="330dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="358dp"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginTop="358dp"
                     android:hint="Edition"
                     app:boxCornerRadiusBottomEnd="10dp"
                     app:boxCornerRadiusBottomStart="10dp"
@@ -124,8 +125,8 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="330dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="410dp"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginTop="410dp"
                     android:hint="Expected Price"
                     app:boxCornerRadiusBottomEnd="10dp"
                     app:boxCornerRadiusBottomStart="10dp"
@@ -145,14 +146,33 @@
                     android:id="@+id/btn_sell"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="62dp"
                     android:layout_marginTop="485dp"
+                    android:layout_marginEnd="261dp"
                     android:background="@drawable/button_radius"
                     android:elevation="10dp"
                     android:text="Sell"
                     android:textColor="#fff"
                     android:textSize="15sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btn_rent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="249dp"
+                    android:layout_marginTop="485dp"
+                    android:layout_marginEnd="74dp"
+                    android:background="@drawable/button_radius"
+                    android:elevation="10dp"
+                    android:text="RENT"
+                    android:textColor="#fff"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
 
