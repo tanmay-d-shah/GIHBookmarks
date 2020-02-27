@@ -17,18 +17,26 @@
             android:layout_height="match_parent"
             android:padding="9dp">
 
-            <ImageView
+            <androidx.cardview.widget.CardView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                app:cardCornerRadius="10dp"
+                android:id="@+id/image_card"
+                ><ImageView
                 android:id="@+id/image_widget"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="center"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/ic_launcher" /></androidx.cardview.widget.CardView>
+
+
 
             <TextView
                 android:id="@+id/name_widget"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/image_widget"
+                android:layout_below="@+id/image_card"
                 android:layout_marginTop="10dp"
                 android:text="India"
                 android:textColor="#000" />
