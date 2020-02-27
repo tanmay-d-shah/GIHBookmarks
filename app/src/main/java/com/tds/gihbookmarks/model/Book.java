@@ -19,23 +19,21 @@ public class Book implements Parcelable {
 
     private Timestamp dateAdded;
 
-    public Book(){}
+    public Book() {
+    }
 
-    public Book(Parcel in){
-        bookId=in.readString();
-        isbn=in.readString();
-        title=in.readString();
-        author=in.readString();
-        publication=in.readString();
-        edition=in.readString();
-        expectedPrice=in.readString();
-        city=in.readString();
-        userId=in.readString();
-        imageUrl1=in.readString();
+    public Book(Parcel in) {
+        bookId = in.readString();
+        isbn = in.readString();
+        title = in.readString();
+        author = in.readString();
+        publication = in.readString();
+        edition = in.readString();
+        expectedPrice = in.readString();
+        city = in.readString();
+        userId = in.readString();
+        imageUrl1 = in.readString();
 //        dateAdded=in.readParcelable(Timestamp.class.getClassLoader());
-
-
-
     }
 
     public Book(String bookId, String isbn, String title, String author, String publication, String edition, String expectedPrice, String city, String userId, String imageUrl1, Timestamp dateAdded) {
@@ -49,7 +47,6 @@ public class Book implements Parcelable {
         this.city = city;
         this.userId = userId;
         this.imageUrl1 = imageUrl1;
-
         this.dateAdded = dateAdded;
     }
 
@@ -136,7 +133,6 @@ public class Book implements Parcelable {
     public void setImageUrl1(String imageUrl1) {
         this.imageUrl1 = imageUrl1;
     }
-
 
 
     public Timestamp getDateAdded() {

@@ -1,8 +1,8 @@
 package com.tds.gihbookmarks;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -15,8 +15,8 @@ public class CreateUserProfileActivity extends AppCompatActivity {
     private FirebaseUser currentUser;
 
 
-    private FirebaseFirestore db=FirebaseFirestore.getInstance();
-    private CollectionReference collectionReference=db.collection("Users");
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference collectionReference = db.collection("Users");
 
 
     @Override

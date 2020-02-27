@@ -20,30 +20,26 @@ public class ItemFragment extends Fragment {
     private ItemListAdapter adapter;
     private View view;
 
-    public ItemFragment(){
+    public ItemFragment() {
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.fragment_items,container,false);
+        view = inflater.inflate(R.layout.fragment_items, container, false);
 
-        adapter=new ItemListAdapter();
+        adapter = new ItemListAdapter();
 
-        itemRecyclerView=(RecyclerView) view.findViewById(R.id.list_recycleview);
+        itemRecyclerView = (RecyclerView) view.findViewById(R.id.list_recycleview);
 
-        staggeredGridLayoutManager=new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+        staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         itemRecyclerView.setLayoutManager(staggeredGridLayoutManager);
         itemRecyclerView.setAdapter(adapter);
-
 
 
         return view;
