@@ -1,9 +1,5 @@
 package com.tds.gihbookmarks;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,6 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -25,13 +25,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.tds.gihbookmarks.HomePageFragments.BooksFragment;
-import com.tds.gihbookmarks.NavigationMenuFragments.HomeFragment;
 import com.tds.gihbookmarks.util.UserApi;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
+    private FirebaseUser currentUser;
     private CollectionReference collectionReference=db.collection("Users");
     private EditText loginEmail;
     private EditText loginPass;
@@ -52,49 +52,64 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginSignUp.setOnClickListener(this);
 
         firebaseAuth  = FirebaseAuth.getInstance();
+        authStateListener=new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                currentUser=firebaseAuth.getCurrentUser();
+                if(currentUser!=null){
+                    Log.d("Check3", "onAuthStateChanged: Got current user");
+                    startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                    finish();
+
+
+                }
+                else{
+
+                }
+            }
+        };
     }
 
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.login_button:
-                login(loginEmail.getText().toString().trim(),loginPass.getText().toString().trim());
+                login(loginEmail.getText().toString().trim(), loginPass.getText().toString().trim());
                 break;
             case R.id.login_sign_up:
-                Intent intent=new Intent(this,SignUpActivity.class);
+                Intent intent = new Intent(this, SignUpActivity.class);
                 startActivity(intent);
                 break;
         }
     }
 
     private void login(String email, String pass) {
-        if(!TextUtils.isEmpty(email)
-                && !TextUtils.isEmpty(pass)){
-            firebaseAuth.signInWithEmailAndPassword(email,pass)
+        if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(pass)) {
+
+            firebaseAuth.signInWithEmailAndPassword(email, pass)
                     .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
-                            final FirebaseUser user=firebaseAuth.getCurrentUser();
-                            assert user!=null;
-
-                            if(user.isEmailVerified()){
-                                final String currentUserId=user.getUid();
-                                collectionReference
-                                        .whereEqualTo("UserId",currentUserId)
+                            final FirebaseUser user = firebaseAuth.getCurrentUser();
+                            assert user != null;
+                            if (user.isEmailVerified()) {
+                                final String currentUserId = user.getUid();
+                                collectionReference.whereEqualTo("UserId", currentUserId)
                                         .addSnapshotListener(new EventListener<QuerySnapshot>() {
                                             @Override
                                             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                                                assert queryDocumentSnapshots!=null;
-                                                if(!queryDocumentSnapshots.isEmpty()){
-                                                    for(QueryDocumentSnapshot snapshot:queryDocumentSnapshots){
-                                                        UserApi userApi=UserApi.getInstance();
+                                                assert queryDocumentSnapshots != null;
+                                                if (!queryDocumentSnapshots.isEmpty()) {
+                                                    for (QueryDocumentSnapshot snapshot : queryDocumentSnapshots) {
+                                                        UserApi userApi = UserApi.getInstance();
                                                         userApi.setUserId(snapshot.getString("UserId"));
                                                         userApi.setUsername(snapshot.getString("Name"));
                                                         userApi.setUserMobile(snapshot.getString("Mobile"));
 
                                                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                                         Log.d("Login", "onEvent: "+userApi.getUserMobile());
+                                                        finish();
                                                     }
 
 
@@ -103,30 +118,36 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                                             }
                                         });
-                            }
-                            else{
-
-                                Snackbar.make(findViewById(R.id.login_layout),"Please verify your Email",Snackbar.LENGTH_LONG).setAction("Action",null).show();
-
+                            } else {
+                                Snackbar.make(findViewById(R.id.login_layout),
+                                        "Please verify your Email", Snackbar.LENGTH_LONG)
+                                        .setAction("Action", null).show();
                             }
 
                         }
-                    })
-
-
-
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Snackbar.make(findViewById(R.id.login_layout),"Incorrect Email or password",Snackbar.LENGTH_LONG).setAction("Action",null).show();
-                        }
-                    });
-
-
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Snackbar.make(findViewById(R.id.login_layout),
+                            "Incorrect Email or password", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+            });
         }
-        else{
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        currentUser=firebaseAuth.getCurrentUser();
+        firebaseAuth.addAuthStateListener(authStateListener);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(firebaseAuth!=null){
+            firebaseAuth.removeAuthStateListener(authStateListener);
         }
-
     }
 }

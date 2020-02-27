@@ -1,14 +1,8 @@
 package com.tds.gihbookmarks.SellFragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,7 +11,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -36,7 +33,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.tds.gihbookmarks.MainActivity;
-import com.tds.gihbookmarks.NavigationMenuFragments.HomeFragment;
 import com.tds.gihbookmarks.R;
 import com.tds.gihbookmarks.model.Book;
 import com.tds.gihbookmarks.model.SaleItems;
@@ -60,11 +56,11 @@ public class BookSellFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseUser user;
-    private FirebaseFirestore db=FirebaseFirestore.getInstance();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private StorageReference storageReference;
-    private CollectionReference collectionReference=db.collection("Books");
-    private CollectionReference saleItemCollectionReference=db.collection("SaleItems");
-    private CollectionReference userCollectionReference=db.collection("Users");
+    private CollectionReference collectionReference = db.collection("Books");
+    private CollectionReference saleItemCollectionReference = db.collection("SaleItems");
+    private CollectionReference userCollectionReference = db.collection("Users");
 
     String currentUserId;
     String userCity;
@@ -72,79 +68,77 @@ public class BookSellFragment extends Fragment {
     private Uri img1;
 
 
-
-    public BookSellFragment(){
+    public BookSellFragment() {
 
     }
-
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_book_sell, container, false);
+
+       return inflater.inflate(R.layout.fragment_book_sell, container, false);
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        firebaseAuth= FirebaseAuth.getInstance();
-        user=firebaseAuth.getCurrentUser();
-        currentUserId=user.getUid();
-        storageReference= FirebaseStorage.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+        currentUserId = user.getUid();
+        storageReference = FirebaseStorage.getInstance().getReference();
 
-        bookSellImage=(ImageView)getView().findViewById(R.id.img_book_sell);
-        bookSellAuthor=(EditText) getView().findViewById(R.id.etAuthor);
-        bookSellButton=(Button)getView().findViewById(R.id.btn_sell);
-        bookSellEdition=(EditText)getView().findViewById(R.id.etEdition);
-        bookSellPrice=(EditText)getView().findViewById(R.id.etExpectedPrice);
-        bookSellPublication=(EditText)getView().findViewById(R.id.etPublication);
-        bookSellTitle=(EditText)getView().findViewById(R.id.etTitle);
+        bookSellImage = (ImageView) getView().findViewById(R.id.img_book_sell);
+        bookSellAuthor = (EditText) getView().findViewById(R.id.etAuthor);
+        bookSellButton = (Button) getView().findViewById(R.id.btn_sell);
+        bookSellEdition = (EditText) getView().findViewById(R.id.etEdition);
+        bookSellPrice = (EditText) getView().findViewById(R.id.etExpectedPrice);
+        bookSellPublication = (EditText) getView().findViewById(R.id.etPublication);
+        bookSellTitle = (EditText) getView().findViewById(R.id.etTitle);
 
         bookSellImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent GalleryIntent=new Intent(Intent.ACTION_GET_CONTENT);
+                Intent GalleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
                 GalleryIntent.setType("image/*");
-                startActivityForResult(GalleryIntent,GALLERY_CODE);
+                startActivityForResult(GalleryIntent, GALLERY_CODE);
             }
         });
 
         bookSellButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String title=bookSellTitle.getText().toString();
-                final String author=bookSellAuthor.getText().toString();
-                final String edition=bookSellEdition.getText().toString();
-                final String price=bookSellPrice.getText().toString();
-                final String publication=bookSellPublication.getText().toString();
+                final String title = bookSellTitle.getText().toString();
+                final String author = bookSellAuthor.getText().toString();
+                final String edition = bookSellEdition.getText().toString();
+                final String price = bookSellPrice.getText().toString();
+                final String publication = bookSellPublication.getText().toString();
 
-                if(!TextUtils.isEmpty(title)
+                if (!TextUtils.isEmpty(title)
                         && !TextUtils.isEmpty(publication)
                         && !TextUtils.isEmpty(edition)
                         && !TextUtils.isEmpty(author)
                         && !TextUtils.isEmpty(price)
-                        && img1!=null)
-                {
-                    userCollectionReference.whereEqualTo("UserId",user.getUid())
+                        && img1 != null) {
+                    userCollectionReference.whereEqualTo("UserId", user.getUid())
                             .get()
                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                    if(task.isSuccessful()){
-                                        for(QueryDocumentSnapshot document:task.getResult()){
-                                            userCity= (String) document.get("City");
+                                    if (task.isSuccessful()) {
+                                        for (QueryDocumentSnapshot document : task.getResult()) {
+                                            userCity = (String) document.get("City");
                                         }
                                     }
                                 }
                             });
 
 
-
-                    final StorageReference filepath=storageReference
+                    final StorageReference filepath = storageReference
                             .child("book_images")
-                            .child("image"+ Timestamp.now().getSeconds());
+                            .child("image" + Timestamp.now().getSeconds());
                     filepath.putFile(img1)
                             .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                 @Override
@@ -152,8 +146,8 @@ public class BookSellFragment extends Fragment {
                                     filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                         @Override
                                         public void onSuccess(Uri uri) {
-                                            final String imageUrl=uri.toString();
-                                            Book book=new Book();
+                                            final String imageUrl = uri.toString();
+                                            Book book = new Book();
                                             book.setImageUrl1(imageUrl);
                                             book.setTitle(title);
                                             book.setAuthor(author);
@@ -168,10 +162,10 @@ public class BookSellFragment extends Fragment {
                                                         @Override
                                                         public void onSuccess(DocumentReference documentReference) {
 
-                                                            SaleItems item=new SaleItems();
+                                                            SaleItems item = new SaleItems();
                                                             item.setCity(userCity);
                                                             item.setDateAdded(new Timestamp(new Date()));
-                                                            item.setDesc(title+" "+author+" "+edition+" "+publication);
+                                                            item.setDesc(title + " " + author + " " + edition + " " + publication);
                                                             item.setItem("Book");
                                                             item.setPrice(price);
                                                             item.setImageUrl(imageUrl);
@@ -183,7 +177,7 @@ public class BookSellFragment extends Fragment {
                                                                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                                                         @Override
                                                                         public void onSuccess(DocumentReference documentReference) {
-                                                                             startActivity(new Intent(getActivity(), MainActivity.class));
+                                                                            startActivity(new Intent(getActivity(), MainActivity.class));
                                                                             // finish();//*
                                                                         }
                                                                     })
@@ -195,13 +189,12 @@ public class BookSellFragment extends Fragment {
                                                                     });
 
 
-
                                                         }
                                                     })
                                                     .addOnFailureListener(new OnFailureListener() {
                                                         @Override
                                                         public void onFailure(@NonNull Exception e) {
-                                                            Log.d("PostBookActivity", "onFailure: "+e.getMessage());
+                                                            Log.d("PostBookActivity", "onFailure: " + e.getMessage());
                                                         }
                                                     });
 
@@ -213,12 +206,11 @@ public class BookSellFragment extends Fragment {
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Log.d("PostBookActivity", "onFailure: "+e.getMessage());
+                                    Log.d("PostBookActivity", "onFailure: " + e.getMessage());
                                 }
                             });
-                }
-                else{
-                    Snackbar.make(getView().findViewById(R.id.book_sell_form),"Empty Fields",Snackbar.LENGTH_LONG).setAction("Action",null).show();
+                } else {
+                    Snackbar.make(getView().findViewById(R.id.book_sell_form), "Empty Fields", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 }
             }
         });
@@ -231,16 +223,14 @@ public class BookSellFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
 
-
-
-
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==GALLERY_CODE && resultCode==RESULT_OK){
-            if(data!=null){
-                img1=data.getData();
+        if (requestCode == GALLERY_CODE && resultCode == RESULT_OK) {
+            if (data != null) {
+                img1 = data.getData();
                 bookSellImage.setImageURI(img1);
             }
         }

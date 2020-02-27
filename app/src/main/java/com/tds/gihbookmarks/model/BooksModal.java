@@ -7,19 +7,15 @@ public class BooksModal {
 
 
     public BooksModal() {
-
         //required constructor
-
     }
-    public BooksModal(String name, String imgUrl){
 
-        Name=name;
-        ImgUrl=imgUrl;
-
+    public BooksModal(String name, String imgUrl) {
+        Name = name;
+        ImgUrl = imgUrl;
     }
 
     //Getter
-
     public String getName() {
         return Name;
     }
@@ -28,11 +24,7 @@ public class BooksModal {
         return ImgUrl;
     }
 
-
-
     //setter
-
-
     public void setName(String name) {
         Name = name;
     }
