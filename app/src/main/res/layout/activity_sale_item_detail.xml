@@ -228,7 +228,7 @@
 
     <TextView
         android:id="@+id/count_request"
-        android:layout_below="@id/text_rating"
+        android:layout_below="@id/seller_rating"
         android:layout_width="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
