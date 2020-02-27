@@ -11,12 +11,12 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/request_item_card"
         android:layout_width="391dp"
-        android:layout_height="225dp"
+        android:layout_height="175dp"
         android:layout_marginTop="10dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="171dp">
 
             <TextView
                 android:id="@+id/request_item_item"
@@ -44,28 +44,26 @@
                 android:text="Item DESC"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.011"
+                app:layout_constraintHorizontal_bias="0.015"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/request_item_item"
-                app:layout_constraintVertical_bias="0.132">
+                app:layout_constraintVertical_bias="0.135">
 
 
             </TextView>
 
             <TextView
                 android:id="@+id/request_item_status"
-                android:layout_width="115dp"
-                android:layout_height="31dp"
+                android:layout_width="114dp"
+                android:layout_height="20dp"
                 android:layout_marginStart="28dp"
-                android:layout_marginBottom="12dp"
+                android:layout_marginTop="16dp"
                 android:text="Status
 "
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/request_item_desc"
-                app:layout_constraintVertical_bias="0.166">
+                app:layout_constraintTop_toBottomOf="@+id/request_item_desc">
 
 
             </TextView>
@@ -76,41 +74,35 @@
                 android:layout_height="89dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.938"
+                app:layout_constraintHorizontal_bias="0.972"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.323"
+                app:layout_constraintVertical_bias="0.144"
                 app:srcCompat="@drawable/ic_book" />
 
             <Button
-                android:id="@+id/buyer_requested_accept_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Review"
-
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.283"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.91">
-
-            </Button>
+            android:id="@+id/delivered_button"
+            android:layout_width="136dp"
+            android:layout_height="29dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/button_radius"
+            android:text="Delivered"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.156"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
             <Button
-                android:id="@+id/buyer_requested_reject_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/cancel_button"
+                android:layout_width="136dp"
+                android:layout_height="29dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/button_radius"
+                android:text="Cancel"
+                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                tools:layout_editor_absoluteX="223dp" />
 
-                android:text="Return"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.735"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.91">
-
-            </Button>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
 </LinearLayout>
