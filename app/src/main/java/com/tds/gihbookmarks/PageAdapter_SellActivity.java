@@ -3,6 +3,7 @@ package com.tds.gihbookmarks;
 
 import com.tds.gihbookmarks.HomePageFragments.OtherFragment;
 import com.tds.gihbookmarks.SellFragments.BookSellFragment;
+import com.tds.gihbookmarks.SellFragments.OtherMaterilSellFragment;
 import com.tds.gihbookmarks.SellFragments.StudyMaterialSellFragment;
 import com.tds.gihbookmarks.SellFragments.ToolSellFragment;
 
@@ -38,7 +39,7 @@ public class PageAdapter_SellActivity extends FragmentPagerAdapter {
                 return fragment;
 
             case 3:
-                fragment = new OtherFragment();
+                fragment = new OtherMaterilSellFragment();
                 return fragment;
 
             default:

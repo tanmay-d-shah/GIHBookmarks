@@ -130,7 +130,7 @@ public class SaleItemDetailActivity extends AppCompatActivity {
                 requetedItem.setItemCode(saleItems.getItemCode());
                 requetedItem.setSellerId(saleItems.getSellerId());
                 requetedItem.setDateRequested(new Timestamp(new Date()));
-                requetedItem.setStatus("Requested");
+                requetedItem.setStatus("requested");
                 requestedItemCollectionReference.add(requetedItem)
                         .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                             @Override
