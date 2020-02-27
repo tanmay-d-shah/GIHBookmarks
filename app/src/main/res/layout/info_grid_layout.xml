@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:scaleType="center"
                 android:src="@mipmap/ic_launcher" />
-
+<!--
             <TextView
                 android:id="@+id/link_TV"
                 android:layout_width="wrap_content"
@@ -32,7 +32,7 @@
                 android:layout_below="@+id/desc_TV"
                 android:layout_marginTop="10dp"
                 android:text="Link"
-                android:textColor="#000" />
+                android:textColor="#000" />-->
 
             <TextView
                 android:id="@+id/desc_TV"
@@ -41,6 +41,7 @@
                 android:layout_below="@+id/info_img"
                 android:layout_marginTop="10dp"
                 android:text="Description"
+                android:fontFamily="@font/acme"
                 android:textColor="#000" />
 
         </RelativeLayout>

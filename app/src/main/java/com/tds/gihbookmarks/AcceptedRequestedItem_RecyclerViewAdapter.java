@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -27,21 +26,15 @@ import com.tds.gihbookmarks.model.SaleItems;
 
 import java.util.List;
 
-public class BuyerRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter<BuyerRequestedItem_RecyclerViewAdapter.ViewHolder> {
+public class AcceptedRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter<AcceptedRequestedItem_RecyclerViewAdapter.ViewHolder> {
 
     private List<SaleItems> saleItemsList;
     private Context mContext;
 
     private AlertDialog.Builder builder;
     private AlertDialog alertDialog;
-    private String buyerId;
 
-    private TextView itemDesc;
-    private TextView itemPrice;
-    private TextView sellerName;
-    private TextView sellerPhone;
-    private TextView itemStatus;
-    private Button cancelRequestButton;
+
     private YourRequestedItem_RecyclerViewAdapter yourRequestedItem_recyclerViewAdapter;
 
     private FirebaseAuth firebaseAuth;
@@ -53,24 +46,22 @@ public class BuyerRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
     private CollectionReference saleItemsCollectionReference=db.collection("SaleItems");
     private CollectionReference acceptedItemCollectionReference=db.collection("AcceptedItems");
 
-    public BuyerRequestedItem_RecyclerViewAdapter(List<SaleItems> saleItemsList, Context mContext) {
+    public AcceptedRequestedItem_RecyclerViewAdapter(List<SaleItems> saleItemsList, Context mContext) {
         this.saleItemsList = saleItemsList;
         this.mContext = mContext;
     }
-
     @NonNull
     @Override
-    public BuyerRequestedItem_RecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.buyer_requested_item_layout, parent, false);
-        return new ViewHolder(view);
+    public AcceptedRequestedItem_RecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.accepted_items, parent, false);
+        return new AcceptedRequestedItem_RecyclerViewAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final BuyerRequestedItem_RecyclerViewAdapter.ViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull final AcceptedRequestedItem_RecyclerViewAdapter.ViewHolder holder, int position) {
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
-        final ViewHolder newHolder = holder;
+        final AcceptedRequestedItem_RecyclerViewAdapter.ViewHolder newHolder = holder;
         final SaleItems saleItems = saleItemsList.get(position);
 
         String imageUrl;
@@ -91,7 +82,6 @@ public class BuyerRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         for(QueryDocumentSnapshot item:queryDocumentSnapshots){
-//                            buyerId=(String)item.get("buyerId");
                             buyerCollectionReference
                                     .whereEqualTo("UserId",item.get("buyerId"))
                                     .get()
@@ -120,7 +110,7 @@ public class BuyerRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
                     }
                 });
 
-        holder.acceptButton.setOnClickListener(new View.OnClickListener() {
+        holder.deliveredButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 accept();
@@ -129,47 +119,15 @@ public class BuyerRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
             private void accept() {
 
 
-                requestedItemsCollectionReference
-                        .get()
-                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                            @Override
-                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                for(QueryDocumentSnapshot document:queryDocumentSnapshots){
-                                    if(document.get("buyerId").equals(saleItems.getItemCode())){
-                                        requestedItemsCollectionReference.document(document.getId()).update("status","accepted");
-                                        Toast.makeText(mContext,"Request Rejected",Toast.LENGTH_LONG).show();
-
-                                    }
-                                }
-                            }
-                        });
-
-
-
-
 
             }
         });
-        holder.rejectButton.setOnClickListener(new View.OnClickListener() {
+        holder.cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 reject();
             }
             private void reject(){
-                requestedItemsCollectionReference
-                        .get()
-                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                            @Override
-                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                for(QueryDocumentSnapshot document:queryDocumentSnapshots){
-                                    if(document.get("buyerId").equals(saleItems.getItemCode())){
-                                        requestedItemsCollectionReference.document(document.getId()).update("status","rejected");
-                                        Toast.makeText(mContext,"Request Rejected",Toast.LENGTH_LONG).show();
-
-                                    }
-                                }
-                            }
-                        });
 
             }
         });
@@ -187,20 +145,18 @@ public class BuyerRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
         TextView desc;
         TextView buyerName;
         TextView requestedDate;
-        Button acceptButton;
-        Button rejectButton;
+        Button deliveredButton;
+        Button cancelButton;
         CardView itemCard;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            this.acceptButton= itemView.findViewById(R.id.buyer_requested_accept_btn);
-            this.rejectButton=itemView.findViewById(R.id.buyer_requested_reject_btn);
+            this.deliveredButton= itemView.findViewById(R.id.delivered_button);
+            this.cancelButton=itemView.findViewById(R.id.cancel_button);
             this.buyerName=itemView.findViewById(R.id.buyer_request_item_buyer_name);
             this.desc=itemView.findViewById(R.id.buyer_request_item_desc);
             this.image=itemView.findViewById(R.id.buyer_imageView);
             this.requestedDate=itemView.findViewById(R.id.buyer_request_item_date);
             this.itemCard=itemView.findViewById(R.id.buyer_request_item_card);
-
         }
     }
 }

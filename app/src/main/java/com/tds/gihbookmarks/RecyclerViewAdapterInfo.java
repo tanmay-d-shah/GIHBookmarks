@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.tds.gihbookmarks.model.InformativePost;
+
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -15,7 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 public class RecyclerViewAdapterInfo extends RecyclerView.Adapter<RecyclerViewAdapterInfo.ViewHolder> {
 
     Context mContext;
+    List<InformativePost> informativePosts;
 
+    public RecyclerViewAdapterInfo(Context mContext, List<InformativePost> informativePosts) {
+        this.mContext = mContext;
+        this.informativePosts = informativePosts;
+    }
 
     @NonNull
     @Override
@@ -26,12 +33,14 @@ public class RecyclerViewAdapterInfo extends RecyclerView.Adapter<RecyclerViewAd
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapterInfo.ViewHolder holder, int position) {
-
+        //holder.tv_link.setText(informativePosts.get(position).getLink());
+        holder.tv_desc.setText(informativePosts.get(position).getDesc());
+        holder.img1.setImageResource(informativePosts.get(position).getPhoto());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return informativePosts.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -42,7 +51,7 @@ public class RecyclerViewAdapterInfo extends RecyclerView.Adapter<RecyclerViewAd
             super(itemView);
 
             tv_desc=itemView.findViewById(R.id.desc_TV);
-            tv_link=itemView.findViewById(R.id.link_TV);
+            //tv_link=itemView.findViewById(R.id.link_TV);
             img1=itemView.findViewById(R.id.info_img);
         }
     }
