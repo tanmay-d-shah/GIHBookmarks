@@ -97,6 +97,7 @@ public class RequestedItemsFragment extends Fragment {
         try {
             tabLayout.getTabAt(0).setText("Your Requested Items");
             tabLayout.getTabAt(1).setText("Buyer Requested Items");
+            tabLayout.getTabAt(2).setText("Received Items");
             Log.d("Debugging", "onCreateView: Tabtext set");
 
         } catch (Exception e) {

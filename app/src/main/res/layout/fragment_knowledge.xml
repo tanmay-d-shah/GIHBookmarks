@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".NavigationMenuFragments.KnowledgeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout_knowledge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            app:tabIndicatorColor="@color/colorAccent"
+            app:tabIndicatorGravity="bottom"
+            app:tabMode="scrollable"
+            app:tabRippleColor="#86ABCE"
+            app:tabTextColor="#3C3F41">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/info_posts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Informative Posts" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Links" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/e_book_pdf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="E-Books(PDF)" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/project_hiring"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Project Hiring" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/KnowledgeViewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        </androidx.viewpager.widget.ViewPager>
+
+    </LinearLayout>
+
+</FrameLayout>

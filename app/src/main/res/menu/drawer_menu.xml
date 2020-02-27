@@ -16,6 +16,10 @@
             android:icon="@drawable/ic_list"
             />
 
+        <item
+            android:id="@+id/nav_knowledge"
+            android:icon="@drawable/ic_book"
+            android:title="Knowledge" />
 
 
         <item
