@@ -38,9 +38,9 @@ public class InformativePostFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view= inflater.inflate(R.layout.fragment_informative_post, container, false);
-        /*infoRecycler=view.findViewById(R.id.info_recyclerView);
+        infoRecycler=view.findViewById(R.id.info_recyclerView);
         infoRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
-        infoRecycler.setAdapter(recyclerViewAdapterInfo);*/
+        infoRecycler.setAdapter(recyclerViewAdapterInfo);
         return view;
     }
 
