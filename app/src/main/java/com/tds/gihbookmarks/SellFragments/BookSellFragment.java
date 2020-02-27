@@ -126,7 +126,7 @@ public class BookSellFragment extends Fragment {
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month=month+1;
                 String date=day + "/" + month + "/" + year;
-                Toast.makeText(getContext(),date.toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"Your book is added for rent till date: "+date.toString(),Toast.LENGTH_SHORT).show();
             }
         };
 
