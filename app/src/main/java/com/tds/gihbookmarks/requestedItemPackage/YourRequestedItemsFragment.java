@@ -61,12 +61,12 @@ public class YourRequestedItemsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_books, container, false);
+        view = inflater.inflate(R.layout.fragment_your_requested_items, container, false);
         ViewPager viewPager = view.findViewById(R.id.viewpager);
         saleItemsList = new ArrayList<>();
         requestedItemList = new ArrayList<>();
 
-        requestedRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        requestedRecyclerView = (RecyclerView) view.findViewById(R.id.requested_item_recyclerView);
         //StaggeredRecyclerViewAdapter staggeredRecyclerViewAdapter= new StaggeredRecyclerViewAdapter(getContext(),bookList);
 //        StaggeredGridLayoutManager staggeredGridLayoutManager= new StaggeredGridLayoutManager(NUM_COLUMNS, LinearLayoutManager.VERTICAL);
         //bookRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -136,7 +136,7 @@ public class YourRequestedItemsFragment extends Fragment {
 
 
                             }
-                        }, 3000);
+                        }, 2000);
 
 
                     }

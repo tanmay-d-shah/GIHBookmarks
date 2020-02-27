@@ -45,7 +45,7 @@
                     app:boxStrokeColor="@color/colorPrimaryDark">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/note_title"
+                        android:id="@+id/studyMaterial_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text" />
@@ -67,7 +67,7 @@
                     app:boxStrokeColor="@color/colorPrimaryDark">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/material_desc"
+                        android:id="@+id/studyMaterial_desc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textMultiLine"
