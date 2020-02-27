@@ -67,7 +67,7 @@ public class YourRequestedItemsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_your_requested_items, container, false);
+       View view = inflater.inflate(R.layout.fragment_your_requested_items, container, false);
         ViewPager viewPager = view.findViewById(R.id.viewpager);
         saleItemsList = new ArrayList<>();
         requestedItemList = new ArrayList<>();
@@ -78,27 +78,7 @@ public class YourRequestedItemsFragment extends Fragment {
         //bookRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 //        bookRecyclerView.setLayoutManager(staggeredGridLayoutManager);
 
-review=(Button)view.findViewById(R.id.buyer_requested_accept_btn);
-review.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
 
-        AlertDialog.Builder builder=new AlertDialog.Builder(view.getContext());
-        LayoutInflater inflater =getLayoutInflater();
-        View diloglayout=inflater.inflate(R.layout.alert_dialog_with_ratingbar,null);
-        final RatingBar ratingbar=diloglayout.findViewById(R.id.ratingbar);
-        builder.setView(diloglayout);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(getContext(), "Rating is ", Toast.LENGTH_SHORT).show();
-                
-            }
-        });
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
-});
 
         return view;
     }

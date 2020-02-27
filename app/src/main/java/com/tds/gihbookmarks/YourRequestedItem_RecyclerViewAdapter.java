@@ -1,12 +1,14 @@
 package com.tds.gihbookmarks;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -86,6 +88,33 @@ public class YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter<
         holder.itemDesc.setText(saleItems.getDesc());
         holder.itemName.setText(saleItems.getItem());
         holder.itemStatus.setText(saleItems.getStatus());
+
+        holder.review.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                android.app.AlertDialog.Builder builder=new android.app.AlertDialog.Builder(mContext);
+                LayoutInflater inflater =LayoutInflater.from(mContext);
+                View diloglayout=inflater.inflate(R.layout.alert_dialog_with_ratingbar,null);
+                final RatingBar ratingbar=diloglayout.findViewById(R.id.ratingbar);
+                builder.setView(diloglayout);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(mContext, "Rating is "+ratingbar, Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+                android.app.AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+        holder.returnBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         Log.d("check1", "onBindViewHolder: " + holder.itemName.getText());
         holder.itemCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,6 +209,8 @@ public class YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter<
         ImageView image;
         TextView itemName;
         TextView itemDesc;
+        Button review;
+        Button returnBook;
         TextView itemStatus;
         CardView itemCard;
 
@@ -190,6 +221,8 @@ public class YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter<
             this.itemName = itemView.findViewById(R.id.request_item_item);
             this.itemDesc = itemView.findViewById(R.id.request_item_desc);
             this.itemStatus = itemView.findViewById(R.id.request_item_status);
+            this.returnBook=itemView.findViewById(R.id.your_requested_return);
+            this.review=itemView.findViewById(R.id.your_requested_review);
 
 
         }
