@@ -12,10 +12,10 @@ import android.view.ViewGroup;
 
 import com.tds.gihbookmarks.R;
 
-public class ReceivedItemsFragment extends Fragment {
+public class AcceptedItemsFragment extends Fragment {
 
 
-    public ReceivedItemsFragment() {
+    public AcceptedItemsFragment() {
         // Required empty public constructor
     }
 

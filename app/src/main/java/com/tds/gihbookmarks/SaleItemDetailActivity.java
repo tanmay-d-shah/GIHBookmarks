@@ -21,10 +21,9 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.type.TimeOfDayOrBuilder;
 import com.squareup.picasso.Picasso;
 import com.tds.gihbookmarks.model.Book;
-import com.tds.gihbookmarks.model.RequetedItem;
+import com.tds.gihbookmarks.model.RequestedItem;
 import com.tds.gihbookmarks.model.SaleItems;
 
 import java.util.Date;
@@ -125,13 +124,13 @@ public class SaleItemDetailActivity extends AppCompatActivity {
         requestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RequetedItem requetedItem=new RequetedItem();
+                RequestedItem requetedItem=new RequestedItem();
                 requetedItem.setBuyerId(currentUserId);
                 requetedItem.setItem(saleItems.getItem());
                 requetedItem.setItemCode(saleItems.getItemCode());
                 requetedItem.setSellerId(saleItems.getSellerId());
                 requetedItem.setDateRequested(new Timestamp(new Date()));
-
+                requetedItem.setStatus("Requested");
                 requestedItemCollectionReference.add(requetedItem)
                         .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                             @Override
