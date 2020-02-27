@@ -12,7 +12,44 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-    <ImageView
+            <TextView
+                android:id="@+id/seller_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+
+                android:layout_below="@+id/seller_number"
+                android:text="Seller Rating" />
+
+
+            <TextView
+                android:id="@+id/custom_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/seller_number"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="-8dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toStartOf="@+id/rating"
+                android:text="5" />
+
+            <TextView
+                android:id="@+id/rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/seller_number"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="/5" />
+
+            <ImageView
         android:id="@+id/book_image"
         android:layout_width="291dp"
         android:layout_centerHorizontal="true"
@@ -45,7 +82,6 @@
         android:layout_marginTop="8dp"
         android:text="6th Edition"
         android:layout_below="@+id/book_publication"
-
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.028"
@@ -192,7 +228,7 @@
 
     <TextView
         android:id="@+id/count_request"
-        android:layout_below="@id/seller_number"
+        android:layout_below="@id/text_rating"
         android:layout_width="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
@@ -202,7 +238,6 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintHorizontal_bias="0.439"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/status_value"
