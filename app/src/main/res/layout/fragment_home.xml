@@ -14,47 +14,48 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#fff"
-            app:tabIndicatorColor="@color/colorAccent"
-            app:tabIndicatorGravity="bottom"
-            app:tabMode="scrollable"
-            app:tabRippleColor="#86ABCE"
-            app:tabTextColor="#3C3F41">
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/books"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Books" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tools"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tools" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/studyMaterial"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Study Material" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/other"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Other" />
-
-        </com.google.android.material.tabs.TabLayout>
-
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                app:tabIndicatorColor="@color/colorAccent"
+                app:tabIndicatorGravity="bottom"
+                app:tabMode="scrollable"
+                app:tabRippleColor="#86ABCE"
+                app:tabTextColor="#3C3F41">
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/books"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Books" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tools"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tools" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/studyMaterial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Study Material" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/other"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Other" />
+
+            </com.google.android.material.tabs.TabLayout>
 
 
         </androidx.viewpager.widget.ViewPager>
@@ -71,7 +72,6 @@
         android:src="@drawable/ic_add"
         app:fabSize="normal"
         app:elevation="6dp"/>
-
 
 
 </FrameLayout>
