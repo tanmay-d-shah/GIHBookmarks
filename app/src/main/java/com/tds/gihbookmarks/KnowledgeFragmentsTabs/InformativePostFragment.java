@@ -1,6 +1,7 @@
 package com.tds.gihbookmarks.KnowledgeFragmentsTabs;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -14,6 +15,7 @@ import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.tds.gihbookmarks.R;
@@ -38,13 +40,16 @@ public class InformativePostFragment extends Fragment {
     private View view;
     private RecyclerView infoRecycler;
     private List<InformativePost> infos;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         infos=new ArrayList<>();
         infos.add(new InformativePost("Google Translate Adds Support for 5 New Languages, Including Odia",R.drawable.google));
+
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,7 +62,9 @@ public class InformativePostFragment extends Fragment {
         infoRecycler.setAdapter(recyclerViewAdapterInfo);
 
 
+
         return view;
     }
+
 
 }
