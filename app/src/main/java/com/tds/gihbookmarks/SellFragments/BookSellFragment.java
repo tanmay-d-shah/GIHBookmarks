@@ -116,6 +116,7 @@ public class BookSellFragment extends Fragment {
                 final String price = bookSellPrice.getText().toString();
                 final String publication = bookSellPublication.getText().toString();
 
+
                 if (!TextUtils.isEmpty(title)
                         && !TextUtils.isEmpty(publication)
                         && !TextUtils.isEmpty(edition)
