@@ -24,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
+import com.tds.gihbookmarks.model.RequestedItem;
 import com.tds.gihbookmarks.model.SaleItems;
 
 import java.util.List;
@@ -31,6 +32,7 @@ import java.util.List;
 public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter<YourRequestedItem_RecyclerViewAdapter.ViewHolder> {
 
     private List<SaleItems> saleItemsList;
+    private List<RequestedItem>requestedItemList;
     private Context mContext;
 
     private AlertDialog.Builder builder;
@@ -42,6 +44,7 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
     private TextView sellerPhone;
     private TextView itemStatus;
     private Button cancelRequestButton;
+
     private YourRequestedItem_RecyclerViewAdapter yourRequestedItem_recyclerViewAdapter;
 
     private FirebaseAuth firebaseAuth;
@@ -51,10 +54,12 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
     private CollectionReference sellerCollectionReference = db.collection("Users");
     private CollectionReference requestedItemsCollectionReference = db.collection("RequestedItems");
 
-    public YourRequestedItem_RecyclerViewAdapter(List<SaleItems> saleItemsList, Context mContext) {
+    public YourRequestedItem_RecyclerViewAdapter(List<SaleItems> saleItemsList, List<RequestedItem>requestedItemList, Context mContext) {
 
         this.saleItemsList = saleItemsList;
         this.mContext = mContext;
+        this.requestedItemList=requestedItemList;
+
         Log.d("Tanmay", "YourRequestedItem_RecyclerViewAdapter: " + saleItemsList.size());
     }
 
@@ -71,7 +76,18 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
         user = firebaseAuth.getCurrentUser();
         final ViewHolder newHolder = holder;
         SaleItems saleItems = saleItemsList.get(position);
+        RequestedItem requestedItem=requestedItemList.get(position);
+
+
+
         Log.d("Yo", "hi how are you.");
+
+        if(requestedItem.getStatus().equals("requested")){
+            holder.returnBook.setEnabled(false);
+            holder.review.setEnabled(false);
+        }
+
+
 
         //RequestOptions requestOptions= new RequestOptions().placeholder(R.drawable.ic_launcher_background);
 
@@ -85,12 +101,27 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
                 .into(holder.image);
         holder.itemDesc.setText(saleItems.getDesc());
         holder.itemName.setText(saleItems.getItem());
-        holder.itemStatus.setText(saleItems.getStatus());
+        holder.itemStatus.setText(requestedItem.getStatus());
+
+
+
         Log.d("check1", "onBindViewHolder: " + holder.itemName.getText());
         holder.itemCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CreatePopUpDialog(newHolder);
+            }
+        });
+        holder.review.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        holder.returnBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }
@@ -113,6 +144,7 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
         itemDesc.setText(saleItem.getDesc());
         itemPrice.setText(saleItem.getPrice());
         itemStatus.setText(saleItem.getStatus());
+
 
         sellerCollectionReference
                 .whereEqualTo("UserId", saleItem.getSellerId())
@@ -182,6 +214,8 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
         TextView itemDesc;
         TextView itemStatus;
         CardView itemCard;
+        Button review;
+        Button returnBook;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -190,6 +224,10 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
             this.itemName = itemView.findViewById(R.id.request_item_item);
             this.itemDesc = itemView.findViewById(R.id.request_item_desc);
             this.itemStatus = itemView.findViewById(R.id.request_item_status);
+            this.review=itemView.findViewById(R.id.your_requested_review);
+            this.returnBook=itemView.findViewById(R.id.your_requested_return);
+
+
 
 
         }
