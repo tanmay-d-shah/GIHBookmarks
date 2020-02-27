@@ -7,8 +7,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.tds.gihbookmarks.requestedItemPackage.AcceptedItemsFragment;
 import com.tds.gihbookmarks.requestedItemPackage.BuyerRequestedItemsFragment;
-import com.tds.gihbookmarks.requestedItemPackage.ReceivedItemsFragment;
 import com.tds.gihbookmarks.requestedItemPackage.YourRequestedItemsFragment;
 
 public class PageAdapter_RequestedItems extends FragmentPagerAdapter {
@@ -40,8 +40,8 @@ public class PageAdapter_RequestedItems extends FragmentPagerAdapter {
                 break;
 
             case 2:
-                fragment = new ReceivedItemsFragment();
-                Log.d("page Adapter", "getItem: ReceivedItemsFragment Returned");
+                fragment = new AcceptedItemsFragment();
+                Log.d("page Adapter", "getItem: AcceptedItemsFragment Returned");
 //                return fragment;
                 break;
 

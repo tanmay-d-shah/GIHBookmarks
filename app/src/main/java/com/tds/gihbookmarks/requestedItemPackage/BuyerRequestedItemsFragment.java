@@ -1,17 +1,13 @@
 package com.tds.gihbookmarks.requestedItemPackage;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,8 +24,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.StorageReference;
 import com.tds.gihbookmarks.BuyerRequestedItem_RecyclerViewAdapter;
 import com.tds.gihbookmarks.R;
-import com.tds.gihbookmarks.YourRequestedItem_RecyclerViewAdapter;
-import com.tds.gihbookmarks.model.RequetedItem;
+import com.tds.gihbookmarks.model.RequestedItem;
 import com.tds.gihbookmarks.model.SaleItems;
 
 import java.util.ArrayList;
@@ -50,7 +45,7 @@ public class BuyerRequestedItemsFragment extends Fragment {
 
     private List<SaleItems> saleItemsList;
     private int flag = 0;
-    private List<RequetedItem> buyerRequestedItemList;
+    private List<RequestedItem> buyerRequestedItemList;
 
     //    private ArrayList<String> mImageUrls;
     private BuyerRequestedItem_RecyclerViewAdapter buyerRequestedItem_recyclerViewAdapter;
@@ -116,7 +111,7 @@ public class BuyerRequestedItemsFragment extends Fragment {
 
                         for (QueryDocumentSnapshot requestedItems : queryDocumentSnapshots) {
 
-                            RequetedItem requestedItem = requestedItems.toObject(RequetedItem.class);
+                            RequestedItem requestedItem = requestedItems.toObject(RequestedItem.class);
                             buyerRequestedItemList.add(requestedItem);
                             Log.d("Buyer", "onSuccess: "+requestedItem.getItem());
 
@@ -125,7 +120,7 @@ public class BuyerRequestedItemsFragment extends Fragment {
                         for (int i = 0; i < buyerRequestedItemList.size(); i++) {
 
 
-                            RequetedItem listRequestedItem = buyerRequestedItemList.get(i);
+                            RequestedItem listRequestedItem = buyerRequestedItemList.get(i);
 
                             SaleItemsCollectionReference
                                     .whereEqualTo("itemCode", listRequestedItem.getItemCode())
