@@ -130,23 +130,23 @@
                 app:layout_constraintStart_toEndOf="@+id/rupee_symbol"
                 app:layout_constraintTop_toBottomOf="@+id/book_image" />
 
-    <TextView
-        android:id="@+id/seller_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginLeft="10dp"
-        android:text="Tirth Trivedi"
-        android:layout_below="@+id/book_price"
-        android:textSize="20dp"
-        android:textStyle="normal"
+            <TextView
+                android:id="@+id/seller_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/book_price"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="22dp"
+                android:text="Tirth Trivedi"
+                android:textSize="20dp"
+                android:textStyle="normal"
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.019"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/book_price" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.019"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/book_price" />
 
-    <TextView
+            <TextView
         android:id="@+id/seller_number"
         android:layout_width="wrap_content"
         android:layout_below="@+id/seller_name"
