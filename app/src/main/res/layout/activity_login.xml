@@ -62,9 +62,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:hint="@string/password"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-
-            android:background="@color/colortext">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/login_password"
