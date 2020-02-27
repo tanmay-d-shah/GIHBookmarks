@@ -16,6 +16,7 @@
     <color name="Dark_Blue">#3B375B</color>
     <color name="White">#FFFFFF</color>
     <color name="drawer">#fff</color>
+    <color name="gray">#636363</color>
 
 
 </resources>
