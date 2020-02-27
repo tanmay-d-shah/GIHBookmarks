@@ -17,14 +17,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="9dp">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/info_img_card"
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                app:cardCornerRadius="10dp"
+                android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/info_img"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="center"
-                android:clickable="true"
-                android:src="@mipmap/ic_launcher" />
+                <ImageView
+                    android:id="@+id/info_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="center"
+                    android:clickable="true"
+                    android:src="@mipmap/ic_launcher" />
+
+            </androidx.cardview.widget.CardView>
+
 <!--
             <TextView
                 android:id="@+id/link_TV"
@@ -39,7 +48,7 @@
                 android:id="@+id/desc_TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/info_img"
+                android:layout_below="@+id/info_img_card"
                 android:layout_marginTop="10dp"
                 android:text="Description"
                 android:fontFamily="@font/acme"
