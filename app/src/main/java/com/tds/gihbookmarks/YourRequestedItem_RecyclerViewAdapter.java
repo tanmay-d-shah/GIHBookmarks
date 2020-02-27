@@ -26,6 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
+import com.tds.gihbookmarks.model.RequestedItem;
 import com.tds.gihbookmarks.model.SaleItems;
 
 import java.util.List;
@@ -34,6 +35,7 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
 
     private List<SaleItems> saleItemsList;
     private Context mContext;
+    private List<RequestedItem>requestedItemList;
 
     private AlertDialog.Builder builder;
     private AlertDialog alertDialog;
@@ -53,10 +55,11 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
     private CollectionReference sellerCollectionReference = db.collection("Users");
     private CollectionReference requestedItemsCollectionReference = db.collection("RequestedItems");
 
-    public YourRequestedItem_RecyclerViewAdapter(List<SaleItems> saleItemsList, Context mContext) {
+    public YourRequestedItem_RecyclerViewAdapter(List<SaleItems> saleItemsList, List<RequestedItem>requestedItemList,Context mContext) {
 
         this.saleItemsList = saleItemsList;
         this.mContext = mContext;
+        this.requestedItemList=requestedItemList;
         Log.d("Tanmay", "YourRequestedItem_RecyclerViewAdapter: " + saleItemsList.size());
     }
 
@@ -73,6 +76,7 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
         user = firebaseAuth.getCurrentUser();
         final ViewHolder newHolder = holder;
         SaleItems saleItems = saleItemsList.get(position);
+        RequestedItem requestedItem=requestedItemList.get(position);
         Log.d("Yo", "hi how are you.");
 
         //RequestOptions requestOptions= new RequestOptions().placeholder(R.drawable.ic_launcher_background);
@@ -89,6 +93,17 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
         holder.itemName.setText(saleItems.getItem());
         holder.itemStatus.setText(saleItems.getStatus());
 
+//        if(requestedItem.getStatus().equals("requested")){
+//            holder.review.setEnabled(false);
+//            holder.returnBook.setEnabled(false);
+//        }
+
+
+
+
+
+
+
         holder.review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,6 +116,7 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         float rates =ratingbar.getRating();
+                        Toast.makeText(mContext, "Rating is"+ratingbar.getRating(), Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -108,7 +124,12 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
                 alert.show();
 
             }
+
+
         });
+
+
+
         holder.returnBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
