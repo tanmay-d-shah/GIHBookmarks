@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -26,6 +29,10 @@ public class ProfileFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    public ImageView editimg,icon,plus;
+    public EditText name,email,password,phone,add,sem,branch,eno,clg,des,city;
+    public TextView save;
+
 
 
     public ProfileFragment() {
@@ -56,6 +63,7 @@ public class ProfileFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
 
@@ -63,7 +71,49 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        editimg=(ImageView)view.findViewById(R.id.edit);
+        name=(EditText)view.findViewById(R.id.name);
+        email=(EditText)view.findViewById(R.id.email);
+        password=(EditText)view.findViewById(R.id.password);
+        phone=(EditText)view.findViewById(R.id.phone_number);
+        add=(EditText)view.findViewById(R.id.address);
+        sem=(EditText)view.findViewById(R.id.semester);
+        branch=(EditText)view.findViewById(R.id.branch);
+        eno=(EditText)view.findViewById(R.id.enrollment);
+        clg=(EditText)view.findViewById(R.id.college);
+        des=(EditText)view.findViewById(R.id.designation);
+        city=(EditText)view.findViewById(R.id.city);
+        icon=(ImageView)view.findViewById(R.id.icon);
+        plus=(ImageView)view.findViewById(R.id.plus);
+        save=(TextView)view.findViewById(R.id.save);
+
+
+        editimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                name.setEnabled(true);
+                email.setEnabled(true);
+                password.setEnabled(true);
+                phone.setEnabled(true);
+                add.setEnabled(true);
+                sem.setEnabled(true);
+                branch.setEnabled(true);
+                eno.setEnabled(true);
+                clg.setEnabled(true);
+                des.setEnabled(true);
+                city.setEnabled(true);
+                icon.setEnabled(true);
+                plus.setEnabled(true);
+                save.setEnabled(true);
+
+
+            }
+        });
+
+        return  view;
     }
 
 }
