@@ -45,6 +45,8 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
     private TextView itemStatus;
     private Button cancelRequestButton;
 
+    //yours truely
+
     private YourRequestedItem_RecyclerViewAdapter yourRequestedItem_recyclerViewAdapter;
 
     private FirebaseAuth firebaseAuth;
