@@ -15,6 +15,7 @@
     <color name="Red">#F56460</color>
     <color name="Dark_Blue">#3B375B</color>
     <color name="White">#FFFFFF</color>
+    <color name="drawer">#fff</color>
 
 
 </resources>
