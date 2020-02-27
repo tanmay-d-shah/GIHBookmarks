@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
@@ -9,6 +9,7 @@
     <ImageView
         android:id="@+id/book_image"
         android:layout_width="291dp"
+        android:layout_centerHorizontal="true"
         android:layout_height="312dp"
         android:layout_marginTop="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,6 +22,8 @@
 
     <TextView
         android:id="@+id/book_name"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/book_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -35,10 +38,12 @@
 
     <TextView
         android:id="@+id/book_edition"
+        android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="6th Edition"
+        android:layout_below="@+id/book_publication"
 
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,10 +53,12 @@
 
     <TextView
         android:id="@+id/book_publication"
+        android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Tech Max Publication"
+        android:layout_below="@+id/book_writer"
 
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +68,9 @@
 
     <TextView
         android:id="@+id/book_writer"
+        android:layout_below="@+id/book_name"
         android:layout_width="78dp"
+        android:layout_marginLeft="10dp"
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
         android:text="By J.S Khatre"
@@ -78,6 +87,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="250"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/book_edition"
 
         android:textSize="30sp"
 
@@ -91,25 +102,29 @@
 
     <ImageView
         android:id="@+id/rupee_symbol"
-        android:layout_width="23dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/book_edition"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="41dp"
+        android:layout_toEndOf="@+id/book_price"
+        android:background="@drawable/ic_india"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/book_price"
-        app:layout_constraintTop_toBottomOf="@+id/book_edition"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/book_edition" />
 
     <Button
         android:id="@+id/book_request_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="204dp"
-        android:layout_marginTop="160dp"
+        android:layout_below="@+id/book_edition"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="292dp"
+
+        android:layout_marginTop="27dp"
         android:background="@drawable/button_radius"
         android:text="REQUEST"
-
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.058"
@@ -120,24 +135,25 @@
         android:id="@+id/seller_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="10dp"
         android:text="Tirth Trivedi"
+        android:layout_below="@+id/book_price"
         android:textSize="20dp"
         android:textStyle="normal"
 
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.022"
+        app:layout_constraintHorizontal_bias="0.019"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/book_price"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/book_price" />
 
     <TextView
         android:id="@+id/seller_number"
         android:layout_width="wrap_content"
+        android:layout_below="@+id/seller_name"
         android:layout_height="wrap_content"
         android:text="6352699747"
-
+        android:layout_marginLeft="10dp"
         android:textSize="20dp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -151,13 +167,15 @@
         android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-
+        android:layout_below="@id/book_request_button"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="314dp"
+        android:layout_marginTop="15dp"
         android:text="STATUS"
         android:textSize="15dp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.883"
+        app:layout_constraintHorizontal_bias="0.881"
         app:layout_constraintStart_toEndOf="@+id/seller_name"
         app:layout_constraintTop_toBottomOf="@+id/book_request_button" />
 
@@ -165,17 +183,23 @@
         android:id="@+id/status_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="208dp"
-        android:layout_marginTop="36dp"
+        android:layout_below="@+id/status"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="311dp"
+        android:layout_marginTop="11dp"
         android:text="Requested"
         app:layout_constraintStart_toEndOf="@+id/seller_number"
         app:layout_constraintTop_toBottomOf="@+id/status" />
 
     <TextView
         android:id="@+id/count_request"
+        android:layout_below="@id/seller_number"
         android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
         android:text="Already 10 people have requested"
+        android:textColor="@color/color_button"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -183,5 +207,5 @@
         app:layout_constraintHorizontal_bias="0.439"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/status_value"
-        app:layout_constraintVertical_bias="0.98" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintVertical_bias="0.474" />
+</RelativeLayout>
