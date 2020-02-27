@@ -100,7 +100,7 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(mContext, "Rating is "+ratingbar, Toast.LENGTH_SHORT).show();
+                        float rates =ratingbar.getRating();
 
                     }
                 });
