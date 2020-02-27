@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.tds.gihbookmarks.NavigationMenuFragments.FAQFragment;
 import com.tds.gihbookmarks.NavigationMenuFragments.HomeFragment;
+import com.tds.gihbookmarks.NavigationMenuFragments.KnowledgeFragment;
 import com.tds.gihbookmarks.NavigationMenuFragments.ProfileFragment;
 import com.tds.gihbookmarks.NavigationMenuFragments.ReportBugFragment;
 import com.tds.gihbookmarks.NavigationMenuFragments.RequestedItemsFragment;
@@ -95,6 +96,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new RequestedItemsFragment()).commit();
                 break;
+
+            case R.id.nav_knowledge:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new KnowledgeFragment()).commit();
 
             case R.id.nav_bug:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
