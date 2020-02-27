@@ -145,7 +145,34 @@
                 <Button
                     android:id="@+id/btn_sell"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
+                    android:text="Sell"
+                    android:layout_alignParentLeft="true"
+                    android:fontFamily="@font/acme"
+                    android:background="@drawable/button_radius"
+                    android:textColor="#fff"
+                    android:textSize="25dp"
+                    android:layout_marginTop="520dp"
+                    android:layout_marginStart="50dp"/>
+
+                <Button
+                    android:id="@+id/btn_rent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rent"
+                    android:layout_alignParentRight="true"
+                    android:fontFamily="@font/acme"
+                    android:background="@drawable/button_radius"
+                    android:textColor="#fff"
+                    android:textSize="25dp"
+                    android:layout_marginTop="520dp"
+                    android:layout_marginStart="270dp"
+                    android:layout_marginEnd="50dp"/>
+
+                <!--<Button
+                    android:id="@+id/btn_sell"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginStart="62dp"
@@ -160,8 +187,8 @@
 
                 <Button
                     android:id="@+id/btn_rent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginStart="249dp"
@@ -172,7 +199,7 @@
                     android:text="RENT"
                     android:textColor="#fff"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold" />-->
 
             </RelativeLayout>
 
