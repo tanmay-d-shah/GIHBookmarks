@@ -5,6 +5,12 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/book_image"
@@ -12,13 +18,8 @@
         android:layout_centerHorizontal="true"
         android:layout_height="312dp"
         android:layout_marginTop="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.053"/>
     <!--        app:srcCompat="@drawable/cource1" -->
-
 
     <TextView
         android:id="@+id/book_name"
@@ -112,24 +113,22 @@
         app:layout_constraintStart_toEndOf="@+id/book_price"
         app:layout_constraintTop_toBottomOf="@+id/book_edition" />
 
-    <Button
-        android:id="@+id/book_request_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/book_edition"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
+            <Button
+                android:id="@+id/book_request_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/book_edition"
+                android:layout_alignParentEnd="true"
 
-        android:layout_marginStart="292dp"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="31dp"
-        android:background="@drawable/button_radius"
-        android:text="REQUEST"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.058"
-        app:layout_constraintStart_toEndOf="@+id/rupee_symbol"
-        app:layout_constraintTop_toBottomOf="@+id/book_image" />
+                android:layout_marginTop="27dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/button_radius"
+                android:text="REQUEST"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.058"
+                app:layout_constraintStart_toEndOf="@+id/rupee_symbol"
+                app:layout_constraintTop_toBottomOf="@+id/book_image" />
 
     <TextView
         android:id="@+id/seller_name"
@@ -168,11 +167,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/book_request_button"
-        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="314dp"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="42dp"
+        android:layout_marginEnd="20dp"
         android:text="STATUS"
         android:textSize="15dp"
         android:textStyle="normal"
@@ -186,11 +183,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/status"
-        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="311dp"
         android:layout_marginTop="11dp"
-        android:layout_marginEnd="33dp"
+        android:layout_marginEnd="20dp"
         android:text="Requested"
         app:layout_constraintStart_toEndOf="@+id/seller_number"
         app:layout_constraintTop_toBottomOf="@+id/status" />
@@ -212,4 +207,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/status_value"
         app:layout_constraintVertical_bias="0.474" />
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>
