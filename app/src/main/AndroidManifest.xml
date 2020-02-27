@@ -16,8 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".faq_que2Activity"
-            android:theme="@style/AppTheme.NoActionBar.PostBooks"/>
+        <activity android:name=".SellFragments.BookRentDateActivity"></activity>
+        <activity
+            android:name=".faq_que2Activity"
+            android:theme="@style/AppTheme.NoActionBar.PostBooks" />
         <activity
             android:name=".faq_1Activity"
             android:theme="@style/AppTheme.NoActionBar.PostBooks" />
@@ -49,6 +51,7 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
         <service
             android:name=".MyFirebaseMessagingService"
             android:exported="false">
@@ -57,7 +60,5 @@
             </intent-filter>
         </service>
     </application>
-
-
 
 </manifest>

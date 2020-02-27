@@ -1,12 +1,14 @@
 package com.tds.gihbookmarks;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,8 +34,8 @@ import java.util.List;
 public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter<YourRequestedItem_RecyclerViewAdapter.ViewHolder> {
 
     private List<SaleItems> saleItemsList;
-    private List<RequestedItem>requestedItemList;
     private Context mContext;
+    private List<RequestedItem>requestedItemList;
 
     private AlertDialog.Builder builder;
     private AlertDialog alertDialog;
@@ -44,7 +46,6 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
     private TextView sellerPhone;
     private TextView itemStatus;
     private Button cancelRequestButton;
-
     private YourRequestedItem_RecyclerViewAdapter yourRequestedItem_recyclerViewAdapter;
 
     private FirebaseAuth firebaseAuth;
@@ -54,12 +55,11 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
     private CollectionReference sellerCollectionReference = db.collection("Users");
     private CollectionReference requestedItemsCollectionReference = db.collection("RequestedItems");
 
-    public YourRequestedItem_RecyclerViewAdapter(List<SaleItems> saleItemsList, List<RequestedItem>requestedItemList, Context mContext) {
+    public YourRequestedItem_RecyclerViewAdapter(List<SaleItems> saleItemsList, List<RequestedItem>requestedItemList,Context mContext) {
 
         this.saleItemsList = saleItemsList;
         this.mContext = mContext;
         this.requestedItemList=requestedItemList;
-
         Log.d("Tanmay", "YourRequestedItem_RecyclerViewAdapter: " + saleItemsList.size());
     }
 
@@ -77,17 +77,7 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
         final ViewHolder newHolder = holder;
         SaleItems saleItems = saleItemsList.get(position);
         RequestedItem requestedItem=requestedItemList.get(position);
-
-
-
         Log.d("Yo", "hi how are you.");
-
-        if(requestedItem.getStatus().equals("requested")){
-            holder.returnBook.setEnabled(false);
-            holder.review.setEnabled(false);
-        }
-
-
 
         //RequestOptions requestOptions= new RequestOptions().placeholder(R.drawable.ic_launcher_background);
 
@@ -101,27 +91,56 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
                 .into(holder.image);
         holder.itemDesc.setText(saleItems.getDesc());
         holder.itemName.setText(saleItems.getItem());
-        holder.itemStatus.setText(requestedItem.getStatus());
+        holder.itemStatus.setText(saleItems.getStatus());
+
+//        if(requestedItem.getStatus().equals("requested")){
+//            holder.review.setEnabled(false);
+//            holder.returnBook.setEnabled(false);
+//        }
 
 
 
+
+
+
+
+        holder.review.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                android.app.AlertDialog.Builder builder=new android.app.AlertDialog.Builder(mContext);
+                LayoutInflater inflater =LayoutInflater.from(mContext);
+                View diloglayout=inflater.inflate(R.layout.alert_dialog_with_ratingbar,null);
+                final RatingBar ratingbar=diloglayout.findViewById(R.id.ratingbar);
+                builder.setView(diloglayout);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        float rates =ratingbar.getRating();
+                        Toast.makeText(mContext, "Rating is"+ratingbar.getRating(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+                android.app.AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+
+
+        });
+
+
+
+        holder.returnBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         Log.d("check1", "onBindViewHolder: " + holder.itemName.getText());
         holder.itemCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CreatePopUpDialog(newHolder);
-            }
-        });
-        holder.review.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        holder.returnBook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
             }
         });
     }
@@ -144,7 +163,6 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
         itemDesc.setText(saleItem.getDesc());
         itemPrice.setText(saleItem.getPrice());
         itemStatus.setText(saleItem.getStatus());
-
 
         sellerCollectionReference
                 .whereEqualTo("UserId", saleItem.getSellerId())
@@ -212,10 +230,10 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
         ImageView image;
         TextView itemName;
         TextView itemDesc;
-        TextView itemStatus;
-        CardView itemCard;
         Button review;
         Button returnBook;
+        TextView itemStatus;
+        CardView itemCard;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -224,10 +242,8 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
             this.itemName = itemView.findViewById(R.id.request_item_item);
             this.itemDesc = itemView.findViewById(R.id.request_item_desc);
             this.itemStatus = itemView.findViewById(R.id.request_item_status);
-            this.review=itemView.findViewById(R.id.your_requested_review);
             this.returnBook=itemView.findViewById(R.id.your_requested_return);
-
-
+            this.review=itemView.findViewById(R.id.your_requested_review);
 
 
         }

@@ -1,11 +1,16 @@
 package com.tds.gihbookmarks.requestedItemPackage;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RatingBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -54,6 +59,7 @@ public class YourRequestedItemsFragment extends Fragment {
     private CollectionReference SaleItemsCollectionReference = db.collection("SaleItems");
     private CollectionReference requestedItemCollectionReference = db.collection("RequestedItems");
     private CollectionReference sellerCollectionReference = db.collection("Users");
+    private Button review;
 
     public YourRequestedItemsFragment() {
     }
@@ -61,7 +67,7 @@ public class YourRequestedItemsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_your_requested_items, container, false);
+       View view = inflater.inflate(R.layout.fragment_your_requested_items, container, false);
         ViewPager viewPager = view.findViewById(R.id.viewpager);
         saleItemsList = new ArrayList<>();
         requestedItemList = new ArrayList<>();
@@ -73,8 +79,11 @@ public class YourRequestedItemsFragment extends Fragment {
 //        bookRecyclerView.setLayoutManager(staggeredGridLayoutManager);
 
 
+
         return view;
     }
+
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
