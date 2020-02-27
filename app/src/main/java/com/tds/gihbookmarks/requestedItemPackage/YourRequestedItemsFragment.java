@@ -59,7 +59,7 @@ public class YourRequestedItemsFragment extends Fragment {
     private CollectionReference SaleItemsCollectionReference = db.collection("SaleItems");
     private CollectionReference requestedItemCollectionReference = db.collection("RequestedItems");
     private CollectionReference sellerCollectionReference = db.collection("Users");
-    private   Button review;
+    private Button review;
 
     public YourRequestedItemsFragment() {
     }
@@ -83,7 +83,7 @@ review.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
 
-        AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
+        AlertDialog.Builder builder=new AlertDialog.Builder(view.getContext());
         LayoutInflater inflater =getLayoutInflater();
         View diloglayout=inflater.inflate(R.layout.alert_dialog_with_ratingbar,null);
         final RatingBar ratingbar=diloglayout.findViewById(R.id.ratingbar);
@@ -95,13 +95,10 @@ review.setOnClickListener(new View.OnClickListener() {
                 
             }
         });
-        builder.show();
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 });
-
-
-
-
 
         return view;
     }
