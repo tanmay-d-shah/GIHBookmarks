@@ -101,6 +101,7 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         float rates =ratingbar.getRating();
+                        Toast.makeText(mContext, "Rating is"+ratingbar.getRating(), Toast.LENGTH_SHORT).show();
 
                     }
                 });
