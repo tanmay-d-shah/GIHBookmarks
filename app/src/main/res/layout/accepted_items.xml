@@ -19,51 +19,52 @@
             android:layout_height="171dp">
 
             <TextView
-                android:id="@+id/request_item_item"
+                android:id="@+id/buyer_request_item_desc"
                 android:layout_width="113dp"
                 android:layout_height="19dp"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:text="ItemName"
+                android:layout_marginTop="12dp"
+                android:text="ItemDesc"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.01"
+                app:layout_constraintHorizontal_bias="0.011"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
             </TextView>
 
             <TextView
-                android:id="@+id/request_item_desc"
+                android:id="@+id/buyer_request_item_buyer_name"
                 android:layout_width="112dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="24dp"
-                android:layout_marginBottom="28dp"
+                android:layout_marginBottom="92dp"
                 android:lines="5"
                 android:maxLines="5"
                 android:minLines="2"
-                android:text="Item DESC"
+                android:text="Buyer Name"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.015"
+                app:layout_constraintHorizontal_bias="0.011"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/request_item_item"
-                app:layout_constraintVertical_bias="0.135">
+                app:layout_constraintVertical_bias="0.236">
 
 
             </TextView>
 
             <TextView
-                android:id="@+id/request_item_status"
+                android:id="@+id/buyer_request_item_date"
                 android:layout_width="114dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="28dp"
-                android:layout_marginTop="16dp"
-                android:text="Status
-"
+                android:layout_marginBottom="60dp"
+                android:text="Requested Date"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/request_item_desc">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.967">
 
 
             </TextView>
@@ -96,11 +97,14 @@
                 android:id="@+id/cancel_button"
                 android:layout_width="136dp"
                 android:layout_height="29dp"
+                android:layout_marginStart="216dp"
                 android:layout_marginTop="32dp"
                 android:background="@drawable/button_radius"
                 android:text="Cancel"
-                app:layout_constraintTop_toBottomOf="@+id/imageView"
-                tools:layout_editor_absoluteX="223dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

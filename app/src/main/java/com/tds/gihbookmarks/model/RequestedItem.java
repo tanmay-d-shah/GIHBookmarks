@@ -2,23 +2,25 @@ package com.tds.gihbookmarks.model;
 
 import com.google.firebase.Timestamp;
 
-public class RequetedItem {
+public class RequestedItem {
     private String SellerId;
     private String BuyerId;
     private Timestamp DateRequested;
     private String ItemCode;
     private String Item;
+    private String status;
 
 
-    public RequetedItem() {
+    public RequestedItem() {
     }
 
-    public RequetedItem(String sellerId, String buyerId, Timestamp dateRequested, String itemCode, String item) {
+    public RequestedItem(String sellerId, String buyerId, Timestamp dateRequested, String itemCode, String item,String status) {
         SellerId = sellerId;
         BuyerId = buyerId;
         DateRequested = dateRequested;
         ItemCode = itemCode;
         Item = item;
+        status=status;
     }
 
     public String getSellerId() {
@@ -59,5 +61,13 @@ public class RequetedItem {
 
     public void setItem(String item) {
         Item = item;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

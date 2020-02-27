@@ -30,7 +30,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.StorageReference;
 import com.tds.gihbookmarks.R;
 import com.tds.gihbookmarks.YourRequestedItem_RecyclerViewAdapter;
-import com.tds.gihbookmarks.model.RequetedItem;
+import com.tds.gihbookmarks.model.RequestedItem;
 import com.tds.gihbookmarks.model.SaleItems;
 
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ public class YourRequestedItemsFragment extends Fragment {
 
     private List<SaleItems> saleItemsList;
     private int flag = 0;
-    private List<RequetedItem> requestedItemList;
+    private List<RequestedItem> requestedItemList;
 
     //    private ArrayList<String> mImageUrls;
     private YourRequestedItem_RecyclerViewAdapter yourRequestedItem_recyclerViewAdapter;
@@ -122,7 +122,7 @@ review.setOnClickListener(new View.OnClickListener() {
 
                         for (QueryDocumentSnapshot requestedItems : queryDocumentSnapshots) {
 
-                            RequetedItem requestedItem = requestedItems.toObject(RequetedItem.class);
+                            RequestedItem requestedItem = requestedItems.toObject(RequestedItem.class);
                             requestedItemList.add(requestedItem);
 
 
@@ -132,7 +132,7 @@ review.setOnClickListener(new View.OnClickListener() {
                         for (int i = 0; i < requestedItemList.size(); i++) {
 
 
-                            RequetedItem listRequestedItem = requestedItemList.get(i);
+                            RequestedItem listRequestedItem = requestedItemList.get(i);
 
                             SaleItemsCollectionReference
                                     .whereEqualTo("itemCode", listRequestedItem.getItemCode())
