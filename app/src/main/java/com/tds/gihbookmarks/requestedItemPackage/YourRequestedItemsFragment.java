@@ -79,6 +79,83 @@ public class YourRequestedItemsFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        firebaseAuth = FirebaseAuth.getInstance();
+//        user = firebaseAuth.getCurrentUser();
+//        requestedItemCollectionReference
+//                .whereEqualTo("buyerId", user.getUid())
+//                .get()
+//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//
+//                        for (QueryDocumentSnapshot requestedItems : queryDocumentSnapshots) {
+//
+//                            RequestedItem requestedItem = requestedItems.toObject(RequestedItem.class);
+//                            requestedItemList.add(requestedItem);
+//
+//
+//                        }
+//
+//
+//                        for (int i = 0; i < requestedItemList.size(); i++) {
+//
+//
+//                            RequestedItem listRequestedItem = requestedItemList.get(i);
+//
+//                            SaleItemsCollectionReference
+//                                    .whereEqualTo("itemCode", listRequestedItem.getItemCode())
+//                                    .get()
+//                                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                                        @Override
+//                                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//
+//                                            Log.d("Hi", "onSuccess: item returned");
+//                                            for (QueryDocumentSnapshot saleItems : queryDocumentSnapshots) {
+//                                                SaleItems item = saleItems.toObject(SaleItems.class);
+//                                                saleItemsList.add(item);
+//
+//                                            }
+//
+//
+//                                        }
+//
+//                                    });
+////
+//
+//
+//                        }
+//                        handler.postDelayed(new Runnable() {
+//                            @Override
+//                            public void run() {
+//
+//                                requestedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+//                                yourRequestedItem_recyclerViewAdapter = new YourRequestedItem_RecyclerViewAdapter(saleItemsList,requestedItemList, getContext());
+//
+//                                requestedRecyclerView.setAdapter(yourRequestedItem_recyclerViewAdapter);
+//                                yourRequestedItem_recyclerViewAdapter.notifyDataSetChanged();
+//
+//
+//                            }
+//                        }, 2000);
+//
+//
+//                    }
+//
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//
+//                    }
+//                });
+
+
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
         requestedItemCollectionReference
@@ -129,7 +206,7 @@ public class YourRequestedItemsFragment extends Fragment {
                             public void run() {
 
                                 requestedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                                yourRequestedItem_recyclerViewAdapter = new YourRequestedItem_RecyclerViewAdapter(saleItemsList, getContext());
+                                yourRequestedItem_recyclerViewAdapter = new YourRequestedItem_RecyclerViewAdapter(saleItemsList,requestedItemList, getContext());
 
                                 requestedRecyclerView.setAdapter(yourRequestedItem_recyclerViewAdapter);
                                 yourRequestedItem_recyclerViewAdapter.notifyDataSetChanged();
@@ -148,14 +225,6 @@ public class YourRequestedItemsFragment extends Fragment {
 
                     }
                 });
-
-
-    }
-
-
-    @Override
-    public void onStart() {
-        super.onStart();
 
 
 //                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
