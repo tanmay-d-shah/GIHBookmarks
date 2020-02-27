@@ -2,15 +2,15 @@ package com.tds.gihbookmarks.model;
 
 public class InformativePost {
 
-    private String desc,link;
+    private String desc;
     private int photo;
 
     public InformativePost() {
     }
 
-    public InformativePost(String desc, String link, int photo) {
+    public InformativePost(String desc, int photo) {
         this.desc = desc;
-        this.link = link;
+        //this.link = link;
         this.photo = photo;
     }
 
@@ -20,9 +20,9 @@ public class InformativePost {
         return desc;
     }
 
-    public String getLink() {
+   /* public String getLink() {
         return link;
-    }
+    }*/
 
     public int getPhoto() {
         return photo;
@@ -35,9 +35,9 @@ public class InformativePost {
         this.desc = desc;
     }
 
-    public void setLink(String link) {
+    /*public void setLink(String link) {
         this.link = link;
-    }
+    }*/
 
     public void setPhoto(int photo) {
         this.photo = photo;
