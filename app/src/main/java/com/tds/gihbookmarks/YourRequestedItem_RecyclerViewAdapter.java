@@ -75,7 +75,7 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
         final ViewHolder newHolder = holder;
-        SaleItems saleItems = saleItemsList.get(position);
+        final SaleItems saleItems = saleItemsList.get(position);
         RequestedItem requestedItem=requestedItemList.get(position);
         Log.d("Yo", "hi how are you.");
 
@@ -96,7 +96,11 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
 //        if(requestedItem.getStatus().equals("requested")){
 //            holder.review.setEnabled(false);
 //            holder.returnBook.setEnabled(false);
+
+
 //        }
+
+
 
 
 
@@ -116,6 +120,17 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         float rates =ratingbar.getRating();
+                        sellerCollectionReference
+                                .whereEqualTo("UserId",saleItems.getSellerId())
+                                .get()
+                                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                        for(QueryDocumentSnapshot user:queryDocumentSnapshots){
+
+                                        }
+                                    }
+                                });
                         Toast.makeText(mContext, "Rating is"+ratingbar.getRating(), Toast.LENGTH_SHORT).show();
 
                     }
