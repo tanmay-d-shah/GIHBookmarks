@@ -1,16 +1,13 @@
 package com.tds.gihbookmarks.requestedItemPackage;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.tds.gihbookmarks.R;
 import com.tds.gihbookmarks.model.RequetedItem;
@@ -29,8 +26,8 @@ import java.util.List;
 public class BuyerRequestedItemsFragment extends Fragment {
     private RecyclerView requestedRecyclerView;
     private List<SaleItems> saleItemsList;
-    private List<RequetedItem>requestedItemList;
-    final Handler handler=new Handler();
+    final Handler handler = new Handler();
+    private List<RequetedItem> requestedItemList;
 //    // TODO: Rename parameter arguments, choose names that match
 //    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 //    private static final String ARG_PARAM1 = "param1";

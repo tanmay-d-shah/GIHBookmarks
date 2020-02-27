@@ -10,7 +10,8 @@ public class LabCoat {
     private String city;
     private String imageURL;
 
-    public LabCoat(){}
+    public LabCoat() {
+    }
 
     public LabCoat(Timestamp dateAdded, String size, String userId, String price, String city, String imageURL) {
         this.dateAdded = dateAdded;

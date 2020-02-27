@@ -7,26 +7,26 @@ import android.os.Parcelable;
 import com.google.firebase.Timestamp;
 
 public class SaleItems implements Parcelable {
-    String Item;
-    String ItemCode;
-    String Price;
-    String SellerId;
-    String Status;
-    Timestamp DateAdded;
-    String ImageUrl;
-    String Desc;
-    String City;
+    private String Item;
+    private String ItemCode;
+    private String Price;
+    private String SellerId;
+    private String Status;
+    private Timestamp DateAdded;
+    private String ImageUrl;
+    private String Desc;
+    private String City;
 
-    public SaleItems(Parcel in){
-         Item=in.readString();
-         ItemCode=in.readString();
-         Price=in.readString();
-         SellerId=in.readString();
-         Status=in.readString();
-         DateAdded=in.readParcelable(Timestamp.class.getClassLoader());
-         ImageUrl=in.readString();
-         Desc=in.readString();
-         City=in.readString();
+    public SaleItems(Parcel in) {
+        Item = in.readString();
+        ItemCode = in.readString();
+        Price = in.readString();
+        SellerId = in.readString();
+        Status = in.readString();
+        DateAdded = in.readParcelable(Timestamp.class.getClassLoader());
+        ImageUrl = in.readString();
+        Desc = in.readString();
+        City = in.readString();
     }
 
     public SaleItems(String item, String itemCode, String price, String sellerId, String status, Timestamp dateAdded, String imageUrl, String Desc, String city) {
@@ -37,8 +37,8 @@ public class SaleItems implements Parcelable {
         this.Status = status;
         this.DateAdded = dateAdded;
         this.ImageUrl = imageUrl;
-        this.Desc=Desc;
-        this.City=city;
+        this.Desc = Desc;
+        this.City = city;
     }
 
     public static final Parcelable.Creator<SaleItems> CREATOR = new Parcelable.Creator<SaleItems>() {
@@ -52,7 +52,9 @@ public class SaleItems implements Parcelable {
             return new SaleItems[size];
         }
     };
-    public SaleItems(){}
+
+    public SaleItems() {
+    }
 
     public String getDesc() {
         return Desc;
