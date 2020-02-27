@@ -36,7 +36,6 @@ import java.util.List;
 public class StaggeredRecyclerViewAdapter
         extends RecyclerView.Adapter<StaggeredRecyclerViewAdapter.ViewHolder>
         implements Filterable {
-
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();

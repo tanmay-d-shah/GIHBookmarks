@@ -40,6 +40,12 @@
                     android:layout_height="wrap_content"
                     android:text="Buyer Requested Items" />
 
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/received_items"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Received Items" />
+
             </com.google.android.material.tabs.TabLayout>
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/request_item_viewpager"
