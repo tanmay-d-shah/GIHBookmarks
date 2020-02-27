@@ -83,7 +83,7 @@
                 app:srcCompat="@drawable/ic_book" />
 
             <Button
-                android:id="@+id/buyer_requested_accept_btn"
+                android:id="@+id/your_requested_review"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Review"
@@ -98,7 +98,7 @@
             </Button>
 
             <Button
-                android:id="@+id/buyer_requested_reject_btn"
+                android:id="@+id/your_requested_return"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
