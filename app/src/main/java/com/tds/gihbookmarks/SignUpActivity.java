@@ -143,6 +143,9 @@ public class SignUpActivity extends AppCompatActivity {
                             userObj.put("Semester",usersemester);
                             userObj.put("City",usercity);
                             userObj.put("EnrollmentNumber",userenrollment);
+                            userObj.put("BuyerRating","0");
+                            userObj.put("SellerRating","0");
+                            userObj.put("n","0");
 
                             collectionReference.add(userObj)
                                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

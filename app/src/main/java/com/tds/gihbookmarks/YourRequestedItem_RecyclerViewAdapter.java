@@ -119,7 +119,7 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        float rates =ratingbar.getRating();
+                        final float rates =ratingbar.getRating();
                         sellerCollectionReference
                                 .whereEqualTo("UserId",saleItems.getSellerId())
                                 .get()
@@ -127,6 +127,11 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
                                     @Override
                                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                         for(QueryDocumentSnapshot user:queryDocumentSnapshots){
+                                            float sellerRating=Float.parseFloat(user.get("SellerRating").toString());
+                                            float n=Float.parseFloat(user.get("n").toString());
+                                            sellerRating=(rates+sellerRating)/(n+1);
+
+                                            sellerCollectionReference.document(user.getId()).update("sellerRating",sellerRating);
 
                                         }
                                     }
