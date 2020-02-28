@@ -40,8 +40,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/Login"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:hint="@string/email_id"
+            android:layout_marginTop="0dp"
+            android:hint="Phone Number"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:boxCornerRadiusBottomEnd="10dp"
             app:boxCornerRadiusBottomStart="10dp"
@@ -51,23 +51,21 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/login_emailid"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:drawableStart="@drawable/email"
-                android:drawablePadding="10dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                />
+                android:drawableStart="@drawable/ic_phone_black_24dp"
+                android:drawablePadding="10dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/login_password1"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/login_emailid1"
+            android:layout_below="@+id/login_button"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:hint="@string/password"
+            android:layout_marginTop="10dp"
+            android:hint="OTP"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:boxCornerRadiusBottomEnd="10dp"
             app:boxCornerRadiusBottomStart="10dp"
@@ -79,8 +77,6 @@
                 android:id="@+id/login_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:drawableStart="@drawable/password"
                 android:drawablePadding="10dp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -90,11 +86,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/login_password1"
-            android:layout_marginTop="10dp"
-            android:text="@string/text"
+            android:layout_alignStart="@+id/login_password1"
             android:layout_marginStart="30dp"
-            android:textSize="20dp"
-            android:layout_alignStart="@+id/login_password1"/>
+            android:layout_marginTop="11dp"
+            android:text="@string/text"
+            android:textSize="20dp" />
+
         <TextView
             android:id="@+id/login_sign_up"
             android:layout_marginTop="10dp"
@@ -113,17 +110,53 @@
             android:id="@+id/login_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/login_sign_up"
-            android:layout_centerInParent="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
+
+            android:layout_below="@+id/login_emailid1"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_button"
+            android:gravity="center"
             android:paddingLeft="40dp"
             android:paddingRight="40dp"
-            android:text="Login"
-            android:textSize="20dp"
-            android:gravity="center"
+            android:text="get otp"
+            android:textColor="@color/layoutcolor"
+            android:textSize="10dp" />
+        <Button
+            android:id="@+id/varify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+
+            android:layout_below="@+id/asking"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="10dp"
             android:background="@drawable/rounded_button"
-            android:textColor="@color/layoutcolor"/>
+            android:gravity="center"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:text="Verify"
+            android:textColor="@color/layoutcolor"
+            android:textSize="10dp" />
+
+        <Button
+            android:id="@+id/resend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+
+            android:layout_below="@+id/asking"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/varify"
+            android:background="@drawable/rounded_button"
+            android:gravity="center"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:text="Resend"
+            android:textColor="@color/layoutcolor"
+            android:textSize="10dp" />
+
     </RelativeLayout>
 
 </ScrollView>
