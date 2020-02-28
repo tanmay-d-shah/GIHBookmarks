@@ -122,15 +122,24 @@
             android:text="get otp"
             android:textColor="@color/layoutcolor"
             android:textSize="10dp" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:background="@android:drawable/bottom_bar"
+            android:paddingLeft="4.0dip"
+            android:paddingTop="5.0dip"
+            android:backgroundTint="#FFF"
+            android:gravity="center_horizontal"
+            android:paddingRight="4.0dip"
+            android:paddingBottom="1.0dip"
+            android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:layout_below="@+id/asking">
+
         <Button
             android:id="@+id/varify"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-
             android:layout_below="@+id/asking"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/rounded_button"
             android:gravity="center"
             android:paddingLeft="40dp"
@@ -144,10 +153,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-
             android:layout_below="@+id/asking"
             android:layout_centerVertical="true"
             android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_toEndOf="@+id/varify"
             android:background="@drawable/rounded_button"
             android:gravity="center"
@@ -156,6 +165,8 @@
             android:text="Resend"
             android:textColor="@color/layoutcolor"
             android:textSize="10dp" />
+
+        </LinearLayout>
 
     </RelativeLayout>
 
