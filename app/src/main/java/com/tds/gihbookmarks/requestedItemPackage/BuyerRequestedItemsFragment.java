@@ -152,7 +152,7 @@ public class BuyerRequestedItemsFragment extends Fragment {
                             public void run() {
                                 Log.d("buyer", "onSuccess: setting adapter");
                                 buyerRequestedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                                buyerRequestedItem_recyclerViewAdapter= new BuyerRequestedItem_RecyclerViewAdapter(saleItemsList, getContext());
+                                buyerRequestedItem_recyclerViewAdapter= new BuyerRequestedItem_RecyclerViewAdapter(saleItemsList, buyerRequestedItemList,getContext());
 
                                 buyerRequestedRecyclerView.setAdapter(buyerRequestedItem_recyclerViewAdapter);
                                 buyerRequestedItem_recyclerViewAdapter.notifyDataSetChanged();

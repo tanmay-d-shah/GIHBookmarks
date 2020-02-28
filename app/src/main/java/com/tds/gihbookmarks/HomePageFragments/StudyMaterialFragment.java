@@ -116,14 +116,14 @@ public class StudyMaterialFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot books : task.getResult()) {
-                        SaleItems items = books.toObject(SaleItems.class);
-                        if (items.getItem() == "Tool" && items.getStatus() == "Available") {
+                    for (QueryDocumentSnapshot studyMaterial : task.getResult()) {
+                        SaleItems items = studyMaterial.toObject(SaleItems.class);
+                        if (items.getItem() .equals("Study Material" ) && items.getStatus().equals("Available") ) {
                             saleItemsList.add(items);
                         }
 //                                items.setBookId(books.getId());
                     }
-                    Log.d("Restart", "onComplete: Books Restarted");
+                    Log.d("Restart", "onComplete: Study Material Restarted");
                     staggeredRecyclerViewAdapter = new StaggeredRecyclerViewAdapter(getContext(), saleItemsList);
                     studyMaterialRecyclerView.setAdapter(staggeredRecyclerViewAdapter);
                     staggeredRecyclerViewAdapter.notifyDataSetChanged();
