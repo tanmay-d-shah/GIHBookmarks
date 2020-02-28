@@ -25,10 +25,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.StorageReference;
-import com.tds.gihbookmarks.MainActivity;
 import com.tds.gihbookmarks.R;
 import com.tds.gihbookmarks.StaggeredRecyclerViewAdapter;
-import com.tds.gihbookmarks.model.Book;
 import com.tds.gihbookmarks.model.SaleItems;
 
 import java.util.ArrayList;
@@ -152,7 +150,9 @@ public class BooksFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                staggeredRecyclerViewAdapter.getFilter().filter(newText);
+                if (staggeredRecyclerViewAdapter != null) {
+                    staggeredRecyclerViewAdapter.getFilter().filter(newText);
+                }
                 return false;
             }
 

@@ -1,8 +1,5 @@
 package com.tds.gihbookmarks;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +23,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 import com.tds.gihbookmarks.model.Book;
+import com.tds.gihbookmarks.model.RequestedItem;
 import com.tds.gihbookmarks.model.SaleItems;
 
 import java.util.Date;
@@ -122,14 +120,14 @@ public class SaleItemDetailActivity extends AppCompatActivity {
         requestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RequetedItem requetedItem = new RequetedItem();
-                requetedItem.setBuyerId(currentUserId);
-                requetedItem.setItem(saleItems.getItem());
-                requetedItem.setItemCode(saleItems.getItemCode());
-                requetedItem.setSellerId(saleItems.getSellerId());
-                requetedItem.setDateRequested(new Timestamp(new Date()));
-                requetedItem.setStatus("requested");
-                requestedItemCollectionReference.add(requetedItem)
+                RequestedItem requestedItem = new RequestedItem();
+                requestedItem.setBuyerId(currentUserId);
+                requestedItem.setItem(saleItems.getItem());
+                requestedItem.setItemCode(saleItems.getItemCode());
+                requestedItem.setSellerId(saleItems.getSellerId());
+                requestedItem.setDateRequested(new Timestamp(new Date()));
+                requestedItem.setStatus("requested");
+                requestedItemCollectionReference.add(requestedItem)
                         .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                             @Override
                             public void onComplete(@NonNull Task<DocumentReference> task) {

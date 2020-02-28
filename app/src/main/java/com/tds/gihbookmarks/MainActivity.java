@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
 //    void doTask(String bname) {
 //

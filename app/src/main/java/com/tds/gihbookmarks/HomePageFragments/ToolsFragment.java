@@ -112,7 +112,9 @@ public class ToolsFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                staggeredRecyclerViewAdapter.getFilter().filter(newText);
+                if (staggeredRecyclerViewAdapter != null) {
+                    staggeredRecyclerViewAdapter.getFilter().filter(newText);
+                }
                 return false;
             }
 

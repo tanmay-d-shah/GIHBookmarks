@@ -11,7 +11,6 @@ import com.tds.gihbookmarks.HomePageFragments.BooksFragment;
 import com.tds.gihbookmarks.HomePageFragments.OtherFragment;
 import com.tds.gihbookmarks.HomePageFragments.StudyMaterialFragment;
 import com.tds.gihbookmarks.HomePageFragments.ToolsFragment;
-import com.tds.gihbookmarks.HomePageFragments.newBooksFragment;
 
 public class PageAdapter_HomePage extends FragmentPagerAdapter {
 
@@ -30,11 +29,7 @@ public class PageAdapter_HomePage extends FragmentPagerAdapter {
         Log.d("HomePage", "getItem: HomePage" + position);
         switch (position) {
             case 0:
-                if(MainActivity.branch.equals("none")) {
                     fragment = new BooksFragment();
-                }else {
-                    fragment = new newBooksFragment();
-                }
                 return fragment;
 
             case 1:
