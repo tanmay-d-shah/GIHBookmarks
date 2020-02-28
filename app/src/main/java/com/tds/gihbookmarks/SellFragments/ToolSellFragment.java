@@ -1,6 +1,7 @@
 package com.tds.gihbookmarks.SellFragments;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -16,10 +17,12 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -41,6 +44,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.tds.gihbookmarks.MainActivity;
 import com.tds.gihbookmarks.R;
+import com.tds.gihbookmarks.YourRequestedItem_RecyclerViewAdapter;
 import com.tds.gihbookmarks.model.Book;
 import com.tds.gihbookmarks.model.SaleItems;
 import com.tds.gihbookmarks.model.Tool;
@@ -53,6 +57,8 @@ import static android.app.Activity.RESULT_OK;
 public class ToolSellFragment extends Fragment {
 
     private static final int GALLERY_CODE = 1;
+    private TextView todate;
+    private TextView fromdate;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseUser user;
@@ -70,10 +76,14 @@ public class ToolSellFragment extends Fragment {
     private Spinner spinner;
     //private View view;
 
+    private AlertDialog.Builder builder;
+    private AlertDialog alertDialog;
+
     private ImageView imgTools;
     private TextInputEditText name, desc, price;
     private Button btn_sell,btn_rent;
     private DatePickerDialog.OnDateSetListener mDataSetListner;
+    private Context mContext;
 
     public ToolSellFragment() {
         // Required empty public constructor
@@ -115,32 +125,42 @@ public class ToolSellFragment extends Fragment {
         ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(view.getContext(),R.array.tools,android.R.layout.simple_spinner_item);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
+//
+//        /*btn_rent.setOnClickListener(new View.OnClickListener() {
+//                                        @Override
+//                                        public void onClick(View view) {
+//                *//*Intent intent=new Intent(getActivity(), BookRentDateActivity.class);
+//                startActivity(intent);*//*
+//                Calendar cal=Calendar.getInstance();
+//                int year=cal.get(Calendar.YEAR);
+//                int month=cal.get(Calendar.MONTH);
+//                int day=cal.get(Calendar.DAY_OF_MONTH);
+//
+//                DatePickerDialog datePickerDialog=new DatePickerDialog(getContext(),
+//                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,mDataSetListner,year,month,day);
+//                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//                datePickerDialog.show();
+//            }
+//        });
+//
+//        mDataSetListner = new DatePickerDialog.OnDateSetListener() {
+//            @Override
+//            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+//                month=month+1;
+//                String date=day + "/" + month + "/" + year;
+//                Toast.makeText(getContext(),"Your tool is added for rent till date: "+date.toString(),Toast.LENGTH_SHORT).show();
+//            }
+//        };
 
-        /*btn_rent.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                *//*Intent intent=new Intent(getActivity(), BookRentDateActivity.class);
-                startActivity(intent);*//*
-                Calendar cal=Calendar.getInstance();
-                int year=cal.get(Calendar.YEAR);
-                int month=cal.get(Calendar.MONTH);
-                int day=cal.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog datePickerDialog=new DatePickerDialog(getContext(),
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,mDataSetListner,year,month,day);
-                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                datePickerDialog.show();
+        btn_rent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              CreateDatePopup();
             }
         });
 
-        mDataSetListner = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                month=month+1;
-                String date=day + "/" + month + "/" + year;
-                Toast.makeText(getContext(),"Your tool is added for rent till date: "+date.toString(),Toast.LENGTH_SHORT).show();
-            }
-        };*/
+
+
 
                                             imgTools.setOnClickListener(new View.OnClickListener() {
                                                 @Override
@@ -256,7 +276,22 @@ public class ToolSellFragment extends Fragment {
 
                                         }
 
-                                        @Override
+    private void CreateDatePopup() {
+
+        builder = new AlertDialog.Builder(mContext);
+        LayoutInflater inflater = LayoutInflater.from(mContext);
+        View mview =inflater.inflate(R.layout.date_popup,null);
+        todate=mview.findViewById(R.id.to_date);
+        fromdate = mview.findViewById(R.id.from_date);
+
+        builder.setView(mview);
+        alertDialog = builder.create();
+        alertDialog.show();
+
+
+    }
+
+    @Override
                                         public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
                                             super.onActivityResult(requestCode, resultCode, data);
                                             if (requestCode == GALLERY_CODE && resultCode == RESULT_OK) {
