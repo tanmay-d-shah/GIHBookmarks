@@ -26,6 +26,9 @@
         <activity
             android:name=".SaleItemDetailActivity"
             android:theme="@style/AppTheme.NoActionBar.PostBooks" />
+        <activity
+            android:name=".SellAllActivity"
+            android:theme="@style/AppTheme.NoActionBar.PostBooks" />
         <activity android:name=".ToolsPostActivity" />
         <activity android:name=".PostLabCoatActivity" />
         <activity android:name=".PageAdapter_HomePage" />

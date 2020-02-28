@@ -22,15 +22,14 @@ public class PageAdapter_HomePage extends FragmentPagerAdapter {
         this.numoftabs = numOfTabs;
     }
 
-
     @NonNull
     @Override
     public Fragment getItem(int position) {
         Fragment fragment = new Fragment();
-        Log.d("HomePage", "getItem: HomePAge" + position);
+        Log.d("HomePage", "getItem: HomePage" + position);
         switch (position) {
             case 0:
-                fragment = new BooksFragment();
+                    fragment = new BooksFragment();
                 return fragment;
 
             case 1:
@@ -47,9 +46,7 @@ public class PageAdapter_HomePage extends FragmentPagerAdapter {
 
             default:
                 return fragment;
-
         }
-
 
     }
 

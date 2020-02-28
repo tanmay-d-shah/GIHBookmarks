@@ -35,15 +35,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseUser user;
 
+    /*private CollectionReference userCollectionReference = db.collection("Users");
+    private CollectionReference collectionReference = db.collection("SaleItems");
+    private CollectionReference bookcollectionReference = db.collection("Books");
+
+    private List<String> bookIDB;
+    private List<String> userIDB;
+    List<String> temp;
+    List<String> temp2;
+    List<String> temp3;
+    private List<SaleItems> saleItemsList;
+    private StaggeredRecyclerViewAdapter staggeredRecyclerViewAdapter;*/
+
+    public static String branch = "none";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        firebaseAuth=FirebaseAuth.getInstance();
-        user=firebaseAuth.getCurrentUser();
-
-
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
 
         /*FloatingActionButton floatingActionButton=findViewById(R.id.floatBtn);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +74,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
 
         //hamburger icon
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
@@ -109,9 +119,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_logout:
-                if(user!=null && firebaseAuth!=null){
+                if (user != null && firebaseAuth != null) {
                     firebaseAuth.signOut();
-                    startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
                     finish();
                 }
 
@@ -130,6 +140,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
+        menu.clear();
+
         getMenuInflater().inflate(R.menu.main_menu, menu);
         SearchView searchView =
                 (SearchView) menu.findItem(R.id.action_search).getActionView();
@@ -143,6 +155,115 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         return true;
     }
+
+    /*@Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.comp:
+                branch = "computer";
+                return true;
+            case R.id.mech:
+                branch = "mechanical";
+                return true;
+            case R.id.civil:
+                branch = "civil";
+                return true;
+            case R.id.elec:
+                branch = "electrical";
+                return true;
+            case R.id.it:
+                branch = "IT";
+                return true;
+            default:
+                branch = "none";
+        }
+
+        return super.onOptionsItemSelected(item);
+    }*/
+
+//    void doTask(String bname) {
+//
+//        Log.i(TAG, "checkadi doTask: dt bname: " + bname);
+//        if (!bname.equals("none")) {
+//            Log.i(TAG, "checkadi doTask: dt entered");
+//            bookIDB = new ArrayList<>(getUserIdPerBranch(bname));
+//            bid = new ArrayList<>();
+//
+//            collectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                @Override
+//                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                    if (task.isSuccessful()) {
+//                        for (QueryDocumentSnapshot book : task.getResult()) {
+//                            SaleItems item = book.toObject(SaleItems.class);
+//                            for (String bID : bookIDB) {
+//                                if (item.getItemCode().contains(bID)) {
+//                                    Log.i(TAG, "checkadi onComplete: dt " + item.getItemCode());
+//                                    bid.add(item);
+//                                }
+//                            }
+//                        }
+//                        *//*if (saleItemsList != null) {
+//                            Log.i(TAG, "checkadi doTask: dt if entered");
+//                            staggeredRecyclerViewAdapter = new StaggeredRecyclerViewAdapter(MainActivity.this, saleItemsList);
+////                        toolsRecyclerView.setAdapter(staggeredRecyclerViewAdapter);
+//                            staggeredRecyclerViewAdapter.notifyDataSetChanged();
+//                        }*//*
+//                    }
+//                }
+//            });
+//        }
+//    }
+/*
+    private List<String> getUserIdPerBranch(final String bn) {
+
+        Log.i(TAG, "checkadi u getUserIdPerBranch: bn: " + bn);
+
+        temp = new ArrayList<>();
+        temp2 = new ArrayList<>();
+
+        userCollectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot user : queryDocumentSnapshots) {
+                    Log.i(TAG, "checkadi u onSuccess: branch: " + user.get("Branch"));
+                    if (user.get("Branch") != null) {
+                        if (user.get("Branch").toString().toLowerCase().contains(bn.toLowerCase())) {
+                            Log.i(TAG, "checkadi u onSuccess: mainact userID match" + user.get("UserId"));
+                            temp.add(Objects.requireNonNull(user.get("UserId")).toString());
+                        }
+                    }
+                }
+                temp2 = getBookIdPerUser(temp);
+            }
+        });
+
+        return temp2;
+    }
+
+    private List<String> getBookIdPerUser(final List<String> uIDB) {
+
+        temp3 = new ArrayList<>();
+        Log.i(TAG, "getBookIdPerUser: checkadi entered book");
+        bookcollectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot book : queryDocumentSnapshots) {
+                    Book item = book.toObject(Book.class);
+                    for (String uID : uIDB) {
+                        if (item.getUserId().equals(uID)) {
+                            Log.i(TAG, "checkadi b onSuccess: userID match : " + book.get("userID"));
+                            Log.i(TAG, "checkadi b onSuccess: bookID: " + book.getId());
+                            temp3.add(book.getId());
+                        }
+                    }
+                }
+            }
+        });
+
+        return temp3;
+    }
+*/
 
     @Override
     public void onBackPressed() {
