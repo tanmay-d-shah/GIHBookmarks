@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-    @Override
+    @Override//tanmay
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login_button:
