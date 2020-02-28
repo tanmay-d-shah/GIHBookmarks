@@ -3,8 +3,18 @@ package com.tds.gihbookmarks.HomePageFragments;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -17,7 +27,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.StorageReference;
 import com.tds.gihbookmarks.MainActivity;
 import com.tds.gihbookmarks.R;
-
 import com.tds.gihbookmarks.StaggeredRecyclerViewAdapter;
 import com.tds.gihbookmarks.model.Book;
 import com.tds.gihbookmarks.model.SaleItems;
@@ -25,39 +34,30 @@ import com.tds.gihbookmarks.model.SaleItems;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-import androidx.viewpager.widget.ViewPager;
-
 
 public class BooksFragment extends Fragment {
     private RecyclerView bookRecyclerView;
 //    private ArrayList<String> mName;
 
+    private static final String TAG = "BooksFragment";
+
     private List<SaleItems> saleItemsList;
-//    private ArrayList<String> mImageUrls;
+    //    private ArrayList<String> mImageUrls;
     private StaggeredRecyclerViewAdapter staggeredRecyclerViewAdapter;
     private View view;
-    private int NUM_COLUMNS=2;
+    private int NUM_COLUMNS = 2;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
-    private FirebaseFirestore db=FirebaseFirestore.getInstance();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseUser user;
     private StorageReference storageReference;
-    private CollectionReference collectionReference=db.collection("SaleItems");
+    private CollectionReference collectionReference = db.collection("SaleItems");
 
 
     public BooksFragment() {
         // Required empty public constructor
     }
-
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,13 +66,15 @@ public class BooksFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_books, container, false);
         ViewPager viewPager = view.findViewById(R.id.viewpager);
-        saleItemsList=new ArrayList<>();
-        bookRecyclerView= (RecyclerView)view.findViewById(R.id.recyclerView);
+        saleItemsList = new ArrayList<>();
+        bookRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         //StaggeredRecyclerViewAdapter staggeredRecyclerViewAdapter= new StaggeredRecyclerViewAdapter(getContext(),bookList);
-        StaggeredGridLayoutManager staggeredGridLayoutManager= new StaggeredGridLayoutManager(NUM_COLUMNS, LinearLayoutManager.VERTICAL);
+        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(NUM_COLUMNS, LinearLayoutManager.VERTICAL);
         //bookRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         bookRecyclerView.setLayoutManager(staggeredGridLayoutManager);
         bookRecyclerView.setAdapter(staggeredRecyclerViewAdapter);
+
+        setHasOptionsMenu(true);
 
         return view;
     }
@@ -80,29 +82,8 @@ public class BooksFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        firebaseAuth=FirebaseAuth.getInstance();
-        user=firebaseAuth.getCurrentUser();
-
-//        collectionReference
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if(task.isSuccessful()){
-//                            for(QueryDocumentSnapshot books:task.getResult()){
-//                                Book book=books.toObject(Book.class);
-//                                book.setBookId(books.getId());
-//                                bookList.add(book);
-//
-//                            }
-//                            staggeredRecyclerViewAdapter=new StaggeredRecyclerViewAdapter(getContext(),bookList);
-//                            bookRecyclerView.setAdapter(staggeredRecyclerViewAdapter);
-//                            staggeredRecyclerViewAdapter.notifyDataSetChanged();
-//                        }
-//                    }
-//                });
-
-
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
 
 //        mName= new ArrayList<>();
 //        mImageUrls=new ArrayList<>();
@@ -136,35 +117,52 @@ public class BooksFragment extends Fragment {
 //
 //        mImageUrls.add("https://i.imgur.com/ZcLLrkY.jpg");
 //        mName.add("Washington");
-        collectionReference
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
-                            for(QueryDocumentSnapshot books:task.getResult()){
-                                SaleItems items=books.toObject(SaleItems.class);
-                                if(items.getItem().equals("Book") && items.getStatus().equals("Available")){
-                                    saleItemsList.add(items);
-                                }
-//                                items.setBookId(books.getId());
-
-
-                            }
-                            Log.d("Restart", "onComplete: Books Restarted");
-                            Log.d("hi", "onComplete: Hi");
-                            staggeredRecyclerViewAdapter=new StaggeredRecyclerViewAdapter(getContext(),saleItemsList);
-
-                            bookRecyclerView.setAdapter(staggeredRecyclerViewAdapter);
-                            staggeredRecyclerViewAdapter.notifyDataSetChanged();
+        collectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot books : task.getResult()) {
+                        SaleItems items = books.toObject(SaleItems.class);
+                        if (items.getItem().equals("Book") && items.getStatus().equals("Available")) {
+                            saleItemsList.add(items);
                         }
+//                                items.setBookId(books.getId());
                     }
-                });
+                    Log.d("Restart", "onComplete: Books Restarted");
+                    Log.d("hi", "onComplete: Hi");
+                    staggeredRecyclerViewAdapter = new StaggeredRecyclerViewAdapter(getContext(), saleItemsList);
+
+                    bookRecyclerView.setAdapter(staggeredRecyclerViewAdapter);
+                    staggeredRecyclerViewAdapter.notifyDataSetChanged();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setOnQueryTextListener(null);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                staggeredRecyclerViewAdapter.getFilter().filter(newText);
+                return false;
+            }
+
+        });
+
+        super.onPrepareOptionsMenu(menu);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-
     }
 }

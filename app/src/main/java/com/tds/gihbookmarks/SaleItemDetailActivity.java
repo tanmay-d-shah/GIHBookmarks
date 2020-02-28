@@ -11,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
@@ -23,7 +26,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 import com.tds.gihbookmarks.model.Book;
-import com.tds.gihbookmarks.model.RequestedItem;
 import com.tds.gihbookmarks.model.SaleItems;
 
 import java.util.Date;
@@ -47,31 +49,26 @@ public class SaleItemDetailActivity extends AppCompatActivity {
     private String currentUserId;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseUser user;
-    private FirebaseFirestore db=FirebaseFirestore.getInstance();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private StorageReference storageReference;
-    private CollectionReference collectionReference=db.collection("Books");
-    private CollectionReference saleItemCollectionReference=db.collection("SaleItems");
-    private CollectionReference requestedItemCollectionReference=db.collection("RequestedItems");
-
-
-
-
+    private CollectionReference collectionReference = db.collection("Books");
+    private CollectionReference saleItemCollectionReference = db.collection("SaleItems");
+    private CollectionReference requestedItemCollectionReference = db.collection("RequestedItems");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sale_item_detail);
 
-        firebaseAuth=FirebaseAuth.getInstance();
-        user=firebaseAuth.getCurrentUser();
-        currentUserId=user.getUid();
-        storageReference= FirebaseStorage.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+        currentUserId = user.getUid();
+        storageReference = FirebaseStorage.getInstance().getReference();
 
-        bookImage=findViewById(R.id.book_image);
+        bookImage = findViewById(R.id.book_image);
 
-        requestButton=findViewById(R.id.book_request_button);
+        requestButton = findViewById(R.id.book_request_button);
 
         bookAuthor=findViewById(R.id.book_writer);
         bookName=findViewById(R.id.book_name);
@@ -85,26 +82,24 @@ public class SaleItemDetailActivity extends AppCompatActivity {
         sellerRating=findViewById(R.id.seller_rating);
 
 
-        authStateListener=new FirebaseAuth.AuthStateListener() {
+        authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                user=firebaseAuth.getCurrentUser();
+                user = firebaseAuth.getCurrentUser();
             }
         };
 
 
-
-        final Book book=(Book) getIntent().getParcelableExtra("book_parcel");
-        final SaleItems saleItems =(SaleItems)getIntent().getParcelableExtra("sale_item_parcel");
+        final Book book = (Book) getIntent().getParcelableExtra("book_parcel");
+        final SaleItems saleItems = (SaleItems) getIntent().getParcelableExtra("sale_item_parcel");
         sellerName.setText(Objects.requireNonNull(getIntent().getStringExtra("seller_name")));
 
         sellerMobileNo.setText(Objects.requireNonNull(getIntent().getStringExtra("seller_mobile")));
-        Log.d("seller_check", "onCreate: "+sellerMobileNo.getText());
-
+        Log.d("seller_check", "onCreate: " + sellerMobileNo.getText());
 
 
         String imageUrl;
-        imageUrl=book.getImageUrl1();
+        imageUrl = book.getImageUrl1();
         Picasso.get()
                 .load(imageUrl)
                 .placeholder(R.drawable.ic_launcher_background)
@@ -127,7 +122,7 @@ public class SaleItemDetailActivity extends AppCompatActivity {
         requestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RequestedItem requetedItem=new RequestedItem();
+                RequetedItem requetedItem = new RequetedItem();
                 requetedItem.setBuyerId(currentUserId);
                 requetedItem.setItem(saleItems.getItem());
                 requetedItem.setItemCode(saleItems.getItemCode());
@@ -138,15 +133,12 @@ public class SaleItemDetailActivity extends AppCompatActivity {
                         .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                             @Override
                             public void onComplete(@NonNull Task<DocumentReference> task) {
-                                Toast.makeText(getApplicationContext(),"Item Requested to User",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Item Requested to User", Toast.LENGTH_SHORT).show();
                             }
                         });
             }
         });
 
-
-
-
-        Log.d("Book Obj Transfered", "onCreate: "+book.getTitle());
+        Log.d("Book Obj Transfered", "onCreate: " + book.getTitle());
     }
 }

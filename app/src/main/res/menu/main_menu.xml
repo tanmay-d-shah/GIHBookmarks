@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText">
 
     <item
         android:id="@+id/action_search"
-        android:icon="@drawable/ic_search_black_24dp"
+        android:icon="@drawable/ic_search"
         android:title="Search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:showAsAction="always|collapseActionView"
-        tools:ignore="HardcodedText" />
+        app:showAsAction="always|collapseActionView" />
+
+    <item
+        android:id="@+id/dots"
+        android:icon="@drawable/ic_more_vert_black_24dp"
+        android:title="three dots"
+        app:showAsAction="ifRoom">
+
+        <item
+            android:id="@+id/branch"
+            android:title="Branch"
+            app:showAsAction="never">
+            <menu>
+                <item
+                    android:id="@+id/comp"
+                    android:title="Computer" />
+                <item
+                    android:id="@+id/it"
+                    android:title="IT" />
+
+                <item
+                    android:id="@+id/mech"
+                    android:title="Mechanical" />
+
+                <item
+                    android:id="@+id/civil"
+                    android:title="Civil" />
+
+                <item
+                    android:id="@+id/elec"
+                    android:title="Electrical" />
+            </menu>
+
+        </item>
+    </item>
 
 </menu>

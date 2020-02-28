@@ -59,7 +59,6 @@ public class ToolsFragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
 
-
         collectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -113,7 +112,6 @@ public class ToolsFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-//                queryFor = "tools";
                 staggeredRecyclerViewAdapter.getFilter().filter(newText);
                 return false;
             }
@@ -127,5 +125,4 @@ public class ToolsFragment extends Fragment {
     public void onStart() {
         super.onStart();
     }
-
 }

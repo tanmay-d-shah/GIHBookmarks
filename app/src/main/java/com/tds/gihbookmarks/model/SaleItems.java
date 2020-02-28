@@ -160,7 +160,6 @@ public class SaleItems implements Parcelable {
         dest.writeString(Intention);
 
 
-
     }
 }
 
