@@ -99,12 +99,14 @@ public class StudyMaterialFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (staggeredRecyclerViewAdapter != null) {
+                if(staggeredRecyclerViewAdapter!=null) {
                     staggeredRecyclerViewAdapter.getFilter().filter(newText);
                 }
                 return false;
             }
+
         });
+
         super.onPrepareOptionsMenu(menu);
     }
 
@@ -117,7 +119,7 @@ public class StudyMaterialFragment extends Fragment {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot books : task.getResult()) {
                         SaleItems items = books.toObject(SaleItems.class);
-                        if (items.getItem().equals("Tool") && items.getStatus().equals("Available")) {
+                        if (items.getItem() == "Tool" && items.getStatus() == "Available") {
                             saleItemsList.add(items);
                         }
 //                                items.setBookId(books.getId());

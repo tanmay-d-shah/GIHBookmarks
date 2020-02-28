@@ -1,12 +1,15 @@
 package com.tds.gihbookmarks;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -22,6 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
+import com.tds.gihbookmarks.model.RequestedItem;
 import com.tds.gihbookmarks.model.SaleItems;
 
 import java.util.List;
@@ -29,6 +33,7 @@ import java.util.List;
 public class AcceptedRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter<AcceptedRequestedItem_RecyclerViewAdapter.ViewHolder> {
 
     private List<SaleItems> saleItemsList;
+    private List<RequestedItem>requestedItemList;
     private Context mContext;
 
     private AlertDialog.Builder builder;
@@ -46,9 +51,10 @@ public class AcceptedRequestedItem_RecyclerViewAdapter extends RecyclerView.Adap
     private CollectionReference saleItemsCollectionReference=db.collection("SaleItems");
     private CollectionReference acceptedItemCollectionReference=db.collection("AcceptedItems");
 
-    public AcceptedRequestedItem_RecyclerViewAdapter(List<SaleItems> saleItemsList, Context mContext) {
+    public AcceptedRequestedItem_RecyclerViewAdapter(List<SaleItems> saleItemsList,List<RequestedItem> requestedItemList, Context mContext) {
         this.saleItemsList = saleItemsList;
         this.mContext = mContext;
+        this.requestedItemList=requestedItemList;
     }
     @NonNull
     @Override
@@ -63,6 +69,7 @@ public class AcceptedRequestedItem_RecyclerViewAdapter extends RecyclerView.Adap
         user = firebaseAuth.getCurrentUser();
         final AcceptedRequestedItem_RecyclerViewAdapter.ViewHolder newHolder = holder;
         final SaleItems saleItems = saleItemsList.get(position);
+        final RequestedItem requestedItem=requestedItemList.get(position);
 
         String imageUrl;
         imageUrl = saleItems.getImageUrl();
@@ -117,6 +124,53 @@ public class AcceptedRequestedItem_RecyclerViewAdapter extends RecyclerView.Adap
             }
 
             private void delivered() {
+
+                android.app.AlertDialog.Builder builder=new android.app.AlertDialog.Builder(mContext);
+                LayoutInflater inflater =LayoutInflater.from(mContext);
+                View diloglayout=inflater.inflate(R.layout.alert_dialog_with_ratingbar,null);
+                final RatingBar ratingbar=diloglayout.findViewById(R.id.ratingbar);
+                builder.setView(diloglayout);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        final float rates =ratingbar.getRating();
+                        buyerCollectionReference
+                                .whereEqualTo("UserId",requestedItem.getBuyerId())
+                                .get()
+                                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                        for(QueryDocumentSnapshot user:queryDocumentSnapshots){
+                                            float buyerRating=Float.parseFloat(user.get("BuyerRating").toString());
+                                            float n=Float.parseFloat(user.get("n").toString());
+                                            buyerRating=(rates+buyerRating)/(n+1);
+
+                                            buyerCollectionReference.document(user.getId()).update("SellerRating",buyerRating);
+                                            buyerCollectionReference.document(user.getId()).update("n",(n+1));
+
+                                        }
+                                    }
+                                });
+                        Toast.makeText(mContext, "Rating is"+ratingbar.getRating(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+                android.app.AlertDialog alert = builder.create();
+                alert.show();
+
+                requestedItemsCollectionReference
+                        .whereEqualTo("buyerId",requestedItem.getBuyerId())
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                for(QueryDocumentSnapshot item:queryDocumentSnapshots){
+                                    if(item.get("sellerId").toString().equals(requestedItem.getSellerId())){
+                                        requestedItemsCollectionReference.document(item.getId()).update("status","delivered");
+                                    }
+                                }
+                            }
+                        });
 
 
 

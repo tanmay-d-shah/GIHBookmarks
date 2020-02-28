@@ -91,14 +91,16 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
                 .into(holder.image);
         holder.itemDesc.setText(saleItems.getDesc());
         holder.itemName.setText(saleItems.getItem());
-        holder.itemStatus.setText(saleItems.getStatus());
+        holder.itemStatus.setText(requestedItem.getStatus());
 
-//        if(requestedItem.getStatus().equals("requested")){
-//            holder.review.setEnabled(false);
-//            holder.returnBook.setEnabled(false);
+        if(!requestedItem.getStatus().equals("delivered")){
+            holder.review.setEnabled(false);
+            holder.returnBook.setEnabled(false);
 
 
-//        }
+        }
+
+
 
 
 
@@ -131,7 +133,8 @@ public class  YourRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
                                             float n=Float.parseFloat(user.get("n").toString());
                                             sellerRating=(rates+sellerRating)/(n+1);
 
-                                            sellerCollectionReference.document(user.getId()).update("sellerRating",sellerRating);
+                                            sellerCollectionReference.document(user.getId()).update("SellerRating",sellerRating);
+                                            sellerCollectionReference.document(user.getId()).update("n",(n+1));
 
                                         }
                                     }

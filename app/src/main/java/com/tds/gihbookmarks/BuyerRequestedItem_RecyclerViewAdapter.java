@@ -24,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
+import com.tds.gihbookmarks.model.RequestedItem;
 import com.tds.gihbookmarks.model.SaleItems;
 
 import java.util.List;
@@ -31,6 +32,7 @@ import java.util.List;
 public class BuyerRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter<BuyerRequestedItem_RecyclerViewAdapter.ViewHolder> {
 
     private List<SaleItems> saleItemsList;
+    private List<RequestedItem> requestedItemList;
     private Context mContext;
 
     private AlertDialog.Builder builder;
@@ -54,8 +56,9 @@ public class BuyerRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
     private CollectionReference saleItemsCollectionReference=db.collection("SaleItems");
     private CollectionReference acceptedItemCollectionReference=db.collection("AcceptedItems");
 
-    public BuyerRequestedItem_RecyclerViewAdapter(List<SaleItems> saleItemsList, Context mContext) {
+    public BuyerRequestedItem_RecyclerViewAdapter(List<SaleItems> saleItemsList, List<RequestedItem>requestedItemList, Context mContext) {
         this.saleItemsList = saleItemsList;
+        this.requestedItemList=requestedItemList;
         this.mContext = mContext;
     }
 
@@ -81,9 +84,19 @@ public class BuyerRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
                 .placeholder(R.drawable.ic_launcher_background)
                 .fit()
                 .into(holder.image);
-
+        RequestedItem requestedItem=requestedItemList.get(position);
         holder.desc.setText(saleItems.getDesc());
-        holder.requestedDate.setText(saleItems.getDateAdded().toString());
+        buyerCollectionReference.whereEqualTo("UserId",requestedItem.getBuyerId())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for(QueryDocumentSnapshot user:queryDocumentSnapshots){
+                            holder.requestedDate.setText(user.get("BuyerRating").toString());
+                        }
+                    }
+                });
+
 
         requestedItemsCollectionReference
                 .whereEqualTo("itemCode",saleItems.getItemCode())
@@ -139,7 +152,7 @@ public class BuyerRequestedItem_RecyclerViewAdapter extends RecyclerView.Adapter
                                     if(document.get("itemCode").equals(saleItems.getItemCode())){
                                         requestedItemsCollectionReference.document(document.getId()).update("status","accepted");
                                         Log.d("check5", "onSuccess: Request Accepted");
-                                        Toast.makeText(mContext,"Request Rejected",Toast.LENGTH_LONG).show();
+                                        Toast.makeText(mContext,"Request Accepted",Toast.LENGTH_LONG).show();
 
                                     }
                                 }
