@@ -107,11 +107,11 @@ public class BookSellFragment extends Fragment {
         bookSellTitle = (EditText) getView().findViewById(R.id.etTitle);
         bookRentButton=(Button)getView().findViewById(R.id.btn_rent);
 
-        bookRentButton.setOnClickListener(new View.OnClickListener() {
+        /*ookRentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent intent=new Intent(getActivity(),BookRentDateActivity.class);
-                startActivity(intent);*/
+                *//*Intent intent=new Intent(getActivity(),BookRentDateActivity.class);
+                startActivity(intent);*//*
                 Calendar cal=Calendar.getInstance();
                 int year=cal.get(Calendar.YEAR);
                 int month=cal.get(Calendar.MONTH);
@@ -131,7 +131,7 @@ public class BookSellFragment extends Fragment {
                 String date=day + "/" + month + "/" + year;
                 Toast.makeText(getContext(),"Your book is added for rent till date: "+date.toString(),Toast.LENGTH_SHORT).show();
             }
-        };
+        };*/
 
         bookSellImage.setOnClickListener(new View.OnClickListener() {
             @Override
