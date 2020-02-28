@@ -116,12 +116,12 @@ public class ToolSellFragment extends Fragment {
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
 
-        btn_rent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(getActivity(), BookRentDateActivity.class);
-                startActivity(intent);
-               /* Calendar cal=Calendar.getInstance();
+        /*btn_rent.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                *//*Intent intent=new Intent(getActivity(), BookRentDateActivity.class);
+                startActivity(intent);*//*
+                Calendar cal=Calendar.getInstance();
                 int year=cal.get(Calendar.YEAR);
                 int month=cal.get(Calendar.MONTH);
                 int day=cal.get(Calendar.DAY_OF_MONTH);
@@ -129,7 +129,7 @@ public class ToolSellFragment extends Fragment {
                 DatePickerDialog datePickerDialog=new DatePickerDialog(getContext(),
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,mDataSetListner,year,month,day);
                 datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                datePickerDialog.show();*/
+                datePickerDialog.show();
             }
         });
 
@@ -140,136 +140,137 @@ public class ToolSellFragment extends Fragment {
                 String date=day + "/" + month + "/" + year;
                 Toast.makeText(getContext(),"Your tool is added for rent till date: "+date.toString(),Toast.LENGTH_SHORT).show();
             }
-        };
+        };*/
 
-        imgTools.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent GalleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
-                GalleryIntent.setType("image/*");
-                startActivityForResult(GalleryIntent, GALLERY_CODE);
-            }
-        });
+                                            imgTools.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    Intent GalleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                                                    GalleryIntent.setType("image/*");
+                                                    startActivityForResult(GalleryIntent, GALLERY_CODE);
+                                                }
+                                            });
 
-        btn_sell.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String itemName=spinner.getSelectedItem().toString();
-                final String itemDesc= String.valueOf(desc.getText());
-                final String itemPrice= String.valueOf(price.getText());
+                                            btn_sell.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    final String itemName = spinner.getSelectedItem().toString();
+                                                    final String itemDesc = String.valueOf(desc.getText());
+                                                    final String itemPrice = String.valueOf(price.getText());
 
-                if(!TextUtils.isEmpty(itemName)
-                        &&!TextUtils.isEmpty(itemDesc)
-                        && !TextUtils.isEmpty(itemPrice)
-                        &&img!=null){
-                    userCollectionReference.whereEqualTo("UserId", user.getUid())
-                            .get()
-                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                    if (task.isSuccessful()) {
-                                        for (QueryDocumentSnapshot document : task.getResult()) {
-                                            userCity = (String) document.get("City");
+                                                    if (!TextUtils.isEmpty(itemName)
+                                                            && !TextUtils.isEmpty(itemDesc)
+                                                            && !TextUtils.isEmpty(itemPrice)
+                                                            && img != null) {
+                                                        userCollectionReference.whereEqualTo("UserId", user.getUid())
+                                                                .get()
+                                                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                                    @Override
+                                                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                                        if (task.isSuccessful()) {
+                                                                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                                                                userCity = (String) document.get("City");
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                });
+
+                                                        final StorageReference filepath = storageReference
+                                                                .child("tool_images")
+                                                                .child("image" + Timestamp.now().getSeconds());
+                                                        filepath.putFile(img)
+                                                                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                                                    @Override
+                                                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                                                        filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                                            @Override
+                                                                            public void onSuccess(Uri uri) {
+                                                                                final String imageUrl = uri.toString();
+                                                                                Tool tool = new Tool();
+                                                                                tool.setImageURL(imageUrl);
+                                                                                tool.setTitle(itemName);
+                                                                                tool.setPrice(itemPrice);
+
+                                                                                tool.setUserId(currentUserId);
+                                                                                tool.setDateAdded(new Timestamp(new Date()));
+
+
+                                                                                collectionReference.add(tool)
+                                                                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                                                            @Override
+                                                                                            public void onSuccess(DocumentReference documentReference) {
+
+                                                                                                SaleItems item = new SaleItems();
+                                                                                                item.setCity(userCity);
+                                                                                                item.setDateAdded(new Timestamp(new Date()));
+                                                                                                item.setDesc(itemDesc);
+                                                                                                item.setItem("Tool");
+                                                                                                item.setPrice(itemPrice);
+                                                                                                item.setImageUrl(imageUrl);
+                                                                                                item.setSellerId(user.getUid());
+                                                                                                item.setItemCode(documentReference.getId());
+                                                                                                item.setStatus("Available");
+                                                                                                item.setIntention("Intention");
+
+                                                                                                saleItemCollectionReference.add(item)
+                                                                                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                                                                            @Override
+                                                                                                            public void onSuccess(DocumentReference documentReference) {
+                                                                                                                startActivity(new Intent(getActivity(), MainActivity.class));
+                                                                                                                // finish();//*
+                                                                                                            }
+                                                                                                        })
+                                                                                                        .addOnFailureListener(new OnFailureListener() {
+                                                                                                            @Override
+                                                                                                            public void onFailure(@NonNull Exception e) {
+                                                                                                                Log.d("PostBookActivity", "onFailure: Failed to add in saleitems");
+                                                                                                            }
+                                                                                                        });
+
+
+                                                                                            }
+                                                                                        })
+                                                                                        .addOnFailureListener(new OnFailureListener() {
+                                                                                            @Override
+                                                                                            public void onFailure(@NonNull Exception e) {
+                                                                                                Log.d("PostBookActivity", "onFailure: " + e.getMessage());
+                                                                                            }
+                                                                                        });
+
+
+                                                                            }
+                                                                        });
+                                                                    }
+                                                                })
+                                                                .addOnFailureListener(new OnFailureListener() {
+                                                                    @Override
+                                                                    public void onFailure(@NonNull Exception e) {
+                                                                        Log.d("PostBookActivity", "onFailure: " + e.getMessage());
+                                                                    }
+                                                                });
+                                                    } else {
+                                                        Snackbar.make(getView().findViewById(R.id.tool_sell_form), "Empty Fields", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                                    }
+                                                }
+                                            });
+
+                                        }
+
+                                        @Override
+                                        public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+                                            super.onActivityResult(requestCode, resultCode, data);
+                                            if (requestCode == GALLERY_CODE && resultCode == RESULT_OK) {
+                                                if (data != null) {
+                                                    img = data.getData();
+                                                    imgTools.setImageURI(img);
+                                                }
+                                            }
+
                                         }
                                     }
-                                }
-                            });
-
-                    final StorageReference filepath = storageReference
-                            .child("tool_images")
-                            .child("image" + Timestamp.now().getSeconds());
-                    filepath.putFile(img)
-                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                @Override
-                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                        @Override
-                                        public void onSuccess(Uri uri) {
-                                            final String imageUrl = uri.toString();
-                                            Tool tool=new Tool();
-                                            tool.setImageURL(imageUrl);
-                                            tool.setTitle(itemName);
-                                            tool.setPrice(itemPrice);
-
-                                            tool.setUserId(currentUserId);
-                                            tool.setDateAdded(new Timestamp(new Date()));
 
 
-                                            collectionReference.add(tool)
-                                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                                        @Override
-                                                        public void onSuccess(DocumentReference documentReference) {
-
-                                                            SaleItems item = new SaleItems();
-                                                            item.setCity(userCity);
-                                                            item.setDateAdded(new Timestamp(new Date()));
-                                                            item.setDesc(itemDesc);
-                                                            item.setItem("Tool");
-                                                            item.setPrice(itemPrice);
-                                                            item.setImageUrl(imageUrl);
-                                                            item.setSellerId(user.getUid());
-                                                            item.setItemCode(documentReference.getId());
-                                                            item.setStatus("Available");
-                                                            item.setIntention("Intention");
-
-                                                            saleItemCollectionReference.add(item)
-                                                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                                                        @Override
-                                                                        public void onSuccess(DocumentReference documentReference) {
-                                                                            startActivity(new Intent(getActivity(), MainActivity.class));
-                                                                            // finish();//*
-                                                                        }
-                                                                    })
-                                                                    .addOnFailureListener(new OnFailureListener() {
-                                                                        @Override
-                                                                        public void onFailure(@NonNull Exception e) {
-                                                                            Log.d("PostBookActivity", "onFailure: Failed to add in saleitems");
-                                                                        }
-                                                                    });
-
-
-                                                        }
-                                                    })
-                                                    .addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception e) {
-                                                            Log.d("PostBookActivity", "onFailure: " + e.getMessage());
-                                                        }
-                                                    });
-
-
-                                        }
-                                    });
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.d("PostBookActivity", "onFailure: " + e.getMessage());
-                                }
-                            });
-                }
-                else {
-                    Snackbar.make(getView().findViewById(R.id.tool_sell_form), "Empty Fields", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                }
-            }
-        });
-
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == GALLERY_CODE && resultCode == RESULT_OK) {
-            if (data != null) {
-                img = data.getData();
-                imgTools.setImageURI(img);
-            }
-        }
-
-    }
     /*@Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Toast.makeText(getContext(),"clicked",Toast.LENGTH_SHORT).show();
     }*/
-}
