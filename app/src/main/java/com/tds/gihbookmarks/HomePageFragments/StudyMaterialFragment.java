@@ -99,8 +99,9 @@ public class StudyMaterialFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-//                queryFor = "materials";
-                staggeredRecyclerViewAdapter.getFilter().filter(newText);
+                if(staggeredRecyclerViewAdapter!=null) {
+                    staggeredRecyclerViewAdapter.getFilter().filter(newText);
+                }
                 return false;
             }
 
