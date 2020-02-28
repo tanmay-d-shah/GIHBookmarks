@@ -124,14 +124,14 @@
             android:textSize="10dp" />
         <LinearLayout
             android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
             android:background="@android:drawable/bottom_bar"
-            android:paddingLeft="4.0dip"
-            android:paddingTop="5.0dip"
             android:backgroundTint="#FFF"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:paddingRight="4.0dip"
             android:paddingBottom="1.0dip"
-            android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/asking">
 
         <Button
@@ -145,6 +145,7 @@
             android:paddingLeft="40dp"
             android:paddingRight="40dp"
             android:text="Verify"
+            android:layout_marginBottom="10dp"
             android:textColor="@color/layoutcolor"
             android:textSize="10dp" />
 
@@ -161,6 +162,7 @@
             android:background="@drawable/rounded_button"
             android:gravity="center"
             android:paddingLeft="40dp"
+            android:layout_marginBottom="10dp"
             android:paddingRight="40dp"
             android:text="Resend"
             android:textColor="@color/layoutcolor"
