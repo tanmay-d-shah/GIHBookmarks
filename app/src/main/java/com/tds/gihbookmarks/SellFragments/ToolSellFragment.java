@@ -119,9 +119,9 @@ public class ToolSellFragment extends Fragment {
         btn_rent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent intent=new Intent(getActivity(),BookRentDateActivity.class);
-                startActivity(intent);*/
-                Calendar cal=Calendar.getInstance();
+                Intent intent=new Intent(getActivity(), BookRentDateActivity.class);
+                startActivity(intent);
+               /* Calendar cal=Calendar.getInstance();
                 int year=cal.get(Calendar.YEAR);
                 int month=cal.get(Calendar.MONTH);
                 int day=cal.get(Calendar.DAY_OF_MONTH);
@@ -129,7 +129,7 @@ public class ToolSellFragment extends Fragment {
                 DatePickerDialog datePickerDialog=new DatePickerDialog(getContext(),
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,mDataSetListner,year,month,day);
                 datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                datePickerDialog.show();
+                datePickerDialog.show();*/
             }
         });
 
