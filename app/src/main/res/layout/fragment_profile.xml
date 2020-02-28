@@ -109,7 +109,7 @@
                        android:id="@+id/email"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
-                       android:inputType="text"
+                       android:inputType="textEmailAddress"
                        android:enabled="false"
                        >
                    </com.google.android.material.textfield.TextInputEditText>
@@ -149,6 +149,7 @@
                    android:layout_marginTop="20dp"
                    android:layout_marginStart="3dp"
                    android:hint="phone number"
+                   app:counterMaxLength="10"
                    app:boxStrokeColor="@color/colorPrimaryDark">
 
 
@@ -197,6 +198,7 @@
                    android:layout_marginTop="20dp"
                    android:layout_marginStart="3dp"
                    android:hint="Semester"
+                   app:counterMaxLength="1"
                    app:boxStrokeColor="@color/colorPrimaryDark">
 
 
@@ -221,6 +223,7 @@
                    android:layout_below="@id/semester1"
                    android:layout_marginTop="20dp"
                    android:hint="Branch"
+                   app:counterMaxLength="1"
                    android:layout_marginStart="3dp"
                    app:boxStrokeColor="@color/colorPrimaryDark">
 
@@ -244,6 +247,7 @@
                    android:layout_marginTop="20dp"
                    android:hint="Enrollment number"
                    android:layout_marginStart="3dp"
+                   app:counterMaxLength="12"
                    app:boxStrokeColor="@color/colorPrimaryDark">
 
 
