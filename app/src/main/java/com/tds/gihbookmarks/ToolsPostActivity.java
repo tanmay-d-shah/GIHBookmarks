@@ -71,7 +71,6 @@ public class ToolsPostActivity extends AppCompatActivity implements AdapterView.
         firebaseAuth = FirebaseAuth.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
 
-
         toolSpinner = findViewById(R.id.stationary_spinner);
 
         priceText = findViewById(R.id.item_price);
@@ -131,13 +130,11 @@ public class ToolsPostActivity extends AppCompatActivity implements AdapterView.
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         stationarySelected = users[position];
-
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         stationarySelected = users[0];
-
     }
 
     @Override

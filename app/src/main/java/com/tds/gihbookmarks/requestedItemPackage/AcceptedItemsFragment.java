@@ -207,7 +207,7 @@ public class AcceptedItemsFragment extends Fragment {
                             public void run() {
                                 Log.d("buyer", "onSuccess: setting adapter");
                                 acceptedItemsRequestedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                                acceptedRequestedItem_recyclerViewAdapter= new AcceptedRequestedItem_RecyclerViewAdapter(saleItemsList, getContext());
+                                acceptedRequestedItem_recyclerViewAdapter= new AcceptedRequestedItem_RecyclerViewAdapter(saleItemsList,acceptedRequestedItemList, getContext());
 
                                 acceptedItemsRequestedRecyclerView.setAdapter(acceptedRequestedItem_recyclerViewAdapter);
                                 acceptedRequestedItem_recyclerViewAdapter.notifyDataSetChanged();

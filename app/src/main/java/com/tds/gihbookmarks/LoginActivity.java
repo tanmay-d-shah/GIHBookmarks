@@ -30,9 +30,9 @@ import com.tds.gihbookmarks.util.UserApi;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
-    private FirebaseFirestore db=FirebaseFirestore.getInstance();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseUser currentUser;
-    private CollectionReference collectionReference=db.collection("Users");
+    private CollectionReference collectionReference = db.collection("Users");
     private EditText loginEmail;
     private EditText loginPass;
     private Button loginButton;
@@ -43,33 +43,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        loginEmail=findViewById(R.id.login_emailid);
-        loginPass=findViewById(R.id.login_password);
-        loginButton=findViewById(R.id.login_button);
-        loginSignUp=findViewById(R.id.login_sign_up);
+        loginEmail = findViewById(R.id.login_emailid);
+        loginPass = findViewById(R.id.login_password);
+        loginButton = findViewById(R.id.login_button);
+        loginSignUp = findViewById(R.id.login_sign_up);
 
         loginButton.setOnClickListener(this);
         loginSignUp.setOnClickListener(this);
 
-        firebaseAuth  = FirebaseAuth.getInstance();
-        authStateListener=new FirebaseAuth.AuthStateListener() {
+        firebaseAuth = FirebaseAuth.getInstance();
+        authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                currentUser=firebaseAuth.getCurrentUser();
-                if(currentUser!=null){
+                currentUser = firebaseAuth.getCurrentUser();
+                if (currentUser != null) {
                     Log.d("Check3", "onAuthStateChanged: Got current user");
-                    startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
-
-
-                }
-                else{
-
                 }
             }
         };
     }
-
 
     @Override//tanmay
     public void onClick(View v) {
@@ -108,10 +102,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                                         userApi.setUserMobile(snapshot.getString("Mobile"));
 
                                                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                                        Log.d("Login", "onEvent: "+userApi.getUserMobile());
+                                                        Log.d("Login", "onEvent: " + userApi.getUserMobile());
                                                         finish();
                                                     }
-
 
 
                                                 }
@@ -139,14 +132,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onStart() {
         super.onStart();
-        currentUser=firebaseAuth.getCurrentUser();
+        currentUser = firebaseAuth.getCurrentUser();
         firebaseAuth.addAuthStateListener(authStateListener);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        if(firebaseAuth!=null){
+        if (firebaseAuth != null) {
             firebaseAuth.removeAuthStateListener(authStateListener);
         }
     }

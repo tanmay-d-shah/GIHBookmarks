@@ -15,6 +15,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+import com.tds.gihbookmarks.MainActivity;
 import com.tds.gihbookmarks.PageAdapter_HomePage;
 import com.tds.gihbookmarks.R;
 import com.tds.gihbookmarks.SellAllActivity;
@@ -69,7 +70,6 @@ public class HomeFragment extends Fragment {
             Log.i("Khyati1234", e.toString());
         }
 
-
         /*tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -98,8 +98,6 @@ public class HomeFragment extends Fragment {
         });
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));*/
-
-
         return view;
     }
 

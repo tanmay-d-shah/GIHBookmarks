@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -59,37 +62,37 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });*/
 
-        firebaseAuth=FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 
-        name=findViewById(R.id.name);
-        password=findViewById(R.id.password);
-        email=findViewById(R.id.email);
-        phone=findViewById(R.id.phone_number);
-        designation=findViewById(R.id.designation);
-        college=findViewById(R.id.college);
-        branch=findViewById(R.id.branch);
-        semester=findViewById(R.id.semester);
-        enrollment=findViewById(R.id.enrollment);
-        city=findViewById(R.id.address);
-        signUpButton=findViewById(R.id.signup_button);
+        name = findViewById(R.id.name);
+        password = findViewById(R.id.password);
+        email = findViewById(R.id.email);
+        phone = findViewById(R.id.phone_number);
+        designation = findViewById(R.id.designation);
+        college = findViewById(R.id.college);
+        branch = findViewById(R.id.branch);
+        semester = findViewById(R.id.semester);
+        enrollment = findViewById(R.id.enrollment);
+        city = findViewById(R.id.address);
+        signUpButton = findViewById(R.id.signup_button);
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username=name.getText().toString().trim();
-                String userpassword=password.getText().toString().trim();
-                String useremail=email.getText().toString().trim();
-                String userphone=phone.getText().toString().trim();
-                String userdesignation=designation.getText().toString().trim();
-                String usercollege=college.getText().toString().trim();
-                String userbranch=branch.getText().toString().trim();
-                String usersemester=semester.getText().toString().trim();
-                String userenrollment=enrollment.getText().toString().trim();
-                String usercity=city.getText().toString().trim();
+                String username = name.getText().toString().trim();
+                String userpassword = password.getText().toString().trim();
+                String useremail = email.getText().toString().trim();
+                String userphone = phone.getText().toString().trim();
+                String userdesignation = designation.getText().toString().trim();
+                String usercollege = college.getText().toString().trim();
+                String userbranch = branch.getText().toString().trim();
+                String usersemester = semester.getText().toString().trim();
+                String userenrollment = enrollment.getText().toString().trim();
+                String usercity = city.getText().toString().trim();
 
 
-                if(!TextUtils.isEmpty(username)
-                && !TextUtils.isEmpty(useremail)
+                if (!TextUtils.isEmpty(username)
+                        && !TextUtils.isEmpty(useremail)
                         && !TextUtils.isEmpty(userphone)
                         && !TextUtils.isEmpty(userpassword)
                         && !TextUtils.isEmpty(userdesignation)
@@ -109,28 +112,23 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
     }
 
     private void createUserAccount(final String username, final String userdesignation, final String useremail,
                                    String userpassword, final String userphone, final String usercollege,
                                    final String usersemester, final String userbranch, final String userenrollment, final String usercity) {
-        firebaseAuth.createUserWithEmailAndPassword(useremail,userpassword)
+        firebaseAuth.createUserWithEmailAndPassword(useremail, userpassword)
 
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
 
 
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             Log.d("SignUp", "onComplete: USer Created");
-                            currentUser=firebaseAuth.getCurrentUser();
-                            assert currentUser!=null;
-                            final String currentUserId=currentUser.getUid();
+                            currentUser = firebaseAuth.getCurrentUser();
+                            assert currentUser != null;
+                            final String currentUserId = currentUser.getUid();
 
                             Map<String,String> userObj=new HashMap<>();
                             userObj.put("UserId",currentUserId);
@@ -155,38 +153,36 @@ public class SignUpActivity extends AppCompatActivity {
                                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {
-                                                            if(task.isSuccessful()){
+                                                            if (task.isSuccessful()) {
                                                                 Log.d("Mail ", "onComplete: Mail Sent");
-                                                                Toast.makeText(SignUpActivity.this,"Verification Mail sent to "+currentUser.getEmail(),Toast.LENGTH_LONG).show();
+                                                                Toast.makeText(SignUpActivity.this, "Verification Mail sent to " + currentUser.getEmail(), Toast.LENGTH_LONG).show();
 
-                                                                Intent intent = new Intent(SignUpActivity.this,MainActivity.class);
+                                                                Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                                                                 startActivity(intent);
                                                                 finish();
-                                                            }
-                                                            else{
+                                                            } else {
                                                                 Log.d("Verification Failure", "onComplete:Verification Failed ");
                                                             }
                                                         }
                                                     });
 
-                                            Toast.makeText(SignUpActivity.this,"Data Saved Succesfully",Toast.LENGTH_LONG).show();
+                                            Toast.makeText(SignUpActivity.this, "Data Saved Succesfully", Toast.LENGTH_LONG).show();
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
                                             Log.d("Failure", "onFailure:Failed to save Data ");
-                                            Toast.makeText(SignUpActivity.this,"Failure to store data",Toast.LENGTH_LONG).show();
+                                            Toast.makeText(SignUpActivity.this, "Failure to store data", Toast.LENGTH_LONG).show();
                                         }
                                     });
 
 
-                        }
-                        else{
+                        } else {
                             Log.d("SignUp", "onComplete: User NOt created");
                         }
                     }
                 });
     }
-    }
+}
 

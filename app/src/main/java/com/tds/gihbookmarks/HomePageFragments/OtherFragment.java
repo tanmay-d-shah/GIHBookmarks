@@ -143,7 +143,9 @@ public class OtherFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String newText) {
 //                queryFor="books";
-                staggeredRecyclerViewAdapter.getFilter().filter(newText);
+                if (staggeredRecyclerViewAdapter != null) {
+                    staggeredRecyclerViewAdapter.getFilter().filter(newText);
+                }
                 return false;
             }
 

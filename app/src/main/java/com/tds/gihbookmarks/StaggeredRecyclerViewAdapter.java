@@ -36,6 +36,7 @@ import java.util.List;
 public class StaggeredRecyclerViewAdapter
         extends RecyclerView.Adapter<StaggeredRecyclerViewAdapter.ViewHolder>
         implements Filterable {
+
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -51,9 +52,11 @@ public class StaggeredRecyclerViewAdapter
     //    private final ArrayList<String> mImageUrls;
     private List<SaleItems> saleItemsList;
     private List<SaleItems> saleItemsListAll;
+    private List<String> bookIDB;
+    private List<String> userIDB;
+    private List<String> temp2;
 
-    //    private ArrayList<String> mName= new ArrayList<>();
-//    private ArrayList<String> mImage= new ArrayList<>();
+
     private Context mContext;
     private RecyclerView.ViewHolder holder;
     //private int position;
@@ -130,7 +133,7 @@ public class StaggeredRecyclerViewAdapter
 //                .into(holder.image);
 //
         holder.name.setText(saleItemsList.get(holder.getAdapterPosition()).getDesc());
-        Log.d(TAG, "check2 "+holder.name.getText());
+        Log.d(TAG, "check2 " + holder.name.getText());
         holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,7 +157,7 @@ public class StaggeredRecyclerViewAdapter
                                                             sellerMobile=user.get("Mobile").toString();
                                                             sellerRating=user.get("SellerRating").toString();
 
-                                                            Log.d(TAG, "onSuccess: "+sellerName);
+                                                Log.d(TAG, "onSuccess: " + sellerName);
 //
                                                             Intent intent=new Intent(mContext,SaleItemDetailActivity.class);
                                                             intent.putExtra("book_parcel",book);
@@ -163,19 +166,17 @@ public class StaggeredRecyclerViewAdapter
                                                             intent.putExtra("seller_name",sellerName);
                                                             intent.putExtra("seller_rating",sellerRating);
 
-                                                            mContext.startActivity(intent);
+                                                mContext.startActivity(intent);
+                                            }
 
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
 
-                                                        }
-
-                                                    }
-                                                })
-                                                .addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-
-                                                    }
-                                                });
+                                        }
+                                    });
 //
 //                                    sellerCollectionReference
 //                                            .document(saleItem.getSellerId()).get()
