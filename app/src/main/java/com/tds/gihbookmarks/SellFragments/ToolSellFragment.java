@@ -1,6 +1,9 @@
 package com.tds.gihbookmarks.SellFragments;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,8 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,6 +45,7 @@ import com.tds.gihbookmarks.model.Book;
 import com.tds.gihbookmarks.model.SaleItems;
 import com.tds.gihbookmarks.model.Tool;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import static android.app.Activity.RESULT_OK;
@@ -66,7 +72,8 @@ public class ToolSellFragment extends Fragment {
 
     private ImageView imgTools;
     private TextInputEditText name, desc, price;
-    private Button btn_sell;
+    private Button btn_sell,btn_rent;
+    private DatePickerDialog.OnDateSetListener mDataSetListner;
 
     public ToolSellFragment() {
         // Required empty public constructor
@@ -103,11 +110,37 @@ public class ToolSellFragment extends Fragment {
         price = view.findViewById(R.id.tool_price);
         btn_sell = view.findViewById(R.id.btnSellTool);
         spinner=view.findViewById(R.id.toolList);
+        btn_rent=view.findViewById(R.id.btnRentTool);
 
         ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(view.getContext(),R.array.tools,android.R.layout.simple_spinner_item);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
 
+        btn_rent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*Intent intent=new Intent(getActivity(),BookRentDateActivity.class);
+                startActivity(intent);*/
+                Calendar cal=Calendar.getInstance();
+                int year=cal.get(Calendar.YEAR);
+                int month=cal.get(Calendar.MONTH);
+                int day=cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog datePickerDialog=new DatePickerDialog(getContext(),
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,mDataSetListner,year,month,day);
+                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                datePickerDialog.show();
+            }
+        });
+
+        mDataSetListner = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month=month+1;
+                String date=day + "/" + month + "/" + year;
+                Toast.makeText(getContext(),"Your tool is added for rent till date: "+date.toString(),Toast.LENGTH_SHORT).show();
+            }
+        };
 
         imgTools.setOnClickListener(new View.OnClickListener() {
             @Override
