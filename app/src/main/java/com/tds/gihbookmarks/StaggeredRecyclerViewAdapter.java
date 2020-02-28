@@ -60,6 +60,7 @@ public class StaggeredRecyclerViewAdapter
 
     private String sellerName;
     private String sellerMobile;
+    private String sellerRating;
     private Filter myFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
@@ -151,6 +152,7 @@ public class StaggeredRecyclerViewAdapter
                                                         for(QueryDocumentSnapshot user:queryDocumentSnapshots){
                                                             sellerName=user.get("Name").toString();
                                                             sellerMobile=user.get("Mobile").toString();
+                                                            sellerRating=user.get("SellerRating").toString();
 
                                                             Log.d(TAG, "onSuccess: "+sellerName);
 //
@@ -159,6 +161,7 @@ public class StaggeredRecyclerViewAdapter
                                                             intent.putExtra("sale_item_parcel",saleItem);
                                                             intent.putExtra("seller_mobile",sellerMobile);
                                                             intent.putExtra("seller_name",sellerName);
+                                                            intent.putExtra("seller_rating",sellerRating);
 
                                                             mContext.startActivity(intent);
 

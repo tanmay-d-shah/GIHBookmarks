@@ -41,6 +41,7 @@ public class SaleItemDetailActivity extends AppCompatActivity {
     private TextView sellerMobileNo;
     private TextView statusValue;
     private TextView numRequests;
+    private TextView sellerRating;
 
     private FirebaseAuth firebaseAuth;
     private String currentUserId;
@@ -81,6 +82,7 @@ public class SaleItemDetailActivity extends AppCompatActivity {
         sellerMobileNo=findViewById(R.id.seller_number);
         statusValue=findViewById(R.id.status_value);
         numRequests=findViewById(R.id.count_request);
+        sellerRating=findViewById(R.id.seller_rating);
 
 
         authStateListener=new FirebaseAuth.AuthStateListener() {
@@ -116,6 +118,7 @@ public class SaleItemDetailActivity extends AppCompatActivity {
         bookAuthor.setText(book.getAuthor());
         sellerMobileNo.setText(getIntent().getStringExtra("seller_mobile"));
         sellerName.setText(getIntent().getStringExtra("seller_name"));
+        sellerRating.setText(getIntent().getStringExtra("seller_rating"));
 
         statusValue.setText(saleItems.getStatus());
 
@@ -140,6 +143,8 @@ public class SaleItemDetailActivity extends AppCompatActivity {
                         });
             }
         });
+
+
 
 
         Log.d("Book Obj Transfered", "onCreate: "+book.getTitle());
