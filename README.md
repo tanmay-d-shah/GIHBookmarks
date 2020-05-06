@@ -1,4 +1,4 @@
-BOOKMARKS is a books/stationary/knowlegde sharing android application made during Gujarat Industrial Hackathon.<br>
+BOOKMARKS is a books/stationary/knowledge sharing android application made during Gujarat Industrial Hackathon.<br>
 This app was made By:<br>
 1.Tanmay Shah<br>
 2.Tirth Trivedi<br>
